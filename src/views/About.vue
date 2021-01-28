@@ -1,13 +1,11 @@
 <template>
-    <media-grid />
+    <div>
+        About page
+    </div>
 </template>
 
 <script>
-import MediaGrid from "../components/MediaGrid";
-export default {
-    name: "About",
-    components: {
-        MediaGrid,
-    },
-};
+export default {};
 </script>
+
+<style lang="scss" scoped></style>

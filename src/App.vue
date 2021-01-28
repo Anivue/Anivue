@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <v-main class="pb-14">
+        <v-main class="pb-14 grey darken-4">
             <router-view />
         </v-main>
         <navbar />
