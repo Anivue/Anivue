@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import AnimeHome from "../views/AnimeHome.vue";
+import MediaHome from "../views/MediaHome.vue";
 
 Vue.use(VueRouter);
 
@@ -21,9 +21,10 @@ const routes = [
             import(/* webpackChunkName: "about" */ "../views/About.vue"),
     },
     {
-        path: "/search/anime",
-        name: "AnimeHome",
-        component: AnimeHome,
+        path: "/search/:type",
+        name: "MediaHome",
+        component: MediaHome,
+        props: true,
     },
 ];
 

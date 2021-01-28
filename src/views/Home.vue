@@ -1,15 +1,10 @@
 <template>
-    <div>
-        <media-grid />
-    </div>
+    <div></div>
 </template>
 
 <script>
-import MediaGrid from "../components/MediaGrid";
 export default {
     name: "Home",
-    components: {
-        MediaGrid,
-    },
+    components: {},
 };
 </script>

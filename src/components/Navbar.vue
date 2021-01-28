@@ -26,7 +26,7 @@
             <v-icon>mdi-home</v-icon>
         </v-btn>
 
-        <v-btn height="100%">
+        <v-btn height="100%" to="/search/manga">
             <span>Manga</span>
 
             <v-icon>mdi-book</v-icon>
