@@ -2,9 +2,13 @@
     <v-app>
         <appbar />
         <v-main class="pb-14 page-dark">
-            <keep-alive>
-                <router-view :key="$route.fullPath" />
-            </keep-alive>
+            <!-- CACHE EXAMPLE
+                <keep-alive>
+                    <router-view :key="$route.fullPath" />
+                </keep-alive>
+            -->
+
+            <router-view />
         </v-main>
         <navbar class="d-none d-sm-flex" />
     </v-app>

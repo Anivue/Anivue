@@ -17,6 +17,7 @@
                 <v-card class="pa-1">
                     <v-card-actions>
                         <v-text-field
+                            placeholder="Search..."
                             v-model="searchText"
                             autofocus
                             class="font-weight-bold"
@@ -64,6 +65,7 @@ export default {
             navLinks: this.$store.state.navLinks,
             dialog: false,
             searchText: "",
+            searchPlaceholder: "Search manga",
         };
     },
     watch: {
@@ -73,6 +75,7 @@ export default {
             }
         },
     },
+    methods: {},
 };
 </script>
 
