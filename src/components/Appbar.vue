@@ -26,6 +26,7 @@
                 <v-card class="pa-1">
                     <v-card-actions>
                         <v-text-field
+                            spellcheck="false"
                             placeholder="Search..."
                             v-model="searchText"
                             autofocus
