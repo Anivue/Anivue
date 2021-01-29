@@ -1,47 +1,26 @@
 <template>
-    <v-bottom-navigation
-        :value="1"
-        grow
-        id="nav"
-        fixed
-        dark
-        shift
-        class="d-flex align-center"
-    >
-        <v-btn height="100%">
-            <span>Search</span>
+    <v-bottom-navigation grow id="nav" fixed dark shift class="align-center">
+        <v-btn
+            v-for="navLink in navLinks"
+            :key="navLink.title"
+            height="100%"
+            :to="navLink.routePath"
+        >
+            <span>{{ navLink.title }}</span>
 
-            <v-icon>mdi-magnify</v-icon>
-        </v-btn>
-
-        <v-btn height="100%">
-            <span>Profile</span>
-
-            <v-icon>mdi-home</v-icon>
-        </v-btn>
-
-        <v-btn height="100%" to="/search/anime">
-            <span>Anime</span>
-
-            <v-icon>mdi-home</v-icon>
-        </v-btn>
-
-        <v-btn height="100%" to="/search/manga">
-            <span>Manga</span>
-
-            <v-icon>mdi-book</v-icon>
-        </v-btn>
-
-        <v-btn height="100%" to="/about">
-            <span>Favorites</span>
-
-            <v-icon>mdi-star</v-icon>
+            <v-icon>{{ navLink.icon }}</v-icon>
         </v-btn>
     </v-bottom-navigation>
 </template>
 
 <script>
-export default {};
+export default {
+    data() {
+        return {
+            navLinks: this.$store.state.navLinks,
+        };
+    },
+};
 </script>
 
 <style lang="scss" scoped>

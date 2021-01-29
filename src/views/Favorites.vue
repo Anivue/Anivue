@@ -1,11 +1,11 @@
 <template>
-    <div>
-        About page
-    </div>
+    <div>favorites</div>
 </template>
 
 <script>
-export default {};
+export default {
+    name: "Favorites",
+};
 </script>
 
 <style lang="scss" scoped></style>
