@@ -1,13 +1,22 @@
 <template>
     <div>
-        <v-app-bar dark>
+        <v-app-bar dark app hide-on-scroll>
             <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
-            <v-toolbar-title>Anibase</v-toolbar-title>
+            <v-toolbar-title class="font-weight-bold pl-0">
+                <v-btn large text to="/" exact>
+                    Anibase
+                </v-btn>
+            </v-toolbar-title>
 
             <v-spacer></v-spacer>
 
-            <v-dialog v-model="dialog" width="500" class="transparent">
+            <v-dialog
+                overlay-opacity="0.8"
+                v-model="dialog"
+                width="500"
+                class="transparent"
+            >
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn class="mr-1" icon v-bind="attrs" v-on="on">
                         <v-icon>mdi-magnify</v-icon>
@@ -35,8 +44,13 @@
             </v-btn>
         </v-app-bar>
 
-        <v-navigation-drawer v-model="drawer" absolute temporary>
-            <v-list nav dense>
+        <v-navigation-drawer
+            overlay-opacity="0.8"
+            app
+            v-model="drawer"
+            temporary
+        >
+            <v-list nav>
                 <v-list-item-group v-model="group" active-class="">
                     <v-list-item
                         v-for="navLink in navLinks"

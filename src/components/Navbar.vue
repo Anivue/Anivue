@@ -1,5 +1,13 @@
 <template>
-    <v-bottom-navigation grow id="nav" fixed dark shift class="align-center">
+    <v-bottom-navigation
+        app
+        grow
+        id="nav"
+        fixed
+        dark
+        shift
+        class="align-center"
+    >
         <v-btn
             v-for="navLink in navLinks"
             :key="navLink.title"
