@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <appbar />
-        <v-main class="pb-14 grey darken-4">
+        <v-main class="pb-14 page-dark">
             <keep-alive>
                 <router-view :key="$route.fullPath" />
             </keep-alive>
@@ -27,3 +27,10 @@ export default {
     }),
 };
 </script>
+
+<style lang="scss">
+.page-dark {
+    background-color: #181818;
+    border-color: #181818;
+}
+</style>

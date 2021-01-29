@@ -7,6 +7,18 @@
 
             <v-spacer></v-spacer>
 
+            <v-dialog v-model="dialog" width="500">
+                <template v-slot:activator="{ on, attrs }">
+                    <v-btn class="mr-1" icon v-bind="attrs" v-on="on">
+                        <v-icon>mdi-magnify</v-icon>
+                    </v-btn>
+                </template>
+
+                <v-card class="pa-1">
+                    <v-text-field v-model="searchText"> </v-text-field>
+                </v-card>
+            </v-dialog>
+
             <v-btn icon class="mr-1">
                 <v-icon>mdi-account</v-icon>
             </v-btn>
@@ -40,6 +52,8 @@ export default {
             drawer: false,
             group: null,
             navLinks: this.$store.state.navLinks,
+            dialog: false,
+            searchText: "",
         };
     },
 };
