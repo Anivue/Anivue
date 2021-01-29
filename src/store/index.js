@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        // Only 5 navLinks allowed
+        //! Only 5 navLinks allowed
         navLinks: [
             {
                 title: "Characters",

@@ -7,7 +7,7 @@
 
             <v-spacer></v-spacer>
 
-            <v-btn icon>
+            <v-btn icon class="mr-1">
                 <v-icon>mdi-account</v-icon>
             </v-btn>
         </v-app-bar>
