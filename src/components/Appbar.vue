@@ -7,7 +7,7 @@
 
             <v-spacer></v-spacer>
 
-            <v-dialog v-model="dialog" width="500">
+            <v-dialog v-model="dialog" width="500" class="transparent">
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn class="mr-1" icon v-bind="attrs" v-on="on">
                         <v-icon>mdi-magnify</v-icon>
@@ -15,7 +15,17 @@
                 </template>
 
                 <v-card class="pa-1">
-                    <v-text-field v-model="searchText"> </v-text-field>
+                    <v-card-actions>
+                        <v-text-field
+                            v-model="searchText"
+                            autofocus
+                            class="font-weight-bold"
+                        >
+                        </v-text-field>
+                        <v-btn icon class="ml-2">
+                            <v-icon>mdi-send</v-icon>
+                        </v-btn>
+                    </v-card-actions>
                 </v-card>
             </v-dialog>
 
@@ -56,5 +66,19 @@ export default {
             searchText: "",
         };
     },
+    watch: {
+        dialog(val) {
+            if (!val) {
+                this.searchText = "";
+            }
+        },
+    },
 };
 </script>
+
+<style lang="scss">
+.v-input input {
+    font-size: 1.2em;
+    color: #cfd8dc;
+}
+</style>
