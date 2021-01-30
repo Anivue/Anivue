@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <div class="mb-10">
         <v-container>
             <v-row justify="space-between">
-                <v-col cols="12" sm="4">
+                <v-col>
                     <h2>Trending {{ sectionType }}</h2>
                 </v-col>
-                <v-col cols="12" sm="4" class="d-flex justify-end">
+                <v-col class="d-flex justify-end">
                     <v-btn elevation="24">
                         See all
                     </v-btn>

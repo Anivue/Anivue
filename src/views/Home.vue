@@ -1,6 +1,12 @@
 <template>
     <div>
-        <h1>Search <span ref="typed"></span></h1>
+        <v-container class="my-10">
+            <v-row>
+                <v-col class="d-flex justify-center">
+                    <h1>Search <span ref="typed"></span></h1>
+                </v-col>
+            </v-row>
+        </v-container>
         <trending-section sectionType="anime" />
         <trending-section sectionType="manga" />
     </div>

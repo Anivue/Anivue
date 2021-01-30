@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <appbar />
-        <v-main class="pb-14 page-dark" style="height: 9999px;">
+        <v-main class="pb-14 page-dark">
             <!-- CACHE EXAMPLE -->
             <!-- <keep-alive>
                 <router-view :key="$route.fullPath" />

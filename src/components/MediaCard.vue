@@ -1,5 +1,5 @@
 <template>
-    <v-card elevation="15">
+    <v-card elevation="20">
         <v-img
             lazy-src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-m5ZMNtFioc7j.png"
             src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-m5ZMNtFioc7j.png"
@@ -21,7 +21,7 @@
         </v-card-subtitle>
         <v-card-actions>
             <v-btn text color="#666">
-                Learn More
+                Open
             </v-btn>
         </v-card-actions>
     </v-card>
