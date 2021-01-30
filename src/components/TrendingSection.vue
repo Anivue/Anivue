@@ -3,7 +3,9 @@
         <v-container>
             <v-row justify="space-between">
                 <v-col>
-                    <h2>Trending {{ sectionType }}</h2>
+                    <h2>
+                        <v-icon>mdi-fire</v-icon> Trending {{ sectionType }}
+                    </h2>
                 </v-col>
                 <v-col class="d-flex justify-end">
                     <v-btn elevation="24">
@@ -30,4 +32,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+h2 {
+    text-transform: capitalize;
+}
+</style>

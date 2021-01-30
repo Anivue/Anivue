@@ -51,6 +51,14 @@
             v-model="drawer"
             temporary
         >
+            <v-list-item>
+                <v-list-item-content>
+                    <v-list-item-title class="title">
+                        Menu
+                    </v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+            <v-divider></v-divider>
             <v-list nav>
                 <v-list-item-group v-model="group" active-class="">
                     <v-list-item
