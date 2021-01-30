@@ -1,20 +1,14 @@
 <template>
     <div>
-        <div>{{ this.$route.params.type }}</div>
-        <v-container>
-            <v-row>
-                <v-col v-for="n in 6" :key="n" cols="6" xs="4" sm="3" md="2">
-                    <media-card />
-                </v-col>
-            </v-row>
-        </v-container>
+        <media-grid :mediaType="this.$route.params.type" />
     </div>
 </template>
 
 <script>
-import MediaCard from "../components/MediaCard.vue";
+import MediaGrid from "../components/MediaGrid.vue";
+
 export default {
-    components: { MediaCard },
+    components: { MediaGrid },
     name: "MediaHome",
 };
 </script>
