@@ -26,7 +26,12 @@
             height="100%"
         >
             <template v-slot:activator="{ on, attrs }">
-                <v-btn v-on="on" v-bind="attrs" :to="navLink.routePath">
+                <v-btn
+                    v-on="on"
+                    v-bind="attrs"
+                    :to="navLink.routePath"
+                    :class="colors[navLink.colorProp].text"
+                >
                     <span>{{ navLink.title }}</span>
                     <v-icon>{{ navLink.icon }}</v-icon>
                 </v-btn>
@@ -38,10 +43,13 @@
 
 <script>
 export default {
-    data() {
-        return {
-            navLinks: this.$store.state.navLinks,
-        };
+    computed: {
+        navLinks() {
+            return this.$store.state.navLinks;
+        },
+        colors() {
+            return this.$store.state.colors;
+        },
     },
 };
 </script>

@@ -1,8 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import MediaHome from "../views/MediaHome.vue";
-import Favorites from "../views/Favorites.vue";
+import NProgress from "nprogress";
+// import MediaHome from "../views/MediaHome.vue";
+// import Favorites from "../views/Favorites.vue";
 
 Vue.use(VueRouter);
 
@@ -19,15 +20,12 @@ const routes = [
     {
         path: "/favorites",
         name: "Favorites",
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: Favorites,
+        component: () => import("../views/Favorites.vue"),
     },
     {
         path: "/search/:type",
         name: "MediaHome",
-        component: MediaHome,
+        component: () => import("../views/MediaHome.vue"),
         props: true,
     },
 ];
@@ -39,6 +37,20 @@ const router = new VueRouter({
     scrollBehavior() {
         return { x: 0, y: 0 };
     },
+});
+
+router.beforeResolve((to, from, next) => {
+    // If this isn't an initial page load.
+    if (to.name) {
+        // Start the route progress bar.
+        NProgress.start();
+    }
+    next();
+});
+
+router.afterEach(() => {
+    // Complete the animation of the route progress bar.
+    NProgress.done();
 });
 
 export default router;

@@ -1,5 +1,5 @@
 <template>
-    <v-card elevation="20">
+    <v-card elevation="24">
         <v-img :lazy-src="imageLQ" :src="image">
             <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
@@ -17,7 +17,7 @@
             {{ mediaType }}
         </v-card-subtitle>
         <v-card-actions>
-            <v-btn text color="#666">
+            <v-btn block elevation="24" color="grey darken-4">
                 Open
             </v-btn>
         </v-card-actions>
@@ -51,8 +51,7 @@ export default {
             // LOW QUALITY IMAGE FOR LOADER
             type: String,
             // required: true,
-            default:
-                "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-m5ZMNtFioc7j.png",
+            default: "https://via.placeholder.com/150",
         },
     },
     data() {

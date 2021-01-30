@@ -10,10 +10,12 @@
                 md="2"
             >
                 <media-card
+                    v-if="!skeleton"
                     title="Attack on Titan"
                     mediaType="TV SHOW"
                     :mediaId="1"
                 />
+                <v-skeleton-loader v-else type="card"></v-skeleton-loader>
             </v-col>
         </v-row>
     </v-container>
@@ -30,7 +32,6 @@ export default {
             //* Possible props: "anime" / "manga" / "characters"
             type: String,
             default: "anime",
-            required: true,
         },
         section: {
             //* Possible props:  "trending" / "global"
@@ -41,6 +42,10 @@ export default {
             //* Possible props: 50 (for global section) / 6 (for trending section)
             type: Number,
             default: 50,
+        },
+        skeleton: {
+            type: Boolean,
+            default: false,
         },
     },
 };

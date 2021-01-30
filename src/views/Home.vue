@@ -28,7 +28,7 @@ export default {
             strings: [
                 `<span class='${this.colors.anime.text}'>Anime</span>`,
                 `<span class='${this.colors.manga.text}'>Manga</span>`,
-                `<span class='${this.colors.charactes.text}'>Characters</span>`,
+                `<span class='${this.colors.characters.text}'>Characters</span>`,
             ],
             autoStart: true,
             loop: true,

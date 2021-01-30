@@ -4,7 +4,7 @@
             <v-row justify="space-between">
                 <v-col>
                     <h2>
-                        <v-icon>mdi-fire</v-icon> Trending
+                        <v-icon color="red">mdi-fire</v-icon> Trending
                         <span :class="colors.text">{{ sectionType }}</span>
                     </h2>
                 </v-col>
@@ -15,7 +15,13 @@
                 </v-col>
             </v-row>
         </v-container>
-        <media-grid :mediaType="sectionType" section="trending" :limit="6" />
+        <media-grid
+            v-if="isFetched"
+            :mediaType="sectionType"
+            section="trending"
+            :limit="6"
+        />
+        <media-grid v-else :skeleton="true" :limit="6"></media-grid>
     </div>
 </template>
 
@@ -34,6 +40,11 @@ export default {
         colors() {
             return this.$store.state.colors[this.sectionType];
         },
+    },
+    data() {
+        return {
+            isFetched: false,
+        };
     },
 };
 </script>
