@@ -9,7 +9,11 @@
                 sm="3"
                 md="2"
             >
-                <media-card />
+                <media-card
+                    title="Attack on Titan"
+                    mediaType="TV SHOW"
+                    :mediaId="1"
+                />
             </v-col>
         </v-row>
     </v-container>
@@ -41,5 +45,3 @@ export default {
     },
 };
 </script>
-
-<style lang="scss" scoped></style>
