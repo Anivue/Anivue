@@ -3,7 +3,7 @@
         <v-container class="my-10">
             <v-row>
                 <v-col class="d-flex justify-center">
-                    <h1>Search <span ref="typed"></span></h1>
+                    <h1>Explore <span ref="typed"></span></h1>
                 </v-col>
             </v-row>
         </v-container>
@@ -18,11 +18,21 @@ import TrendingSection from "../components/TrendingSection.vue";
 export default {
     name: "Home",
     components: { TrendingSection },
+    computed: {
+        colors() {
+            return this.$store.state.colors;
+        },
+    },
     mounted() {
         new Typewriter(this.$refs.typed, {
-            strings: ["Anime", "Manga", "Characters"],
+            strings: [
+                `<span class='${this.colors.anime.text}'>Anime</span>`,
+                `<span class='${this.colors.manga.text}'>Manga</span>`,
+                `<span class='${this.colors.charactes.text}'>Characters</span>`,
+            ],
             autoStart: true,
             loop: true,
+            deleteSpeed: "natural",
         });
     },
 };

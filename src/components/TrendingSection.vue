@@ -4,11 +4,12 @@
             <v-row justify="space-between">
                 <v-col>
                     <h2>
-                        <v-icon>mdi-fire</v-icon> Trending {{ sectionType }}
+                        <v-icon>mdi-fire</v-icon> Trending
+                        <span :class="colors.text">{{ sectionType }}</span>
                     </h2>
                 </v-col>
                 <v-col class="d-flex justify-end">
-                    <v-btn elevation="24">
+                    <v-btn elevation="24" :color="colors.block">
                         See all
                     </v-btn>
                 </v-col>
@@ -27,6 +28,11 @@ export default {
             type: String,
             default: "anime",
             required: true,
+        },
+    },
+    computed: {
+        colors() {
+            return this.$store.state.colors[this.sectionType];
         },
     },
 };

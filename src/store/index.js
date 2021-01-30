@@ -18,6 +18,20 @@ export default new Vuex.Store({
             { title: "Manga", routePath: "/search/manga", icon: "mdi-book" },
             { title: "Favorites", routePath: "/favorites", icon: "mdi-star" },
         ],
+        colors: {
+            anime: {
+                text: "orange--text",
+                block: "orange accent-4",
+            },
+            manga: {
+                text: "blue--text",
+                block: "blue accent-4",
+            },
+            charactes: {
+                text: "purple--text accent-3",
+                block: "purple accent-3",
+            },
+        },
     },
     mutations: {},
     actions: {},
