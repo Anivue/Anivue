@@ -4,7 +4,7 @@
             <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
             <v-toolbar-title class="font-weight-bold pl-0">
-                <v-btn large text to="/" exact>
+                <v-btn x-large text to="/" exact class="p-0">
                     Anibase
                 </v-btn>
             </v-toolbar-title>
@@ -33,7 +33,7 @@
                             class="font-weight-bold"
                         >
                         </v-text-field>
-                        <v-btn icon class="ml-2">
+                        <v-btn icon large class="ml-2">
                             <v-icon>mdi-send</v-icon>
                         </v-btn>
                     </v-card-actions>
@@ -98,5 +98,6 @@ export default {
 .v-input input {
     font-size: 1.2em;
     color: #cfd8dc;
+    text-transform: capitalize;
 }
 </style>
