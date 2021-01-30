@@ -3,11 +3,11 @@
         <appbar />
         <v-main class="pb-14 page-dark" style="height: 9999px;">
             <!-- CACHE EXAMPLE -->
-            <keep-alive>
+            <!-- <keep-alive>
                 <router-view :key="$route.fullPath" />
-            </keep-alive>
+            </keep-alive> -->
 
-            <!-- <router-view /> -->
+            <router-view />
         </v-main>
         <navbar class="d-none d-sm-flex" />
     </v-app>

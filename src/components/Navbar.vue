@@ -8,7 +8,7 @@
         shift
         class="align-center"
     >
-        <v-btn
+        <!-- <v-btn
             v-for="navLink in navLinks"
             :key="navLink.title"
             height="100%"
@@ -17,7 +17,22 @@
             <span>{{ navLink.title }}</span>
 
             <v-icon>{{ navLink.icon }}</v-icon>
-        </v-btn>
+        </v-btn> -->
+
+        <v-tooltip
+            top
+            v-for="navLink in navLinks"
+            :key="navLink.title"
+            height="100%"
+        >
+            <template v-slot:activator="{ on, attrs }">
+                <v-btn v-on="on" v-bind="attrs" :to="navLink.routePath">
+                    <span>{{ navLink.title }}</span>
+                    <v-icon>{{ navLink.icon }}</v-icon>
+                </v-btn>
+            </template>
+            <span>{{ navLink.title }}</span>
+        </v-tooltip>
     </v-bottom-navigation>
 </template>
 

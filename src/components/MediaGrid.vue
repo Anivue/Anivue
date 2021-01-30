@@ -1,14 +1,18 @@
 <template>
-    <div>
-        <h1>{{ mediaType }}</h1>
-        <v-container>
-            <v-row>
-                <v-col v-for="n in 6" :key="n" cols="6" xs="4" sm="3" md="2">
-                    <media-card />
-                </v-col>
-            </v-row>
-        </v-container>
-    </div>
+    <v-container>
+        <v-row>
+            <v-col
+                v-for="card in limit"
+                :key="card"
+                cols="6"
+                xs="4"
+                sm="3"
+                md="2"
+            >
+                <media-card />
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 
 <script>
