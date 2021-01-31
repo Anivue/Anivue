@@ -2,14 +2,16 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import NProgress from "nprogress";
-// import MediaHome from "../views/MediaHome.vue";
-// import Favorites from "../views/Favorites.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
     {
         path: "/",
+        redirect: "/home",
+    },
+    {
+        path: "/search",
         redirect: "/home",
     },
     {
@@ -27,6 +29,11 @@ const routes = [
         name: "mediahome",
         component: () => import("../views/MediaHome.vue"),
         props: true,
+    },
+    {
+        path: "*",
+        name: "notfound",
+        component: () => import("../views/NotFound.vue"),
     },
 ];
 

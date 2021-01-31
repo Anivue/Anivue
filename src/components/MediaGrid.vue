@@ -62,18 +62,18 @@ export default {
     data() {
         return {
             isLoading: true,
-            isError: true,
+            isError: false,
         };
     },
     methods: {
         fetchMedia() {
-            this.isError = false;
-            this.isLoading = true;
-            console.log(`fetching ${this.mediaType}`);
-            setTimeout(() => {
-                // Error testing
-                this.isError = true;
-            }, 3000);
+            // this.isError = false;
+            // this.isLoading = true;
+            // console.log(`fetching ${this.mediaType}`);
+            // setTimeout(() => {
+            //     // Error testing
+            //     this.isError = true;
+            // }, 3000);
         },
     },
     watch: {
