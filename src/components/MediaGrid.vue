@@ -1,28 +1,39 @@
 <template>
-    <v-container>
-        <v-row>
-            <v-col
-                v-for="card in limit"
-                :key="card"
-                cols="6"
-                xs="4"
-                sm="3"
-                md="2"
-            >
-                <v-skeleton-loader
-                    v-if="isLoading"
-                    type="card"
-                    elevation="24"
-                ></v-skeleton-loader>
-                <media-card
-                    v-else
-                    title="Attack on Titan"
-                    mediaType="TV SHOW"
-                    :mediaId="1"
-                />
-            </v-col>
-        </v-row>
-    </v-container>
+    <div>
+        <v-container>
+            <v-row>
+                <v-col
+                    v-for="card in limit"
+                    :key="card"
+                    cols="6"
+                    xs="4"
+                    sm="3"
+                    md="2"
+                >
+                    <v-skeleton-loader
+                        v-if="isLoading"
+                        type="card"
+                        elevation="24"
+                    ></v-skeleton-loader>
+                    <media-card
+                        v-else
+                        title="Attack on Titan"
+                        mediaType="TV SHOW"
+                        :mediaId="1"
+                    />
+                </v-col>
+            </v-row>
+        </v-container>
+        <v-snackbar v-model="isError">
+            Error!
+
+            <template v-slot:action="{ attrs }">
+                <v-btn color="red" text v-bind="attrs" @click="fetchMedia">
+                    Refresh
+                </v-btn>
+            </template>
+        </v-snackbar>
+    </div>
 </template>
 
 <script>
@@ -38,12 +49,12 @@ export default {
             default: "anime",
         },
         section: {
-            //* Possible props:  "trending" / "global"
+            //* Possible props:  "trending" / "global" / "favorites"
             type: String,
             default: "global",
         },
         limit: {
-            //* Possible props: 50 (for global section) / 6 (for trending section)
+            //* Possible props: 50 (for global section | favorites) / 6 (for trending section)
             type: Number,
             default: 50,
         },
@@ -51,7 +62,27 @@ export default {
     data() {
         return {
             isLoading: true,
+            isError: true,
         };
+    },
+    methods: {
+        fetchMedia() {
+            this.isError = false;
+            this.isLoading = true;
+            console.log(`fetching ${this.mediaType}`);
+            setTimeout(() => {
+                // Error testing
+                this.isError = true;
+            }, 3000);
+        },
+    },
+    watch: {
+        "$route.params": {
+            handler() {
+                this.fetchMedia();
+            },
+            immediate: true,
+        },
     },
 };
 </script>

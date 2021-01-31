@@ -17,11 +17,11 @@ const routes = [
         name: "home",
         component: Home,
     },
-    {
-        path: "/favorites",
-        name: "favorites",
-        component: () => import("../views/Favorites.vue"),
-    },
+    // {
+    //     path: "/favorites",
+    //     name: "favorites",
+    //     component: () => import("../views/Favorites.vue"),
+    // },
     {
         path: "/search/:type",
         name: "mediahome",

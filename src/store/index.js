@@ -34,7 +34,7 @@ export default new Vuex.Store({
             },
             {
                 title: "Favorites",
-                routePath: "/favorites",
+                routePath: "/search/favorites",
                 icon: "mdi-star",
                 colorProp: "favorites",
             },
