@@ -41,8 +41,8 @@ export default new Vuex.Store({
         ],
         colors: {
             anime: {
-                text: "orange--text",
-                block: "orange accent-4",
+                text: "red--text darken-1",
+                block: "red darken-1",
             },
             manga: {
                 text: "blue--text",

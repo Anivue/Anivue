@@ -2,14 +2,7 @@
     <div>
         <v-container>
             <v-row>
-                <v-col
-                    v-for="card in limit"
-                    :key="card"
-                    cols="6"
-                    xs="4"
-                    sm="3"
-                    md="2"
-                >
+                <v-col v-for="card in limit" :key="card" cols="6" sm="3" md="2">
                     <v-skeleton-loader
                         v-if="isLoading"
                         type="card"
@@ -28,7 +21,7 @@
             Error!
 
             <template v-slot:action="{ attrs }">
-                <v-btn color="red" text v-bind="attrs" @click="fetchMedia">
+                <v-btn color="red" text v-bind="attrs">
                     Refresh
                 </v-btn>
             </template>
@@ -65,25 +58,15 @@ export default {
             isError: false,
         };
     },
-    methods: {
-        fetchMedia() {
-            // this.isError = false;
-            // this.isLoading = true;
-            // console.log(`fetching ${this.mediaType}`);
-            // setTimeout(() => {
-            //     // Error testing
-            //     this.isError = true;
-            // }, 3000);
-        },
-    },
-    watch: {
-        "$route.params": {
-            handler() {
-                this.fetchMedia();
-            },
-            immediate: true,
-        },
-    },
+    methods: {},
+    // watch: {
+    //     "$route.params": {
+    //         handler() {
+    //             this.fetchMedia();
+    //         },
+    //         immediate: true,
+    //     },
+    // },
 };
 </script>
 

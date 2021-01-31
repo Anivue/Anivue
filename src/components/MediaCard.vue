@@ -32,6 +32,7 @@ export default {
             default: "NoTitle",
         },
         mediaType: {
+            // CHARACTER / TV SHOW / OVA / etc...
             type: String,
             default: "TV SHOW",
             required: true,

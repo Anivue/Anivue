@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-app-bar dark app hide-on-scroll>
+        <v-app-bar dark app hide-on-scroll elevation="24">
             <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
             <v-toolbar-title class="font-weight-bold pl-0">

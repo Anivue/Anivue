@@ -31,6 +31,12 @@ const routes = [
         props: true,
     },
     {
+        path: "/search/:type/:id",
+        name: "mediafullpage",
+        component: () => import("../views/MediaFullPage.vue"),
+        props: true,
+    },
+    {
         path: "*",
         name: "notfound",
         component: () => import("../views/NotFound.vue"),
