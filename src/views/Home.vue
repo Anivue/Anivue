@@ -7,7 +7,9 @@
                 </v-col>
             </v-row>
         </v-container>
+        <!-- Anime -->
         <trending-section sectionType="anime" />
+        <!-- Manga -->
         <trending-section sectionType="manga" />
     </div>
 </template>

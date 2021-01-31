@@ -62,7 +62,7 @@
                     <h1 class="text-h5">Characters</h1>
                 </v-col>
                 <v-col cols="12">
-                    <media-grid :limit="6" />
+                    <media-grid :loading="loading" :limit="6" />
                 </v-col>
             </v-row>
         </v-container>
@@ -80,6 +80,11 @@ export default {
             type: [String, Number],
             required: true,
         },
+    },
+    data() {
+        return {
+            loading: true,
+        };
     },
 };
 </script>

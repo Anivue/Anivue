@@ -15,7 +15,7 @@
                 </v-col>
             </v-row>
         </v-container>
-        <media-grid :mediaType="sectionType" section="trending" :limit="6" />
+        <media-grid :loading="loading" :limit="6" />
     </div>
 </template>
 
@@ -29,11 +29,19 @@ export default {
             default: "anime",
             required: true,
         },
+        media: {
+            type: Object,
+        },
     },
     computed: {
         colors() {
             return this.$store.state.colors[this.sectionType];
         },
+    },
+    data() {
+        return {
+            loading: true,
+        };
     },
 };
 </script>

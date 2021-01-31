@@ -1,15 +1,23 @@
 <template>
     <div>
         <v-container>
-            <v-row>
+            <v-row v-if="loading">
                 <v-col v-for="card in limit" :key="card" cols="6" sm="3" md="2">
                     <v-skeleton-loader
-                        v-if="isLoading"
                         type="card"
                         elevation="24"
                     ></v-skeleton-loader>
+                </v-col>
+            </v-row>
+            <v-row v-else>
+                <v-col
+                    v-for="(mediaItem, index) in media"
+                    :key="index"
+                    cols="6"
+                    sm="3"
+                    md="2"
+                >
                     <media-card
-                        v-else
                         title="Attack on Titan"
                         mediaType="TV SHOW"
                         :mediaId="1"
@@ -17,15 +25,6 @@
                 </v-col>
             </v-row>
         </v-container>
-        <v-snackbar v-model="isError">
-            Error!
-
-            <template v-slot:action="{ attrs }">
-                <v-btn color="red" text v-bind="attrs">
-                    Refresh
-                </v-btn>
-            </template>
-        </v-snackbar>
     </div>
 </template>
 
@@ -36,27 +35,19 @@ export default {
         MediaCard,
     },
     props: {
-        mediaType: {
-            //* Possible props: "anime" / "manga" / "characters"
-            type: String,
-            default: "anime",
+        media: {
+            type: Object,
         },
-        section: {
-            //* Possible props:  "trending" / "global" / "favorites"
-            type: String,
-            default: "global",
+        loading: {
+            type: Boolean,
+            default: true,
         },
         limit: {
+            // ! DEV PROP; REMOVE LATER
             //* Possible props: 50 (for global section | favorites) / 6 (for trending section)
             type: Number,
             default: 50,
         },
-    },
-    data() {
-        return {
-            isLoading: true,
-            isError: false,
-        };
     },
     methods: {},
     // watch: {

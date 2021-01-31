@@ -1,7 +1,7 @@
 <template>
     <div>
         <page-header :title="type" />
-        <media-grid :mediaType="type" />
+        <media-grid :loading="true" :mediaType="type" />
     </div>
 </template>
 
