@@ -31,12 +31,16 @@ export default new Vuex.Store({
                 routePath: "/search/manga",
                 icon: "mdi-book",
                 colorProp: "manga",
+                routeName: "mediahome",
+                routeParams: "manga",
             },
             {
                 title: "Favorites",
                 routePath: "/favorites",
                 icon: "mdi-star",
-                colorProp: "favs",
+                colorProp: "favorites",
+                routeName: "favorites",
+                routeParams: "",
             },
         ],
         colors: {
@@ -56,7 +60,7 @@ export default new Vuex.Store({
                 text: "light-green--text",
                 block: "light-green",
             },
-            favs: {
+            favorites: {
                 text: "yellow--text lighten-1",
                 block: "yellow lighten-1",
             },

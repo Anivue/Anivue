@@ -14,17 +14,17 @@ const routes = [
     },
     {
         path: "/home",
-        name: "Home",
+        name: "home",
         component: Home,
     },
     {
         path: "/favorites",
-        name: "Favorites",
+        name: "favorites",
         component: () => import("../views/Favorites.vue"),
     },
     {
         path: "/search/:type",
-        name: "MediaHome",
+        name: "mediahome",
         component: () => import("../views/MediaHome.vue"),
         props: true,
     },

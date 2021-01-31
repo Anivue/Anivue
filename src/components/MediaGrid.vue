@@ -9,13 +9,17 @@
                 sm="3"
                 md="2"
             >
+                <v-skeleton-loader
+                    v-if="isLoading"
+                    type="card"
+                    elevation="24"
+                ></v-skeleton-loader>
                 <media-card
-                    v-if="!skeleton"
+                    v-else
                     title="Attack on Titan"
                     mediaType="TV SHOW"
                     :mediaId="1"
                 />
-                <v-skeleton-loader v-else type="card"></v-skeleton-loader>
             </v-col>
         </v-row>
     </v-container>
@@ -43,10 +47,17 @@ export default {
             type: Number,
             default: 50,
         },
-        skeleton: {
-            type: Boolean,
-            default: false,
-        },
+    },
+    data() {
+        return {
+            isLoading: true,
+        };
     },
 };
 </script>
+
+<style lang="scss">
+.v-skeleton-loader__image {
+    height: 260 !important;
+}
+</style>

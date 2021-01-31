@@ -15,13 +15,7 @@
                 </v-col>
             </v-row>
         </v-container>
-        <media-grid
-            v-if="isFetched"
-            :mediaType="sectionType"
-            section="trending"
-            :limit="6"
-        />
-        <media-grid v-else :skeleton="true" :limit="6"></media-grid>
+        <media-grid :mediaType="sectionType" section="trending" :limit="6" />
     </div>
 </template>
 
@@ -40,11 +34,6 @@ export default {
         colors() {
             return this.$store.state.colors[this.sectionType];
         },
-    },
-    data() {
-        return {
-            isFetched: false,
-        };
     },
 };
 </script>

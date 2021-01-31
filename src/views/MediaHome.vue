@@ -1,32 +1,16 @@
 <template>
     <div>
-        <v-container class="my-10">
-            <v-row>
-                <v-col class="d-flex justify-center">
-                    <h1>
-                        Explore
-                        <span
-                            :class="
-                                this.$store.state.colors[
-                                    this.$route.params.type
-                                ].text
-                            "
-                            >{{ this.$route.params.type }}</span
-                        >
-                    </h1>
-                </v-col>
-            </v-row>
-        </v-container>
-        <media-grid v-if="isFetched" :mediaType="this.$route.params.type" />
-        <media-grid v-else :skeleton="true" :limit="12"></media-grid>
+        <page-header :title="this.$route.params.type" />
+        <media-grid :mediaType="this.$route.params.type" />
     </div>
 </template>
 
 <script>
 import MediaGrid from "../components/MediaGrid.vue";
+import PageHeader from "../components/PageHeader.vue";
 
 export default {
-    components: { MediaGrid },
+    components: { MediaGrid, PageHeader },
     name: "MediaHome",
     data() {
         return {
@@ -36,9 +20,3 @@ export default {
     },
 };
 </script>
-
-<style lang="scss" scoped>
-h1 {
-    text-transform: capitalize;
-}
-</style>
