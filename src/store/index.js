@@ -31,16 +31,12 @@ export default new Vuex.Store({
                 routePath: "/search/manga",
                 icon: "mdi-book",
                 colorProp: "manga",
-                routeName: "mediahome",
-                routeParams: "manga",
             },
             {
                 title: "Favorites",
                 routePath: "/favorites",
                 icon: "mdi-star",
                 colorProp: "favorites",
-                routeName: "favorites",
-                routeParams: "",
             },
         ],
         colors: {

@@ -1,7 +1,7 @@
 <template>
     <div>
-        <page-header :title="this.$route.params.type" />
-        <media-grid :mediaType="this.$route.params.type" />
+        <page-header :title="type" />
+        <media-grid :mediaType="type" />
     </div>
 </template>
 
@@ -12,11 +12,6 @@ import PageHeader from "../components/PageHeader.vue";
 export default {
     components: { MediaGrid, PageHeader },
     name: "MediaHome",
-    data() {
-        return {
-            isFetched: false,
-            type: null,
-        };
-    },
+    props: ["type"],
 };
 </script>
