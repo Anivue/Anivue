@@ -36,7 +36,7 @@ const getAnimeById = async id => {
                 }
                 bannerImage
 
-                characters {
+                characters(page: 1, perPage: 6, sort: ROLE_DESC) {
                     nodes {
                         name {
                             first

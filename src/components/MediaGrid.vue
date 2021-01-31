@@ -48,6 +48,10 @@ export default {
             type: Number,
             default: 50,
         },
+        charactersGrid: {
+            type: Boolean,
+            default: false,
+        },
     },
     methods: {},
     // watch: {

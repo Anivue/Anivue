@@ -57,12 +57,44 @@
                     </p>
                 </v-col>
             </v-row>
-            <v-row>
-                <v-col cols="12" class="d-flex justify-center">
-                    <h1 class="text-h5">Characters</h1>
-                </v-col>
+            <v-row class="mb-10">
+                <section-header
+                    icon="mdi-account-group"
+                    title="Characters"
+                    justify="start"
+                />
                 <v-col cols="12">
-                    <media-grid :loading="loading" :limit="6" />
+                    <media-grid
+                        :charactersGrid="true"
+                        :loading="loading"
+                        :limit="6"
+                    />
+                </v-col>
+            </v-row>
+            <v-row class="mb-10">
+                <section-header
+                    icon="mdi-youtube"
+                    title="Trailer"
+                    justify="start"
+                />
+                <v-col cols="12">
+                    <iframe
+                        id="ytplayer"
+                        type="text/html"
+                        height="190"
+                        src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=0"
+                        frameborder="0"
+                    />
+                </v-col>
+            </v-row>
+            <v-row>
+                <section-header
+                    icon="mdi-filmstrip"
+                    title="Episodes"
+                    justify="start"
+                />
+                <v-col cols="6" sm="4" v-for="n in 24" :key="n">
+                    <episode-card />
                 </v-col>
             </v-row>
         </v-container>
@@ -70,10 +102,14 @@
 </template>
 
 <script>
+import EpisodeCard from "../components/EpisodeCard.vue";
 import MediaGrid from "../components/MediaGrid.vue";
+import SectionHeader from "../components/SectionHeader.vue";
 export default {
     components: {
         MediaGrid,
+        SectionHeader,
+        EpisodeCard,
     },
     props: {
         id: {
