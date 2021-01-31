@@ -2,8 +2,8 @@
     <div>
         <v-img
             class="mb-5"
-            lazy-src="https://s4.anilist.co/file/anilistcdn/media/anime/banner/124845-uw8Fiw3kWtbj.jpg"
-            src="https://s4.anilist.co/file/anilistcdn/media/anime/banner/124845-uw8Fiw3kWtbj.jpg"
+            :lazy-src="anime.bannerImage"
+            :src="anime.bannerImage"
         >
             <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
@@ -22,10 +22,10 @@
                     md="3"
                     class="d-flex justify-center justify-md-start"
                 >
-                    <v-card width="250" elevation="24">
+                    <v-card width="250" max-height="372" elevation="24">
                         <v-img
-                            lazy-src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx124845-7dRs0HgkFWgk.jpg"
-                            src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx124845-7dRs0HgkFWgk.jpg"
+                            :lazy-src="anime.coverImage.medium"
+                            :src="anime.coverImage.large"
                         >
                             <template v-slot:placeholder>
                                 <v-row
@@ -46,15 +46,13 @@
                     md="9"
                     class="d-flex justify-center justify-md-start align-center align-md-start flex-column"
                 >
-                    <h2 class="mb-10 text-h4">Wonder egg priority</h2>
-                    <p class="subtitle-1">
-                        This is the story of Ai, an introverted girl whose fate
-                        is forever changed when she acquires a mysterious
-                        “Wonder Egg” from a deserted arcade. That night, her
-                        dreams blend into reality, and as other girls obtain
-                        their own Wonder Eggs, Ai discovers new friends—and the
-                        magic within herself.
-                    </p>
+                    <h2 class="mb-3 text-h4">{{ title }}</h2>
+
+                    <p
+                        class="subtitle-1 text--secondary"
+                        v-html="anime.description"
+                    ></p>
+                    <genre-chips :genres="anime.genres" />
                 </v-col>
             </v-row>
             <v-row class="mb-10">
@@ -68,25 +66,11 @@
                         :charactersGrid="true"
                         :loading="loading"
                         :limit="6"
+                        :media="anime.characters.nodes"
                     />
                 </v-col>
             </v-row>
-            <v-row class="mb-10">
-                <section-header
-                    icon="mdi-youtube"
-                    title="Trailer"
-                    justify="start"
-                />
-                <v-col cols="12">
-                    <iframe
-                        id="ytplayer"
-                        type="text/html"
-                        height="190"
-                        src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=0"
-                        frameborder="0"
-                    />
-                </v-col>
-            </v-row>
+
             <v-row>
                 <section-header
                     icon="mdi-filmstrip"
@@ -103,13 +87,16 @@
 
 <script>
 import EpisodeCard from "../components/EpisodeCard.vue";
+import GenreChips from "../components/GenreChips.vue";
 import MediaGrid from "../components/MediaGrid.vue";
 import SectionHeader from "../components/SectionHeader.vue";
+import { getAnimeById } from "../utils/APIutils/Anime";
 export default {
     components: {
         MediaGrid,
         SectionHeader,
         EpisodeCard,
+        GenreChips,
     },
     props: {
         id: {
@@ -120,7 +107,29 @@ export default {
     data() {
         return {
             loading: true,
+            anime: {},
         };
+    },
+    computed: {
+        title(titlesObj) {
+            if ("english" in titlesObj) {
+                return titlesObj.english;
+            } else {
+                return titlesObj.romaji;
+            }
+        },
+    },
+    created() {
+        this.loading = true;
+        getAnimeById(this.id)
+            .then(anime => {
+                this.anime = anime.Media;
+                this.loading = false;
+                console.log(this.anime);
+            })
+            .catch(err => {
+                console.log(err);
+            });
     },
 };
 </script>

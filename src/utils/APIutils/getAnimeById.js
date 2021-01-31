@@ -10,7 +10,8 @@ const getAnimeById = async id => {
         query ($id: Int) {
             Media (id: $id, type: ANIME) {
                 title {
-                    english
+                    english,
+                    romaji
                 }
                 genres
                 episodes
@@ -33,6 +34,7 @@ const getAnimeById = async id => {
 
                 coverImage {
                     large
+                    medium
                 }
                 bannerImage
 

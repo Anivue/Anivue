@@ -18,6 +18,17 @@
                     md="2"
                 >
                     <media-card
+                        v-if="charactersGrid"
+                        :title="
+                            `${mediaItem.name.first} ${mediaItem.name.last}`
+                        "
+                        mediaType="Character"
+                        :mediaId="1"
+                        :image="mediaItem.image.medium"
+                        :imageLQ="mediaItem.image.medium"
+                    />
+                    <media-card
+                        v-else
                         title="Attack on Titan"
                         mediaType="TV SHOW"
                         :mediaId="1"
@@ -51,6 +62,10 @@ export default {
         charactersGrid: {
             type: Boolean,
             default: false,
+        },
+        gridType: {
+            type: String,
+            default: "media",
         },
     },
     methods: {},

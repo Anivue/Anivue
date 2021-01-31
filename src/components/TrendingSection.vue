@@ -9,8 +9,15 @@
                     </h2>
                 </v-col>
                 <v-col class="d-flex justify-end">
-                    <v-btn elevation="24" :color="colors.block">
-                        See all
+                    <v-btn
+                        elevation="24"
+                        :color="colors.block"
+                        :to="{
+                            name: 'trending',
+                            params: { type: sectionType, trending: true },
+                        }"
+                    >
+                        See more
                     </v-btn>
                 </v-col>
             </v-row>
