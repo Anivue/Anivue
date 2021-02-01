@@ -19,9 +19,7 @@
                 >
                     <media-card
                         v-if="charactersGrid"
-                        :title="
-                            `${mediaItem.name.first} ${mediaItem.name.last}`
-                        "
+                        :title="characterFullName(mediaItem.name)"
                         mediaType="Character"
                         :mediaId="1"
                         :image="mediaItem.image.medium"
@@ -47,7 +45,7 @@ export default {
     },
     props: {
         media: {
-            type: Object,
+            type: [Object, Array],
         },
         loading: {
             type: Boolean,
@@ -68,7 +66,7 @@ export default {
             default: "media",
         },
     },
-    methods: {},
+    // methods: {},
     // watch: {
     //     "$route.params": {
     //         handler() {
@@ -77,6 +75,11 @@ export default {
     //         immediate: true,
     //     },
     // },
+    methods: {
+        characterFullName(nameObj) {
+            return `${nameObj.first || ""} ${nameObj.last || ""}`;
+        },
+    },
 };
 </script>
 

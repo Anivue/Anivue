@@ -1,18 +1,38 @@
 <template>
-    <v-card>
+    <v-card @click="openEpisode">
         <v-img
-            src="https://picsum.photos/350/165?random"
+            :src="thumbnail"
             height="125"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.7)"
             class="white--text align-end"
         >
             <v-card-subtitle>
-                Episode 43: Lorem ipsum
+                {{ title }}
             </v-card-subtitle>
         </v-img>
     </v-card>
 </template>
 
 <script>
-export default {};
+export default {
+    props: {
+        url: {
+            type: String,
+            required: true,
+        },
+        thumbnail: {
+            type: String,
+            required: true,
+        },
+        title: {
+            type: String,
+            required: true,
+        },
+    },
+    methods: {
+        openEpisode() {
+            window.open(this.url);
+        },
+    },
+};
 </script>

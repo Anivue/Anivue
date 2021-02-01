@@ -35,10 +35,11 @@ const getAnimeById = async id => {
                 coverImage {
                     large
                     medium
+                    color
                 }
                 bannerImage
 
-                characters(page: 1, perPage: 6, sort: ROLE_DESC) {
+                characters(sort: FAVOURITES_DESC) {
                     nodes {
                         name {
                             first
@@ -49,10 +50,10 @@ const getAnimeById = async id => {
                         }
                     }
                 }
-                trailer {
-                    id
-                    site
+                streamingEpisodes {
+                    title
                     thumbnail
+                    url
                 }
             }
         }

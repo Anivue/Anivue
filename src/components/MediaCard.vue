@@ -1,6 +1,6 @@
 <template>
-    <v-card elevation="24">
-        <v-img :lazy-src="imageLQ" :src="image">
+    <v-card elevation="24" height="100%">
+        <v-img :lazy-src="imageLQ" :src="image" max-height="250">
             <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
                     <v-progress-circular
@@ -10,7 +10,7 @@
                 </v-row>
             </template>
         </v-img>
-        <v-card-title>
+        <v-card-title class="break-word">
             {{ title }}
         </v-card-title>
         <v-card-subtitle>
@@ -61,3 +61,9 @@ export default {
     // TODO: Fetch data on render; Remove dev props for image prop
 };
 </script>
+
+<style lang="scss">
+.break-word {
+    word-break: break-word;
+}
+</style>
