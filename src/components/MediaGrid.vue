@@ -20,16 +20,19 @@
                     <media-card
                         v-if="charactersGrid"
                         :title="characterFullName(mediaItem.name)"
-                        mediaType="Character"
+                        subtitle="Character"
                         :mediaId="1"
                         :image="mediaItem.image.medium"
                         :imageLQ="mediaItem.image.medium"
                     />
                     <media-card
                         v-else
-                        title="Attack on Titan"
-                        mediaType="TV SHOW"
-                        :mediaId="1"
+                        :title="getTitle(mediaItem.title)"
+                        subtitle="TV SHOW"
+                        :mediaId="mediaItem.id"
+                        :image="mediaItem.coverImage.large"
+                        :imageLQ="mediaItem.coverImage.medium"
+                        :mediaType="mediaType"
                     />
                 </v-col>
             </v-row>
@@ -61,9 +64,9 @@ export default {
             type: Boolean,
             default: false,
         },
-        gridType: {
+        mediaType: {
             type: String,
-            default: "media",
+            default: "anime",
         },
     },
     // methods: {},
@@ -78,6 +81,20 @@ export default {
     methods: {
         characterFullName(nameObj) {
             return `${nameObj.first || ""} ${nameObj.last || ""}`;
+        },
+        getTitle(titleObj) {
+            if (titleObj.english) {
+                return this.trimTitle(titleObj.english);
+            } else {
+                return this.trimTitle(titleObj.romaji);
+            }
+        },
+        trimTitle(title) {
+            if (title.length > 23) {
+                return `${title.slice(0, 22)}...`;
+            } else {
+                return title;
+            }
         },
     },
 };

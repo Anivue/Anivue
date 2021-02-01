@@ -14,10 +14,18 @@
             {{ title }}
         </v-card-title>
         <v-card-subtitle>
-            {{ mediaType }}
+            {{ subtitle }}
         </v-card-subtitle>
         <v-card-actions>
-            <v-btn block elevation="24" color="grey darken-4">
+            <v-btn
+                block
+                elevation="24"
+                color="grey darken-4"
+                :to="{
+                    name: 'mediafullpage',
+                    params: { type: mediaType, id: mediaId },
+                }"
+            >
                 Open
             </v-btn>
         </v-card-actions>
@@ -31,7 +39,7 @@ export default {
             type: String,
             default: "NoTitle",
         },
-        mediaType: {
+        subtitle: {
             // CHARACTER / TV SHOW / OVA / etc...
             type: String,
             default: "TV SHOW",
@@ -44,15 +52,15 @@ export default {
         },
         image: {
             type: String,
-            // required: true,
-            default:
-                "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-m5ZMNtFioc7j.png",
+            required: true,
         },
         imageLQ: {
             // LOW QUALITY IMAGE FOR LOADER
             type: String,
-            // required: true,
-            default: "https://via.placeholder.com/150",
+            required: true,
+        },
+        mediaType: {
+            type: String,
         },
     },
     data() {

@@ -22,12 +22,18 @@
                 </v-col>
             </v-row>
         </v-container>
-        <media-grid :loading="loading" :limit="6" />
+        <media-grid
+            :loading="loading"
+            :media="mediaArray"
+            :mediaType="sectionType"
+            :limit="6"
+        />
     </div>
 </template>
 
 <script>
 import MediaGrid from "./MediaGrid.vue";
+import { getAnimePageByTrending } from "../utils/APIutils/Anime";
 export default {
     components: { MediaGrid },
     props: {
@@ -35,9 +41,6 @@ export default {
             type: String,
             default: "anime",
             required: true,
-        },
-        media: {
-            type: Object,
         },
     },
     computed: {
@@ -48,7 +51,23 @@ export default {
     data() {
         return {
             loading: true,
+            mediaArray: [],
         };
+    },
+    created() {
+        //! JUST FOR A TESTING PURPOSES, REMOVE THIS "IF" STATEMENT LATER
+        if (this.sectionType === "anime") {
+            this.loading = true;
+            getAnimePageByTrending(1, 6)
+                .then(animePage => {
+                    this.mediaArray = animePage.Page.media;
+                    console.log(this.mediaArray);
+                    this.loading = false;
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        }
     },
 };
 </script>

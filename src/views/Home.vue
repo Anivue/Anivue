@@ -11,8 +11,6 @@
         <trending-section sectionType="anime" />
         <!-- Manga -->
         <trending-section sectionType="manga" />
-        <!-- Characters -->
-        <trending-section sectionType="characters" />
     </div>
 </template>
 
