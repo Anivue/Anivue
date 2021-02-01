@@ -38,7 +38,7 @@ const getAnimeById = async id => {
                     color
                 }
                 bannerImage
-
+                averageScore
                 characters(sort: FAVOURITES_DESC) {
                     nodes {
                         name {

@@ -1,5 +1,5 @@
 <template>
-    <v-card elevation="24" height="100%">
+    <v-card elevation="24" height="100%" class="">
         <v-img :lazy-src="imageLQ" :src="image" max-height="250">
             <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
