@@ -29,7 +29,6 @@ export default {
         subtitle: {
             // CHARACTER / TV SHOW / OVA / etc...
             type: String,
-            default: "TV SHOW",
             required: true,
         },
         mediaId: {
@@ -49,9 +48,6 @@ export default {
         mediaType: {
             type: String,
         },
-    },
-    data() {
-        return {};
     },
     methods: {
         openMedia() {

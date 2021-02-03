@@ -28,7 +28,7 @@
                     <media-card
                         v-else
                         :title="getTitle(mediaItem.title)"
-                        subtitle="TV SHOW"
+                        :subtitle="beatifyMediaFormat(mediaItem.format)"
                         :mediaId="mediaItem.id"
                         :image="mediaItem.coverImage.large"
                         :imageLQ="mediaItem.coverImage.medium"
@@ -81,11 +81,14 @@ export default {
             }
         },
         trimTitle(title) {
-            if (title.length > 23) {
-                return `${title.slice(0, 22)}...`;
+            if (title.length > 17) {
+                return `${title.slice(0, 17)}...`;
             } else {
                 return title;
             }
+        },
+        beatifyMediaFormat(format) {
+            return format.split("_").join(" ");
         },
     },
 };

@@ -34,6 +34,7 @@ const getMediaPage = async variables => {
                         large
                         color
                     }
+                    format 
                     genres
                     averageScore
                     studios {
