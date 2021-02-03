@@ -2,8 +2,8 @@ import fetchApi from "./fetchApi";
 
 //* Anime page template (page means that there will be many anime objects in return).
 const getMediaPage = async variables => {
-    // Check if specific argument provided, pass it in query if yes, otherwise ignore
     variables.type = variables.type.toUpperCase();
+    // Check if specific argument provided, pass it in query if yes, otherwise ignore
     // 'SORT' ARGUMENT
     const sortArgument = "sortBy" in variables ? "$sortBy: [MediaSort]," : "";
     const sortVar = sortArgument ? "sort: $sortBy," : "";
