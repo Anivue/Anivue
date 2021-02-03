@@ -5,10 +5,10 @@ import fetchApi from "./fetchApi";
 // Used when opening specific anime page
 
 // Provides full info about specific anime including trailer url, description, and etc...
-const getAnimeById = async id => {
+const getMediaById = async (type, id) => {
     const query = `
-        query ($id: Int) {
-            Media (id: $id, type: ANIME) {
+        query ($id: Int, $type: MediaType) {
+            Media (id: $id, type: $type) {
                 title {
                     english,
                     romaji
@@ -58,7 +58,8 @@ const getAnimeById = async id => {
             }
         }
     `;
-    return await fetchApi(query, { id });
+    type = type.toUpperCase();
+    return await fetchApi(query, { id, type });
 };
 
-export default getAnimeById;
+export default getMediaById;

@@ -7,7 +7,7 @@
             :color="media.coverImage.color"
         >
             <v-tab href="#characters-tab">Characters</v-tab>
-            <v-tab href="#episodes-tab">Episodes</v-tab>
+            <v-tab href="#episodes-tab" v-if="episodes.length">Episodes</v-tab>
         </v-tabs>
 
         <v-tabs-items v-model="tab" class="elevation-24">
@@ -22,7 +22,11 @@
                     </v-col>
                 </v-row>
             </v-tab-item>
-            <v-tab-item :transition="false" value="episodes-tab">
+            <v-tab-item
+                :transition="false"
+                value="episodes-tab"
+                v-if="episodes.length"
+            >
                 <v-row class="ma-3">
                     <!-- IF statement is not working, fix later! -->
                     <v-col

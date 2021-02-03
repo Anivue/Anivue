@@ -1,9 +1,9 @@
 import fetchApi from "./fetchApi";
 
 //* Anime page template (page means that there will be many anime objects in return).
-const getAnimePage = async variables => {
+const getMediaPage = async variables => {
     // Check if specific argument provided, pass it in query if yes, otherwise ignore
-
+    variables.type = variables.type.toUpperCase();
     // 'SORT' ARGUMENT
     const sortArgument = "sortBy" in variables ? "$sortBy: [MediaSort]," : "";
     const sortVar = sortArgument ? "sort: $sortBy," : "";
@@ -15,14 +15,14 @@ const getAnimePage = async variables => {
     //* THESE ARGUMENTS CAN BE USED TOGETHER FOR SOME CASES
 
     const query = `
-        query (${sortArgument} ${searchArgument} $pageNumber: Int, $perPage: Int) {
+        query (${sortArgument} ${searchArgument} $type: MediaType $pageNumber: Int, $perPage: Int) {
             Page (page: $pageNumber, perPage: $perPage) {
                 pageInfo {
                     total
                     currentPage
                     hasNextPage
                 }
-                media (${searchVar} ${sortVar} type: ANIME, isAdult: false) {
+                media (${searchVar} ${sortVar} type: $type, isAdult: false) {
                     id
                     title {
                         english
@@ -50,4 +50,4 @@ const getAnimePage = async variables => {
     return await fetchApi(query, variables);
 };
 
-export default getAnimePage;
+export default getMediaPage;

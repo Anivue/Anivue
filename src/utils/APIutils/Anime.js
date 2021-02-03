@@ -1,5 +1,11 @@
-import getAnimeById from "./getAnimeById";
-import getAnimePageByTitle from "./getAnimePageByTitle";
-import getAnimePageByTrending from "./getAnimePageByTrending";
+import getMediaById from "./getMediaById";
+import getMediaPageByTitle from "./getMediaPageByTitle";
+import getMediaPageByTrending from "./getMediaPageByTrending";
+import getMediaPageByBest from "./getMediaPageByBest";
 
-export { getAnimeById, getAnimePageByTitle, getAnimePageByTrending };
+export {
+    getMediaById,
+    getMediaPageByTitle,
+    getMediaPageByTrending,
+    getMediaPageByBest,
+};

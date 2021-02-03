@@ -1,6 +1,7 @@
 <template>
     <div>
         <v-img
+            v-if="media.bannerImage"
             class="mb-5"
             :lazy-src="media.bannerImage"
             :src="media.bannerImage"
@@ -78,7 +79,7 @@
 import GenreChips from "../components/GenreChips.vue";
 import MediaRating from "../components/MediaRating.vue";
 import MediaTabs from "../components/MediaTabs";
-import { getAnimeById } from "../utils/APIutils/Anime";
+import { getMediaById } from "../utils/APIutils/Anime";
 export default {
     components: {
         MediaTabs,
@@ -96,6 +97,7 @@ export default {
             loading: true,
             media: {},
             tab: null,
+            type: this.$route.params.type,
         };
     },
     computed: {
@@ -115,7 +117,7 @@ export default {
     },
     created() {
         this.loading = true;
-        getAnimeById(this.id)
+        getMediaById(this.type, this.id)
             .then(media => {
                 this.media = media.Media;
                 this.loading = false;

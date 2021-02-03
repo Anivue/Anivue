@@ -19,9 +19,6 @@
     </v-card>
 </template>
 
-// :to="{ // name: 'mediafullpage', // params: { type: mediaType, id: mediaId },
-// }"
-
 <script>
 export default {
     props: {

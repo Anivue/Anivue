@@ -69,15 +69,6 @@ export default {
             default: "anime",
         },
     },
-    // methods: {},
-    // watch: {
-    //     "$route.params": {
-    //         handler() {
-    //             this.fetchMedia();
-    //         },
-    //         immediate: true,
-    //     },
-    // },
     methods: {
         characterFullName(nameObj) {
             return `${nameObj.first || ""} ${nameObj.last || ""}`;
