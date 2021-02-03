@@ -4,6 +4,7 @@
             class="mb-5"
             :lazy-src="media.bannerImage"
             :src="media.bannerImage"
+            height="260"
         >
             <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
@@ -44,6 +45,13 @@
                         </v-card>
                         <div class="d-flex flex-column my-5">
                             <media-rating :score="media.averageScore" />
+                            <center>
+                                <p class="text--disabled">
+                                    {{ totalEpisodes }} {{ formatEpisodesWord }}
+                                    <br />
+                                    {{ media.duration }} minutes each
+                                </p>
+                            </center>
                         </div>
                     </div>
                 </v-col>
@@ -97,6 +105,12 @@ export default {
             } else {
                 return this.media.title.romaji;
             }
+        },
+        totalEpisodes() {
+            return this.media.episodes ? this.media.episodes : "???";
+        },
+        formatEpisodesWord() {
+            return this.media.episodes > 1 ? "episodes" : "episode";
         },
     },
     created() {

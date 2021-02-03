@@ -1,6 +1,6 @@
 <template>
-    <v-card elevation="24" height="100%" class="">
-        <v-img :lazy-src="imageLQ" :src="image" max-height="250">
+    <v-card elevation="24" height="100%" class="" @click="openMedia">
+        <v-img :lazy-src="imageLQ" :src="image" height="250">
             <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
                     <v-progress-circular
@@ -16,21 +16,11 @@
         <v-card-subtitle>
             {{ subtitle }}
         </v-card-subtitle>
-        <v-card-actions>
-            <v-btn
-                block
-                elevation="24"
-                color="grey darken-4"
-                :to="{
-                    name: 'mediafullpage',
-                    params: { type: mediaType, id: mediaId },
-                }"
-            >
-                Open
-            </v-btn>
-        </v-card-actions>
     </v-card>
 </template>
+
+// :to="{ // name: 'mediafullpage', // params: { type: mediaType, id: mediaId },
+// }"
 
 <script>
 export default {
@@ -65,6 +55,14 @@ export default {
     },
     data() {
         return {};
+    },
+    methods: {
+        openMedia() {
+            this.$router.push({
+                name: "mediafullpage",
+                params: { type: this.mediaType, id: this.mediaId },
+            });
+        },
     },
     // TODO: Fetch data on render; Remove dev props for image prop
 };

@@ -1,7 +1,8 @@
 <template>
     <center>
         <v-rating
-            color="warning"
+            color="#fb8c00"
+            background-color="grey lighten-1"
             empty-icon="mdi-star-outline"
             full-icon="mdi-star"
             half-icon="mdi-star-half-full"
@@ -10,7 +11,6 @@
             readonly
             :value="formattedScore"
         ></v-rating>
-        <p class="text--disabled">{{ score }} / 100</p>
     </center>
 </template>
 

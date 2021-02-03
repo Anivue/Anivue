@@ -24,6 +24,7 @@
             </v-tab-item>
             <v-tab-item :transition="false" value="episodes-tab">
                 <v-row class="ma-3">
+                    <!-- IF statement is not working, fix later! -->
                     <v-col
                         cols="6"
                         sm="4"
