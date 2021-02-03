@@ -28,20 +28,12 @@ const getMediaPage = async variables => {
                         english
                         romaji
                     }
-                    episodes
                     coverImage {
                         medium
                         large
                         color
                     }
                     format 
-                    genres
-                    averageScore
-                    studios {
-                        nodes {
-                            name
-                        }
-                    }
                 }
             }
         }

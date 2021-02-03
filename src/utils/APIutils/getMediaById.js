@@ -13,8 +13,10 @@ const getMediaById = async (type, id) => {
                     english,
                     romaji
                 }
+                type
                 genres
                 episodes
+                chapters
                 duration
                 status
                 nextAiringEpisode {

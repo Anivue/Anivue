@@ -46,13 +46,7 @@
                         </v-card>
                         <div class="d-flex flex-column my-5">
                             <media-rating :score="media.averageScore" />
-                            <center>
-                                <p class="text--disabled">
-                                    {{ totalEpisodes }} {{ formatEpisodesWord }}
-                                    <br />
-                                    {{ media.duration }} minutes each
-                                </p>
-                            </center>
+                            <media-duration :media="media" />
                         </div>
                     </div>
                 </v-col>
@@ -79,12 +73,14 @@
 import GenreChips from "../components/GenreChips.vue";
 import MediaRating from "../components/MediaRating.vue";
 import MediaTabs from "../components/MediaTabs";
+import MediaDuration from "../components/MediaDuration";
 import { getMediaById } from "../utils/APIutils/Anime";
 export default {
     components: {
         MediaTabs,
         GenreChips,
         MediaRating,
+        MediaDuration,
     },
     props: {
         id: {
@@ -102,17 +98,11 @@ export default {
     },
     computed: {
         title() {
-            if ("english" in this.media.title) {
+            if (this.media.title.english) {
                 return this.media.title.english;
             } else {
                 return this.media.title.romaji;
             }
-        },
-        totalEpisodes() {
-            return this.media.episodes ? this.media.episodes : "???";
-        },
-        formatEpisodesWord() {
-            return this.media.episodes > 1 ? "episodes" : "episode";
         },
     },
     created() {
