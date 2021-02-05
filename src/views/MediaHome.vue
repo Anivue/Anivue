@@ -1,26 +1,48 @@
 <template>
     <div>
         <page-header :slogan="slogan" :title="type" />
+        <div class="text-center">
+            <v-container>
+                <v-row justify="center">
+                    <v-col cols="12">
+                        <v-container class="max-width">
+                            <v-pagination
+                                @input="changePage"
+                                v-model="page"
+                                class="mb-4"
+                                :length="totalPages"
+                                :total-visible="5"
+                                :color="this.$store.state.colors[type].block"
+                            ></v-pagination>
+                        </v-container>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </div>
         <media-grid
             :loading="loading"
             :mediaType="type"
             :limit="limit"
             :media="media"
         />
-        <v-container class="my-10">
-            <v-row>
-                <v-col cols="12">
-                    <center>
-                        <v-btn
-                            :color="this.$store.state.colors[type].block"
-                            x-large
-                            @click="loadMore"
-                            >Load More</v-btn
-                        >
-                    </center>
-                </v-col>
-            </v-row>
-        </v-container>
+        <div class="text-center">
+            <v-container>
+                <v-row justify="center">
+                    <v-col cols="12">
+                        <v-container class="max-width">
+                            <v-pagination
+                                @input="changePage"
+                                v-model="page"
+                                class="my-4"
+                                :length="totalPages"
+                                :total-visible="5"
+                                :color="this.$store.state.colors[type].block"
+                            ></v-pagination>
+                        </v-container>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </div>
     </div>
 </template>
 
@@ -48,43 +70,53 @@ export default {
             limit: 50,
             loading: true,
             media: {},
-            page: 1,
+            page: +this.$route.query.p,
+            totalPages: null,
         };
     },
     methods: {
-        loadMore() {
-            this.limit += 50;
+        // Adds ?query to url
+        addQuery(queryName, queryValue) {
+            this.$router.push({
+                query: Object.assign({}, this.$route.query, {
+                    [queryName]: queryValue,
+                }),
+            });
+        },
+        changePage() {
+            this.addQuery("p", this.page);
+            this.handleFetch();
+        },
+        // Invoke callback promise, then append response to data
+        handleResponse(callback) {
+            callback(this.type, this.page, 50)
+                .then(mediaPage => {
+                    this.media = mediaPage.Page.media;
+                    this.totalPages = Math.ceil(
+                        mediaPage.Page.pageInfo.total / 50
+                    );
+                    this.loading = false;
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         },
         handleFetch() {
             this.loading = true;
-            console.log(this.type, this.trending);
             if (this.trending) {
-                getMediaPageByTrending(this.type, this.page, 50)
-                    .then(mediaPage => {
-                        this.media = mediaPage.Page.media;
-                        this.loading = false;
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    });
+                this.handleResponse(getMediaPageByTrending);
             } else {
-                getMediaPageByBest(this.type, this.page, 50)
-                    .then(mediaPage => {
-                        this.media = mediaPage.Page.media;
-                        this.loading = false;
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    });
+                this.handleResponse(getMediaPageByBest);
             }
         },
     },
+    // Watch for url param changes. For example, useful when user switches from anime tab to manga tab
     watch: {
         "$route.params": {
             handler() {
                 this.handleFetch();
             },
-            immediate: true,
+            immediate: false,
         },
     },
     created() {

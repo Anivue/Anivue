@@ -92,6 +92,7 @@ export default {
             .then(media => {
                 this.media = media.Media;
                 this.loading = false;
+                // ! REMOVE THIS LOG LATER
                 console.log(this.media);
             })
             .catch(err => {

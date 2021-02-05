@@ -1,23 +1,29 @@
 <template>
-    <div>
+    <div v-if="characters.length || episodes.length">
         <v-tabs
             grow
             v-model="tab"
             class="elevation-24"
             :color="media.coverImage.color"
         >
-            <v-tab href="#characters-tab">Characters</v-tab>
+            <v-tab href="#characters-tab" v-if="characters.length"
+                >Characters</v-tab
+            >
             <v-tab href="#episodes-tab" v-if="episodes.length">Episodes</v-tab>
         </v-tabs>
 
         <v-tabs-items v-model="tab" class="elevation-24">
-            <v-tab-item :transition="false" value="characters-tab">
+            <v-tab-item
+                :transition="false"
+                value="characters-tab"
+                v-if="characters.length"
+            >
                 <v-row class="ma-md-3 my-1">
                     <v-col cols="12">
                         <media-grid
                             :charactersGrid="true"
                             :loading="loading"
-                            :media="media.characters.nodes"
+                            :media="characters"
                         />
                     </v-col>
                 </v-row>
@@ -69,6 +75,7 @@ export default {
         return {
             tab: null,
             episodes: this.media.streamingEpisodes,
+            characters: this.media.characters.nodes,
         };
     },
 };
