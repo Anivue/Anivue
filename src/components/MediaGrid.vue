@@ -21,9 +21,10 @@
                         v-if="mediaType === 'characters'"
                         :title="characterFullName(mediaItem.name)"
                         subtitle="Character"
-                        :mediaId="1"
+                        :mediaId="mediaItem.id"
                         :image="mediaItem.image.medium"
                         :imageLQ="mediaItem.image.medium"
+                        :mediaType="mediaType"
                     />
                     <media-card
                         v-else

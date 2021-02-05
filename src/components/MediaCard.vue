@@ -57,7 +57,6 @@ export default {
             });
         },
     },
-    // TODO: Fetch data on render; Remove dev props for image prop
 };
 </script>
 

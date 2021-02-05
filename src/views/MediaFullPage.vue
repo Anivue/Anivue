@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <!-- TODO: add skeleton loader -->
+    <div v-if="!loading">
         <v-img
             v-if="media.bannerImage"
             class="mb-5"
@@ -88,16 +89,20 @@ export default {
 
     created() {
         this.loading = true;
-        getMediaById(this.type, this.id)
-            .then(media => {
-                this.media = media.Media;
-                this.loading = false;
-                // ! REMOVE THIS LOG LATER
-                console.log(this.media);
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        if (this.type === "characters") {
+            console.log("CHARACTERS PAGE REQUESTED");
+        } else {
+            getMediaById(this.type, this.id)
+                .then(media => {
+                    this.media = media.Media;
+                    this.loading = false;
+                    // ! REMOVE THIS LOG LATER
+                    console.log(this.media);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        }
     },
 };
 </script>
