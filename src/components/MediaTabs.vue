@@ -21,7 +21,7 @@
                 <v-row class="ma-md-3 my-1">
                     <v-col cols="12">
                         <media-grid
-                            :charactersGrid="true"
+                            mediaType="characters"
                             :loading="loading"
                             :media="characters"
                         />

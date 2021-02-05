@@ -50,6 +50,7 @@ const getMediaById = async (type, id) => {
                         image {
                             medium
                         }
+                        id
                     }
                 }
                 streamingEpisodes {

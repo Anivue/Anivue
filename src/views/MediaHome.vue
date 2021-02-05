@@ -1,7 +1,7 @@
 <template>
     <div>
         <page-header :slogan="slogan" :title="type" />
-        <div class="text-center" v-if="!loading">
+        <div class="text-center">
             <v-container>
                 <v-row justify="center">
                     <v-col cols="12">
@@ -49,8 +49,13 @@
 <script>
 import MediaGrid from "../components/MediaGrid.vue";
 import PageHeader from "../components/PageHeader.vue";
-import { getMediaPageByTrending } from "../utils/APIutils/Anime";
-import { getMediaPageByBest } from "../utils/APIutils/Anime";
+import {
+    getMediaPageByTrending,
+    getMediaPageByBest,
+    getCharactersPageByFav,
+} from "../utils/APIutils/Anime";
+
+// this.handleResponse(getMediaPageByBest);
 
 export default {
     components: { MediaGrid, PageHeader },
@@ -88,18 +93,32 @@ export default {
             this.handleFetch();
         },
         // Invoke callback promise, then append response to data
-        handleResponse(callback) {
-            callback(this.type, this.page, 50)
-                .then(mediaPage => {
-                    this.media = mediaPage.Page.media;
-                    this.totalPages = Math.ceil(
-                        mediaPage.Page.pageInfo.total / 50
-                    );
-                    this.loading = false;
-                })
-                .catch(err => {
-                    console.log(err);
-                });
+        handleResponse(callback, isCharacters = false) {
+            if (isCharacters) {
+                callback(this.page, 50)
+                    .then(charactersPage => {
+                        this.media = charactersPage.Page.characters;
+                        this.totalPages = Math.ceil(
+                            charactersPage.Page.pageInfo.total / 50
+                        );
+                        this.loading = false;
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            } else {
+                callback(this.type, this.page, 50)
+                    .then(mediaPage => {
+                        this.media = mediaPage.Page.media;
+                        this.totalPages = Math.ceil(
+                            mediaPage.Page.pageInfo.total / 50
+                        );
+                        this.loading = false;
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            }
         },
         handleFetch() {
             this.loading = true;
@@ -111,6 +130,8 @@ export default {
             //
             if (this.trending) {
                 this.handleResponse(getMediaPageByTrending);
+            } else if (this.$route.params.type === "characters") {
+                this.handleResponse(getCharactersPageByFav, true);
             } else {
                 this.handleResponse(getMediaPageByBest);
             }

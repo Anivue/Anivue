@@ -18,7 +18,7 @@
                     md="2"
                 >
                     <media-card
-                        v-if="charactersGrid"
+                        v-if="mediaType === 'characters'"
                         :title="characterFullName(mediaItem.name)"
                         subtitle="Character"
                         :mediaId="1"
