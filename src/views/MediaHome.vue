@@ -63,7 +63,7 @@ export default {
     props: ["type", "trending"],
     computed: {
         slogan() {
-            if (this.trending) {
+            if (this.$route.query.trending === "1") {
                 return "Trending";
             } else {
                 return "Browse";
@@ -75,7 +75,7 @@ export default {
             limit: 50,
             loading: true,
             media: {},
-            page: +this.$route.query.p,
+            page: +this.$route.query.page,
             totalPages: null,
         };
     },
@@ -89,7 +89,7 @@ export default {
             });
         },
         changePage() {
-            this.addQuery("p", this.page);
+            this.addQuery("page", this.page);
             this.handleFetch();
         },
         // Invoke callback promise, then append response to data
@@ -123,12 +123,12 @@ export default {
         handleFetch() {
             this.loading = true;
             // Check if query is empty, if yes then set to first page
-            if (!this.$route.query.p) {
-                this.addQuery("p", 1);
+            if (!this.$route.query.page) {
+                this.addQuery("page", 1);
                 this.page = 1;
             }
             //
-            if (this.trending) {
+            if (this.$route.query.trending === "1") {
                 this.handleResponse(getMediaPageByTrending);
             } else if (this.$route.params.type === "characters") {
                 this.handleResponse(getCharactersPageByFav, true);

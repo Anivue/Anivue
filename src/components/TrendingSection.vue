@@ -13,8 +13,9 @@
                         elevation="24"
                         :color="colors.block"
                         :to="{
-                            name: 'trending',
-                            params: { type: sectionType, trending: true },
+                            name: 'mediahome',
+                            params: { type: sectionType },
+                            query: { trending: 1 },
                         }"
                     >
                         See more

@@ -31,12 +31,6 @@ const routes = [
         props: true,
     },
     {
-        path: "/search/:type/trending",
-        name: "trending",
-        component: () => import("../views/MediaHome.vue"),
-        props: true,
-    },
-    {
         path: "/search/:type/:id",
         name: "mediafullpage",
         component: () => import("../views/MediaFullPage.vue"),
