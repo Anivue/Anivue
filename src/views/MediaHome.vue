@@ -1,7 +1,7 @@
 <template>
     <div>
         <page-header :slogan="slogan" :title="type" />
-        <div class="text-center">
+        <div class="text-center" v-if="!loading">
             <v-container>
                 <v-row justify="center">
                     <v-col cols="12">
@@ -103,6 +103,12 @@ export default {
         },
         handleFetch() {
             this.loading = true;
+            // Check if query is empty, if yes then set to first page
+            if (!this.$route.query.p) {
+                this.addQuery("p", 1);
+                this.page = 1;
+            }
+            //
             if (this.trending) {
                 this.handleResponse(getMediaPageByTrending);
             } else {
