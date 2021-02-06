@@ -34,7 +34,6 @@
                 v-if="episodes.length"
             >
                 <v-row class="ma-3">
-                    <!-- IF statement is not working, fix later! -->
                     <v-col
                         cols="6"
                         sm="4"

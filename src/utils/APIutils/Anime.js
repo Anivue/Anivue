@@ -6,6 +6,7 @@ import getMediaPageByBest from "./getMediaPageByBest";
 
 // Characters
 import getCharactersPageByFav from "./getCharactersPageByFav";
+import getCharacterById from "./getCharacterById";
 
 export {
     getMediaById,
@@ -13,4 +14,5 @@ export {
     getMediaPageByTrending,
     getMediaPageByBest,
     getCharactersPageByFav,
+    getCharacterById,
 };

@@ -84,7 +84,7 @@ export default {
         },
         checkForLarge(mediaItem) {
             if (this.mediaType === "characters") {
-                return mediaItem.image.medium;
+                return mediaItem.image.large;
             } else {
                 return mediaItem.coverImage.large;
             }

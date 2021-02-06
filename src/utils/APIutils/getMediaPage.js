@@ -32,8 +32,7 @@ const getMediaPage = async variables => {
                         medium
                         large
                         color
-                    }
-                    format 
+                    } 
                 }
             }
         }

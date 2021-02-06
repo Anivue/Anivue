@@ -100,9 +100,9 @@ export default {
                 callback(this.page, 50)
                     .then(res => {
                         if (!res.res.ok) throw Error(res.res.status);
-                        this.media = res.Page.characters;
+                        this.media = res.data.Page.characters;
                         this.totalPages = Math.ceil(
-                            res.Page.pageInfo.total / 50
+                            res.data.Page.pageInfo.total / 50
                         );
                         this.loading = false;
                         this.error = false;

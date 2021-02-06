@@ -34,7 +34,7 @@
                             width="250"
                             max-height="372"
                             :lazy-src="media.coverImage.medium"
-                            :src="media.coverImage.large"
+                            :src="media.coverImage.extraLarge"
                             class="elevation-24 rounded-lg"
                         >
                             <template v-slot:placeholder>

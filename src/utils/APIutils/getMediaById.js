@@ -35,7 +35,7 @@ const getMediaById = async (type, id) => {
                 }
 
                 coverImage {
-                    large
+                    extraLarge
                     medium
                     color
                 }
@@ -49,6 +49,7 @@ const getMediaById = async (type, id) => {
                         }
                         image {
                             medium
+                            large
                         }
                         id
                     }
