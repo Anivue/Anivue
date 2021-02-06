@@ -3,10 +3,11 @@
     <div v-if="!loading">
         <v-img
             v-if="media.bannerImage"
-            class="mb-5"
+            class="mb-5 d-none d-md-block"
             :lazy-src="media.bannerImage"
             :src="media.bannerImage"
-            height="260"
+            max-height="360"
+            gradient="0deg, rgba(0,0,0,0.8225490025111607) 0%, rgba(255,255,255,0) 100%"
         >
             <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
@@ -25,12 +26,16 @@
                     md="3"
                     class="d-flex justify-center justify-md-start"
                 >
-                    <div class="d-flex flex-column">
+                    <div
+                        class="d-flex flex-column"
+                        :class="{ 'cover-image-column': media.bannerImage }"
+                    >
                         <v-img
                             width="250"
                             max-height="372"
                             :lazy-src="media.coverImage.medium"
                             :src="media.coverImage.large"
+                            class="elevation-24 rounded-lg"
                         >
                             <template v-slot:placeholder>
                                 <v-row
@@ -106,3 +111,16 @@ export default {
     },
 };
 </script>
+
+<style lang="scss" scoped>
+.cover-image-column {
+    position: relative;
+    top: -200px;
+}
+
+@media screen and (max-width: 960px) {
+    .cover-image-column {
+        position: inherit;
+    }
+}
+</style>

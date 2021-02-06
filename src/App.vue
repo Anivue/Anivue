@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <appbar />
-        <v-main class="pb-14 page-dark">
+        <v-main class="pb-md-14 page-dark">
             <!-- CACHE EXAMPLE -->
             <keep-alive include="Home">
                 <router-view />
