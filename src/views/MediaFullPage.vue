@@ -119,25 +119,40 @@ export default {
             type: this.$route.params.type,
         };
     },
+    methods: {
+        handleFetch() {
+            this.loading = true;
+            this.type = this.$route.params.type;
+            if (this.type === "characters") {
+                this.loading = false;
+            } else {
+                getMediaById(this.type, this.id)
+                    .then(res => {
+                        if (!res.res.ok) throw Error(res.res.status);
+                        this.media = res.data.Media;
+                        this.loading = false;
+                        this.error = false;
+                    })
+                    .catch(err => {
+                        this.error = true;
+                        this.errorMsg = err.message;
+                        console.log(err);
+                    });
+            }
+        },
+    },
+
+    watch: {
+        "$route.params": {
+            handler() {
+                this.handleFetch();
+            },
+            immediate: false,
+        },
+    },
 
     created() {
-        this.loading = true;
-        if (this.type === "characters") {
-            this.loading = false;
-        } else {
-            getMediaById(this.type, this.id)
-                .then(res => {
-                    if (!res.res.ok) throw Error(res.res.status);
-                    this.media = res.data.Media;
-                    this.loading = false;
-                    this.error = false;
-                })
-                .catch(err => {
-                    this.error = true;
-                    this.errorMsg = err.message;
-                    console.log(err);
-                });
-        }
+        this.handleFetch();
     },
 };
 </script>
