@@ -70,7 +70,6 @@ export default {
             .catch(err => {
                 this.error = true;
                 this.errorMsg = err.message;
-                console.log(err);
             });
     },
 };

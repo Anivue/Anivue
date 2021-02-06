@@ -1,66 +1,92 @@
 <template>
     <!-- TODO: add skeleton loader -->
-    <div v-if="!loading">
-        <v-img
-            v-if="media.bannerImage"
-            class="mb-5 d-none d-md-block"
-            :lazy-src="media.bannerImage"
-            :src="media.bannerImage"
-            max-height="360"
-            gradient="0deg, rgba(0,0,0,0.8225490025111607) 0%, rgba(255,255,255,0) 100%"
-        >
-            <template v-slot:placeholder>
-                <v-row class="fill-height ma-0" align="center" justify="center">
-                    <v-progress-circular
-                        indeterminate
-                        color="grey lighten-5"
-                    ></v-progress-circular>
-                </v-row>
-            </template>
-        </v-img>
-        <v-container>
-            <v-row class="mb-10 elevation-24 pa-4">
-                <v-col
-                    cols="12"
-                    sm="6"
-                    md="3"
-                    class="d-flex justify-center justify-md-start"
+    <div>
+        <!-- OK -->
+        <div v-if="!error">
+            <!-- LOADER -->
+            <div v-if="loading">
+                loading...
+            </div>
+            <!-- MEDIA -->
+            <div v-else-if="type !== 'characters'">
+                <v-img
+                    v-if="media.bannerImage"
+                    class="mb-5 d-none d-md-block"
+                    :lazy-src="media.bannerImage"
+                    :src="media.bannerImage"
+                    max-height="360"
+                    gradient="0deg, rgba(0,0,0,0.8225490025111607) 0%, rgba(255,255,255,0) 100%"
                 >
-                    <div
-                        class="d-flex flex-column"
-                        :class="{ 'cover-image-column': media.bannerImage }"
-                    >
-                        <v-img
-                            width="250"
-                            max-height="372"
-                            :lazy-src="media.coverImage.medium"
-                            :src="media.coverImage.extraLarge"
-                            class="elevation-24 rounded-lg"
+                    <template v-slot:placeholder>
+                        <v-row
+                            class="fill-height ma-0"
+                            align="center"
+                            justify="center"
                         >
-                            <template v-slot:placeholder>
-                                <v-row
-                                    class="fill-height ma-0"
-                                    align="center"
-                                    justify="center"
+                            <v-progress-circular
+                                indeterminate
+                                color="grey lighten-5"
+                            ></v-progress-circular>
+                        </v-row>
+                    </template>
+                </v-img>
+                <v-container>
+                    <v-row class="mb-10 elevation-24 pa-4">
+                        <v-col
+                            cols="12"
+                            sm="6"
+                            md="3"
+                            class="d-flex justify-center justify-md-start"
+                        >
+                            <div
+                                class="d-flex flex-column"
+                                :class="{
+                                    'cover-image-column': media.bannerImage,
+                                }"
+                            >
+                                <v-img
+                                    width="250"
+                                    max-height="372"
+                                    :lazy-src="media.coverImage.medium"
+                                    :src="media.coverImage.extraLarge"
+                                    class="elevation-24 rounded-lg"
                                 >
-                                    <v-progress-circular
-                                        indeterminate
-                                        color="grey lighten-5"
-                                    ></v-progress-circular>
-                                </v-row>
-                            </template>
-                        </v-img>
-                        <div class="d-flex flex-column my-5">
-                            <media-rating :score="media.averageScore" />
-                            <media-duration :media="media" />
-                        </div>
-                    </div>
-                </v-col>
-                <media-description :media="media" />
-            </v-row>
+                                    <template v-slot:placeholder>
+                                        <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
+                                        >
+                                            <v-progress-circular
+                                                indeterminate
+                                                color="grey lighten-5"
+                                            ></v-progress-circular>
+                                        </v-row>
+                                    </template>
+                                </v-img>
+                                <div class="d-flex flex-column my-5">
+                                    <media-rating :score="media.averageScore" />
+                                    <media-duration :media="media" />
+                                </div>
+                            </div>
+                        </v-col>
+                        <media-description :media="media" />
+                    </v-row>
 
-            <media-tabs :media="media" :loading="loading" />
-        </v-container>
+                    <media-tabs :media="media" :loading="loading" />
+                </v-container>
+            </div>
+            <!-- CHARACTER -->
+            <div v-else>
+                character!
+            </div>
+        </div>
+
+        <!-- ERROR -->
+        <div v-else>
+            error!
+            {{ errorMsg }}
+        </div>
     </div>
 </template>
 
@@ -97,7 +123,7 @@ export default {
     created() {
         this.loading = true;
         if (this.type === "characters") {
-            console.log("CHARACTERS PAGE REQUESTED");
+            this.loading = false;
         } else {
             getMediaById(this.type, this.id)
                 .then(res => {
