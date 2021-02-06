@@ -77,7 +77,7 @@ export default {
         },
         getCardTitle(mediaItem) {
             if (this.mediaType === "characters") {
-                return mediaItem.name.full;
+                return Object.values(mediaItem.name).join(" ");
             } else {
                 return this.getTitle(mediaItem.title);
             }
