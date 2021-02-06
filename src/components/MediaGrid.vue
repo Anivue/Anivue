@@ -17,23 +17,21 @@
                     sm="3"
                     md="2"
                 >
-                    <media-card
+                    <!-- <media-card
                         v-if="mediaType === 'characters'"
-                        :title="characterFullName(mediaItem.name)"
-                        subtitle="Character"
+                        :title="mediaItem.name.full"
                         :mediaId="mediaItem.id"
                         :image="mediaItem.image.medium"
                         :imageLQ="mediaItem.image.medium"
                         :mediaType="mediaType"
-                    />
+                    /> -->
                     <media-card
-                        v-else
-                        :title="getTitle(mediaItem.title)"
-                        :subtitle="beatifyMediaFormat(mediaItem.format)"
+                        :title="getCardTitle(mediaItem)"
                         :mediaId="mediaItem.id"
-                        :image="mediaItem.coverImage.large"
-                        :imageLQ="mediaItem.coverImage.medium"
+                        :image="checkForLarge(mediaItem)"
+                        :imageLQ="checkForMedium(mediaItem)"
                         :mediaType="mediaType"
+                        :color="checkForColor(mediaItem)"
                     />
                 </v-col>
             </v-row>
@@ -71,25 +69,39 @@ export default {
         },
     },
     methods: {
-        characterFullName(nameObj) {
-            return `${nameObj.first || ""} ${nameObj.last || ""}`;
-        },
         getTitle(titleObj) {
-            if (titleObj.english) {
-                return this.trimTitle(titleObj.english);
-            } else {
-                return this.trimTitle(titleObj.romaji);
-            }
-        },
-        trimTitle(title) {
-            if (title.length > 17) {
-                return `${title.slice(0, 17)}...`;
-            } else {
-                return title;
-            }
+            return titleObj.english ? titleObj.english : titleObj.romaji;
         },
         beatifyMediaFormat(format) {
             return format.split("_").join(" ");
+        },
+        getCardTitle(mediaItem) {
+            if (this.mediaType === "characters") {
+                return mediaItem.name.full;
+            } else {
+                return this.getTitle(mediaItem.title);
+            }
+        },
+        checkForLarge(mediaItem) {
+            if (this.mediaType === "characters") {
+                return mediaItem.image.medium;
+            } else {
+                return mediaItem.coverImage.large;
+            }
+        },
+        checkForMedium(mediaItem) {
+            if (this.mediaType === "characters") {
+                return mediaItem.image.medium;
+            } else {
+                return mediaItem.coverImage.medium;
+            }
+        },
+        checkForColor(mediaItem) {
+            if (this.mediaType === "characters") {
+                return "#fff";
+            } else {
+                return mediaItem.coverImage.color;
+            }
         },
     },
 };

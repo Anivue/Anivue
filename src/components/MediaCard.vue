@@ -1,22 +1,36 @@
 <template>
-    <v-card elevation="24" height="100%" class="" @click="openMedia">
-        <v-img :lazy-src="imageLQ" :src="image" height="250">
-            <template v-slot:placeholder>
-                <v-row class="fill-height ma-0" align="center" justify="center">
-                    <v-progress-circular
-                        indeterminate
-                        color="grey lighten-5"
-                    ></v-progress-circular>
-                </v-row>
-            </template>
-        </v-img>
-        <v-card-title class="break-word">
-            {{ title }}
-        </v-card-title>
-        <v-card-subtitle>
-            {{ subtitle }}
-        </v-card-subtitle>
-    </v-card>
+    <v-hover v-slot="{ hover }">
+        <v-card height="100%" color="transparent" elevation="0" class="pointer">
+            <v-img
+                :lazy-src="imageLQ"
+                :src="image"
+                height="250"
+                class="elevation-24 rounded"
+                @click="openMedia"
+            >
+                <template v-slot:placeholder>
+                    <v-row
+                        class="fill-height ma-0"
+                        align="center"
+                        justify="center"
+                    >
+                        <v-progress-circular
+                            indeterminate
+                            color="grey lighten-5"
+                        ></v-progress-circular>
+                    </v-row>
+                </template>
+            </v-img>
+            <v-card-title
+                @click="openMedia"
+                class="break-word text-subtitle-1 bold-title font-weight-regular d-inline-block text-truncate pl-0 pt-5"
+                :style="[hover ? { color } : {}]"
+                style="max-width: 170px"
+            >
+                {{ title }}
+            </v-card-title>
+        </v-card>
+    </v-hover>
 </template>
 
 <script>
@@ -25,11 +39,6 @@ export default {
         title: {
             type: String,
             default: "NoTitle",
-        },
-        subtitle: {
-            // CHARACTER / TV SHOW / OVA / etc...
-            type: String,
-            required: true,
         },
         mediaId: {
             type: Number,
@@ -48,6 +57,10 @@ export default {
         mediaType: {
             type: String,
         },
+        color: {
+            type: String,
+            default: "#fff",
+        },
     },
     methods: {
         openMedia() {
@@ -63,5 +76,9 @@ export default {
 <style lang="scss">
 .break-word {
     word-break: break-word;
+}
+
+.pointer {
+    cursor: pointer;
 }
 </style>

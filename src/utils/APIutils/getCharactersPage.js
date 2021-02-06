@@ -21,8 +21,7 @@ const getCharactersPage = async variables => {
                 characters (${searchVar} sort: FAVOURITES_DESC) {
                     id
                     name {
-                        first
-                        last
+                        full
                     }
                     image {
                         medium
