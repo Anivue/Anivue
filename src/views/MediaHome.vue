@@ -74,6 +74,8 @@ export default {
         return {
             limit: 50,
             loading: true,
+            error: false,
+            errorMsg: null,
             media: {},
             page: +this.$route.query.page,
             totalPages: null,
@@ -96,26 +98,34 @@ export default {
         handleResponse(callback, isCharacters = false) {
             if (isCharacters) {
                 callback(this.page, 50)
-                    .then(charactersPage => {
-                        this.media = charactersPage.Page.characters;
+                    .then(res => {
+                        if (!res.res.ok) throw Error(res.res.status);
+                        this.media = res.Page.characters;
                         this.totalPages = Math.ceil(
-                            charactersPage.Page.pageInfo.total / 50
+                            res.Page.pageInfo.total / 50
                         );
                         this.loading = false;
+                        this.error = false;
                     })
                     .catch(err => {
+                        this.error = true;
+                        this.errorMsg = err.message;
                         console.log(err);
                     });
             } else {
                 callback(this.type, this.page, 50)
-                    .then(mediaPage => {
-                        this.media = mediaPage.Page.media;
+                    .then(res => {
+                        if (!res.res.ok) throw Error(res.res.status);
+                        this.media = res.data.Page.media;
                         this.totalPages = Math.ceil(
-                            mediaPage.Page.pageInfo.total / 50
+                            res.data.Page.pageInfo.total / 50
                         );
                         this.loading = false;
+                        this.error = false;
                     })
                     .catch(err => {
+                        this.error = true;
+                        this.errorMsg = err.message;
                         console.log(err);
                     });
             }

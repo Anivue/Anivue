@@ -87,6 +87,8 @@ export default {
         return {
             loading: true,
             media: {},
+            error: false,
+            errorMsg: null,
             tab: null,
             type: this.$route.params.type,
         };
@@ -98,13 +100,15 @@ export default {
             console.log("CHARACTERS PAGE REQUESTED");
         } else {
             getMediaById(this.type, this.id)
-                .then(media => {
-                    this.media = media.Media;
+                .then(res => {
+                    if (!res.res.ok) throw Error(res.res.status);
+                    this.media = res.data.Media;
                     this.loading = false;
-                    // ! REMOVE THIS LOG LATER
-                    console.log(this.media);
+                    this.error = false;
                 })
                 .catch(err => {
+                    this.error = true;
+                    this.errorMsg = err.message;
                     console.log(err);
                 });
         }

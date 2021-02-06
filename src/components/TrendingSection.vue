@@ -53,16 +53,23 @@ export default {
         return {
             loading: true,
             mediaArray: [],
+            error: false,
+            errorMsg: null,
         };
     },
     created() {
         this.loading = true;
         getMediaPageByTrending(this.sectionType, 1, 6)
-            .then(mediaPage => {
-                this.mediaArray = mediaPage.Page.media;
+            .then(res => {
+                console.log(res);
+                if (!res.res.ok) throw Error(res.res.status);
+                this.mediaArray = res.data.Page.media;
                 this.loading = false;
+                this.error = false;
             })
             .catch(err => {
+                this.error = true;
+                this.errorMsg = err.message;
                 console.log(err);
             });
     },
