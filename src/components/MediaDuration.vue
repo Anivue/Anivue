@@ -1,11 +1,9 @@
 <template>
-    <div class="d-flex flex-column mt-5">
+    <div class="d-flex flex-column mt-2">
         <center>
             <div v-if="media.type === 'ANIME'">
                 <p class="text--disabled">
                     {{ totalEpisodes }} {{ formatEpisodesWord }}
-                    <br />
-                    {{ media.duration }} minutes each
                 </p>
             </div>
             <div v-else-if="media.chapters">
