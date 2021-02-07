@@ -39,7 +39,7 @@
                             class="d-flex justify-center justify-md-start"
                         >
                             <div
-                                class="d-flex flex-column"
+                                class="d-flex flex-column fullWidth"
                                 :class="{
                                     'cover-image-column': bannerImage,
                                 }"
@@ -187,9 +187,16 @@ export default {
     top: -200px;
 }
 
+.fullWidth {
+    width: 100%;
+}
+
 @media screen and (max-width: 960px) {
     .cover-image-column {
         position: inherit;
+    }
+    .fullWidth {
+        width: auto;
     }
 }
 </style>
