@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex flex-column my-5">
+    <div class="d-flex flex-column mt-5">
         <center>
             <div v-if="media.type === 'ANIME'">
                 <p class="text--disabled">

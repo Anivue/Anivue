@@ -3,15 +3,19 @@
         md="9"
         class="d-flex justify-center justify-md-start align-center align-md-start flex-column"
     >
-        <h2 class="mb-10 text-h4">{{ title }}</h2>
+        <div class="mb-10 text-center text-md-left">
+            <h2 class="mb-3 text-h4">{{ title }}</h2>
+            <p class="text--secondary">{{ subtitle }}</p>
+        </div>
 
-        <p class="subtitle-1 text--secondary" v-html="media.description"></p>
+        <p class="subtitle-1 text--secondary" v-html="description"></p>
         <genre-chips v-if="mediaType !== 'characters'" :genres="media.genres" />
     </v-col>
 </template>
 
 <script>
-import GenreChips from "../components/GenreChips";
+import GenreChips from "./GenreChips";
+// import DynamicDescription from "./DynamicDescription";
 export default {
     components: {
         GenreChips,
@@ -28,7 +32,6 @@ export default {
     },
     computed: {
         title() {
-            console.log(this.media);
             if (this.mediaType !== "characters") {
                 if (this.media.title.english) {
                     return this.media.title.english;
@@ -36,8 +39,29 @@ export default {
                     return this.media.title.romaji;
                 }
             } else {
-                return Object.values(this.media.name).join(" ");
+                return Object.values(this.media.name)
+                    .slice(0, -1)
+                    .join(" ");
             }
+        },
+        subtitle() {
+            if (this.mediaType === "characters") {
+                return this.media.name.native;
+            } else {
+                return this.media.title.native;
+            }
+        },
+        description() {
+            // ! FIX OR REMOVE
+            // if (this.mediaType === "characters") {
+            //     return this.media.description.replace(
+            //         /<a href="https:\/\/anilist\.co\/character\/(\d+)\/.+?">(.+?)<\/a>/g,
+            //         `<a href="/search/characters/$1">$2</a>`
+            //     );
+            // } else {
+            //     return this.media.description;
+            // }
+            return this.media.description;
         },
     },
 };

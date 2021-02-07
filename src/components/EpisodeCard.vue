@@ -7,7 +7,7 @@
             class="white--text align-end"
         >
             <v-card-subtitle>
-                {{ title }}
+                {{ trimmedTitle }}
             </v-card-subtitle>
         </v-img>
     </v-card>
@@ -32,6 +32,15 @@ export default {
     methods: {
         openEpisode() {
             window.open(this.url);
+        },
+    },
+    computed: {
+        trimmedTitle() {
+            if (this.title.length > 25) {
+                return this.title.slice(0, 25) + "...";
+            } else {
+                return this.title;
+            }
         },
     },
 };

@@ -24,6 +24,7 @@ const getMediaPage = async variables => {
                 }
                 media (${searchVar} ${sortVar} type: $type, isAdult: false) {
                     id
+                    type
                     title {
                         english
                         romaji

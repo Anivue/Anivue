@@ -19,12 +19,7 @@
                 </v-row>
             </v-container>
         </div>
-        <media-grid
-            :loading="loading"
-            :mediaType="type"
-            :limit="limit"
-            :media="media"
-        />
+        <media-grid :loading="loading" :limit="limit" :media="media" />
         <div class="text-center">
             <v-container>
                 <v-row justify="center">

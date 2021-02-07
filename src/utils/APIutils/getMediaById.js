@@ -10,8 +10,9 @@ const getMediaById = async (type, id) => {
         query ($id: Int, $type: MediaType) {
             Media (id: $id, type: $type) {
                 title {
-                    english,
+                    english
                     romaji
+                    native
                 }
                 type
                 genres
@@ -21,6 +22,21 @@ const getMediaById = async (type, id) => {
                 status
                 nextAiringEpisode {
                     airingAt
+                }
+                relations {
+                    nodes {
+                        id
+                        type
+                        title {
+                            english
+                            romaji
+                        }
+                        coverImage {
+                            medium
+                            large
+                            color
+                        } 
+                    }
                 }
                 description (asHtml: true)
                 startDate {

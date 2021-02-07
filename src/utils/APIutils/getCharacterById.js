@@ -17,6 +17,7 @@ const getCharacterById = async id => {
                 media (page: 1, perPage: 25, sort: FAVOURITES_DESC) {
                     nodes {
                         id
+                        type
                         title {
                             romaji
                             english

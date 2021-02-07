@@ -65,7 +65,7 @@
                                     </template>
                                 </v-img>
                                 <div
-                                    class="d-flex flex-column my-5"
+                                    class="d-flex flex-column mt-5"
                                     v-if="type !== 'characters'"
                                 >
                                     <media-rating :score="media.averageScore" />
@@ -76,11 +76,7 @@
                         <media-description :media="media" :mediaType="type" />
                     </v-row>
 
-                    <media-tabs
-                        v-if="type !== 'characters'"
-                        :media="media"
-                        :loading="loading"
-                    />
+                    <media-tabs :media="media" :loading="loading" />
                 </v-container>
             </div>
             <!-- CHARACTER -->
@@ -142,11 +138,11 @@ export default {
                         this.imageMedium = this.media.image.medium;
                         this.bannerImage = false;
                         this.loading = false;
-                        console.log(this.media);
                     })
                     .catch(err => {
                         this.error = true;
                         this.errorMsg = err.message;
+                        this.loading = false;
                         console.log(err);
                     });
             } else {
@@ -163,6 +159,7 @@ export default {
                     .catch(err => {
                         this.error = true;
                         this.errorMsg = err.message;
+                        this.loading = false;
                         console.log(err);
                     });
             }

@@ -30,7 +30,7 @@
                         :mediaId="mediaItem.id"
                         :image="checkForLarge(mediaItem)"
                         :imageLQ="checkForMedium(mediaItem)"
-                        :mediaType="mediaType"
+                        :mediaType="getType(mediaItem)"
                         :color="checkForColor(mediaItem)"
                     />
                 </v-col>
@@ -63,10 +63,6 @@ export default {
             type: Boolean,
             default: false,
         },
-        mediaType: {
-            type: String,
-            default: "anime",
-        },
     },
     methods: {
         getTitle(titleObj) {
@@ -76,31 +72,38 @@ export default {
             return format.split("_").join(" ");
         },
         getCardTitle(mediaItem) {
-            if (this.mediaType === "characters") {
+            if (this.getType(mediaItem) === "characters") {
                 return Object.values(mediaItem.name).join(" ");
             } else {
                 return this.getTitle(mediaItem.title);
             }
         },
         checkForLarge(mediaItem) {
-            if (this.mediaType === "characters") {
+            if (this.getType(mediaItem) === "characters") {
                 return mediaItem.image.large;
             } else {
                 return mediaItem.coverImage.large;
             }
         },
         checkForMedium(mediaItem) {
-            if (this.mediaType === "characters") {
+            if (this.getType(mediaItem) === "characters") {
                 return mediaItem.image.medium;
             } else {
                 return mediaItem.coverImage.medium;
             }
         },
         checkForColor(mediaItem) {
-            if (this.mediaType === "characters") {
+            if (this.getType(mediaItem) === "characters") {
                 return "#fff";
             } else {
                 return mediaItem.coverImage.color;
+            }
+        },
+        getType(mediaItem) {
+            if ("type" in mediaItem) {
+                return mediaItem.type.toLowerCase();
+            } else {
+                return "characters";
             }
         },
     },

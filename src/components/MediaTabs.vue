@@ -1,15 +1,11 @@
 <template>
-    <div v-if="characters.length || episodes.length">
-        <v-tabs
-            grow
-            v-model="tab"
-            class="elevation-24"
-            :color="media.coverImage.color"
-        >
+    <div v-if="characters.length || episodes.length || relations.length">
+        <v-tabs grow v-model="tab" class="elevation-24" :color="color">
             <v-tab href="#characters-tab" v-if="characters.length"
                 >Characters</v-tab
             >
             <v-tab href="#episodes-tab" v-if="episodes.length">Episodes</v-tab>
+            <v-tab href="#relations-tab" v-if="relations.length">Related</v-tab>
         </v-tabs>
 
         <v-tabs-items v-model="tab" class="elevation-24">
@@ -48,6 +44,17 @@
                     </v-col>
                 </v-row>
             </v-tab-item>
+            <v-tab-item
+                :transition="false"
+                value="relations-tab"
+                v-if="relations.length"
+            >
+                <v-row class="ma-md-3 my-1">
+                    <v-col cols="12">
+                        <media-grid :loading="loading" :media="relations" />
+                    </v-col>
+                </v-row>
+            </v-tab-item>
         </v-tabs-items>
     </div>
 </template>
@@ -73,9 +80,26 @@ export default {
     data() {
         return {
             tab: null,
-            episodes: this.media.streamingEpisodes,
-            characters: this.media.characters.nodes,
+            episodes:
+                "streamingEpisodes" in this.media
+                    ? this.media.streamingEpisodes
+                    : "",
+            characters:
+                "characters" in this.media ? this.media.characters.nodes : "",
+            relations:
+                "relations" in this.media
+                    ? this.media.relations.nodes
+                    : this.media.media.nodes,
         };
+    },
+    computed: {
+        color() {
+            if ("image" in this.media) {
+                return "#fff";
+            } else {
+                return this.media.coverImage.color;
+            }
+        },
     },
 };
 </script>
