@@ -2,7 +2,28 @@
     <v-container class="my-10">
         <v-row>
             <v-col class="d-flex justify-center">
-                <h1>Explore <span ref="typed"></span></h1>
+                <v-img
+                    class="mb-5 rounded elevation-24"
+                    lazy-src="../assets/anivueBannerBlur-min.jpg"
+                    src="../assets/anivueBannerBlur.jpg"
+                    max-height="360"
+                    min-height="150"
+                    gradient="0deg, rgba(0,0,0,0.7973389184775472) 6%, rgba(0,0,0,0.8001400389257265) 86%"
+                >
+                    <!-- <div>
+                        <h1>Explore <span ref="typed"></span></h1>
+                    </div> -->
+                    <v-row
+                        class="fill-height ma-0"
+                        align="center"
+                        justify="center"
+                    >
+                        <h1>
+                            <span class="font-weight-light">Explore </span>
+                            <span ref="typed"></span>
+                        </h1>
+                    </v-row>
+                </v-img>
             </v-col>
         </v-row>
     </v-container>
@@ -31,4 +52,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.typewriter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+</style>

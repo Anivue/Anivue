@@ -41,15 +41,15 @@ export default {
         };
     },
     mounted() {
-        if (+this.score > 90) {
+        if (+this.score >= 90) {
             this.emoji = "mdi-robot-love-outline";
             this.textColor = "green--text";
             this.emojiColor = "green";
-        } else if (+this.score > 80) {
+        } else if (+this.score >= 80) {
             this.emoji = "mdi-robot-happy-outline";
             this.textColor = "light-green--text";
             this.emojiColor = "light-green";
-        } else if (+this.score > 50) {
+        } else if (+this.score >= 50) {
             this.emoji = "mdi-robot-outline";
             this.textColor = "orange--text text--lighten-1";
             this.emojiColor = "orange lighten-1";
