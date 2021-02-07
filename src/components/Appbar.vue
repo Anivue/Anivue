@@ -5,7 +5,7 @@
 
             <v-toolbar-title class="font-weight-bold pl-0">
                 <v-btn x-large text to="/" exact class="p-0">
-                    Anibase
+                    Anivue
                 </v-btn>
             </v-toolbar-title>
 
