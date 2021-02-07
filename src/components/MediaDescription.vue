@@ -6,7 +6,7 @@
         <h2 class="mb-10 text-h4">{{ title }}</h2>
 
         <p class="subtitle-1 text--secondary" v-html="media.description"></p>
-        <genre-chips :genres="media.genres" />
+        <genre-chips v-if="mediaType !== 'characters'" :genres="media.genres" />
     </v-col>
 </template>
 
@@ -21,13 +21,22 @@ export default {
             type: Object,
             required: true,
         },
+        mediaType: {
+            type: String,
+            required: true,
+        },
     },
     computed: {
         title() {
-            if (this.media.title.english) {
-                return this.media.title.english;
+            console.log(this.media);
+            if (this.mediaType !== "characters") {
+                if (this.media.title.english) {
+                    return this.media.title.english;
+                } else {
+                    return this.media.title.romaji;
+                }
             } else {
-                return this.media.title.romaji;
+                return Object.values(this.media.name).join(" ");
             }
         },
     },

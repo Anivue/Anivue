@@ -8,12 +8,12 @@
                 loading...
             </div>
             <!-- MEDIA -->
-            <div v-else-if="type !== 'characters'">
+            <div v-else>
                 <v-img
-                    v-if="media.bannerImage"
+                    v-if="bannerImage"
                     class="mb-5 d-none d-md-block"
-                    :lazy-src="media.bannerImage"
-                    :src="media.bannerImage"
+                    :lazy-src="bannerImage"
+                    :src="bannerImage"
                     max-height="360"
                     gradient="0deg, rgba(0,0,0,0.8225490025111607) 0%, rgba(255,255,255,0) 100%"
                 >
@@ -41,14 +41,14 @@
                             <div
                                 class="d-flex flex-column"
                                 :class="{
-                                    'cover-image-column': media.bannerImage,
+                                    'cover-image-column': bannerImage,
                                 }"
                             >
                                 <v-img
                                     width="250"
                                     max-height="372"
-                                    :lazy-src="media.coverImage.medium"
-                                    :src="media.coverImage.extraLarge"
+                                    :lazy-src="imageMedium"
+                                    :src="imageLarge"
                                     class="elevation-24 rounded-lg"
                                 >
                                     <template v-slot:placeholder>
@@ -64,22 +64,29 @@
                                         </v-row>
                                     </template>
                                 </v-img>
-                                <div class="d-flex flex-column my-5">
+                                <div
+                                    class="d-flex flex-column my-5"
+                                    v-if="type !== 'characters'"
+                                >
                                     <media-rating :score="media.averageScore" />
                                     <media-duration :media="media" />
                                 </div>
                             </div>
                         </v-col>
-                        <media-description :media="media" />
+                        <media-description :media="media" :mediaType="type" />
                     </v-row>
 
-                    <media-tabs :media="media" :loading="loading" />
+                    <media-tabs
+                        v-if="type !== 'characters'"
+                        :media="media"
+                        :loading="loading"
+                    />
                 </v-container>
             </div>
             <!-- CHARACTER -->
-            <div v-else>
+            <!-- <div v-else>
                 character!
-            </div>
+            </div> -->
         </div>
 
         <!-- ERROR -->
@@ -95,7 +102,7 @@ import MediaRating from "../components/MediaRating.vue";
 import MediaTabs from "../components/MediaTabs";
 import MediaDuration from "../components/MediaDuration";
 import MediaDescription from "../components/MediaDescription";
-import { getMediaById } from "../utils/APIutils/Anime";
+import { getMediaById, getCharacterById } from "../utils/APIutils/Anime";
 export default {
     components: {
         MediaTabs,
@@ -117,6 +124,9 @@ export default {
             errorMsg: null,
             tab: null,
             type: this.$route.params.type,
+            imageLarge: null,
+            imageMedium: null,
+            bannerImage: false,
         };
     },
     methods: {
@@ -124,12 +134,29 @@ export default {
             this.loading = true;
             this.type = this.$route.params.type;
             if (this.type === "characters") {
-                this.loading = false;
+                getCharacterById(this.id)
+                    .then(res => {
+                        if (!res.res.ok) throw Error(res.res.status);
+                        this.media = res.data.Character;
+                        this.imageLarge = this.media.image.large;
+                        this.imageMedium = this.media.image.medium;
+                        this.bannerImage = false;
+                        this.loading = false;
+                        console.log(this.media);
+                    })
+                    .catch(err => {
+                        this.error = true;
+                        this.errorMsg = err.message;
+                        console.log(err);
+                    });
             } else {
                 getMediaById(this.type, this.id)
                     .then(res => {
                         if (!res.res.ok) throw Error(res.res.status);
                         this.media = res.data.Media;
+                        this.imageLarge = this.media.coverImage.extraLarge;
+                        this.imageMedium = this.media.coverImage.medium;
+                        this.bannerImage = this.media.bannerImage;
                         this.loading = false;
                         this.error = false;
                     })

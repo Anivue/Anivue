@@ -14,16 +14,18 @@ const getCharacterById = async id => {
                     large
                 }
                 description (asHtml: true)
-                media(page: 1, perpage: 25, sort: FAVOURITES_DESC) {
-                    id
-                    title {
-                        romaji
-                        english
-                    }
-                    coverImage {
-                        medium
-                        large
-                        color
+                media (page: 1, perPage: 25, sort: FAVOURITES_DESC) {
+                    nodes {
+                        id
+                        title {
+                            romaji
+                            english
+                        }
+                        coverImage {
+                            medium
+                            large
+                            color
+                        }
                     }
                 }
             }
