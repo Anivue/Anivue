@@ -1,5 +1,5 @@
 <template>
-    <v-container class="my-10">
+    <v-container fluid class="mb-10 pa-0">
         <v-row>
             <v-col class="d-flex justify-center">
                 <v-img
