@@ -2,13 +2,13 @@
     <div class="mb-10">
         <v-container>
             <v-row justify="space-between">
-                <v-col>
+                <v-col cols="8">
                     <h2>
                         <v-icon color="red">mdi-fire</v-icon> Trending
                         <span :class="colors.text">{{ sectionType }}</span>
                     </h2>
                 </v-col>
-                <v-col class="d-flex justify-end">
+                <v-col class="d-flex justify-end" cols="4">
                     <v-btn
                         elevation="24"
                         :color="colors.block"
