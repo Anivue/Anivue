@@ -3,7 +3,7 @@
         <v-container>
             <v-row>
                 <v-col class="d-flex justify-center align-center my-10">
-                    <h1 class="font-weight-light">
+                    <h1 class="font-weight-light text-center">
                         Results for "<span
                             class="light-green--text capitalize"
                             >{{ query }}</span
