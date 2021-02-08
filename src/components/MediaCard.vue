@@ -3,6 +3,7 @@
         <v-card height="100%" color="transparent" elevation="0" class="pointer">
             <v-img
                 :lazy-src="imageLQ"
+                ref="cardImg"
                 :src="image"
                 height="250"
                 class="elevation-24 rounded"
@@ -25,8 +26,7 @@
                 <v-card-title
                     @click="openMedia"
                     class="break-word text-subtitle-1 bold-title font-weight-regular d-inline-block text-truncate px-0 pt-5 text-center"
-                    :style="[hover ? { color } : {}]"
-                    style="max-width: 170px"
+                    :style="[hover ? { color, maxWidth } : { maxWidth }]"
                 >
                     {{ title }}
                 </v-card-title>
@@ -71,6 +71,24 @@ export default {
                 params: { type: this.mediaType, id: this.mediaId },
             });
         },
+        trimTitle() {
+            this.maxWidth = `${this.$refs.cardImg.$el.offsetWidth - 30}px`;
+        },
+    },
+    mounted() {
+        window.addEventListener("resize", this.trimTitle);
+        this.trimTitle();
+    },
+    beforeDestroy() {
+        window.removeEventListener("resize", this.trimTitle);
+    },
+    updated() {
+        this.trimTitle();
+    },
+    data() {
+        return {
+            maxWidth: "170px",
+        };
     },
 };
 </script>
