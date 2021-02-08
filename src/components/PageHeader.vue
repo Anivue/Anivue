@@ -3,7 +3,7 @@
         <v-row>
             <v-col class="d-flex justify-center">
                 <h1>
-                    {{ slogan }}
+                    <span class="font-weight-light">{{ slogan }} </span>
                     <span :class="this.$store.state.colors[title].text">{{
                         title
                     }}</span>

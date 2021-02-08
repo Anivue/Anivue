@@ -3,31 +3,38 @@
         <v-container>
             <v-row>
                 <v-col class="d-flex justify-center align-center my-10">
-                    <h1 class="font-weight-light">Results for "{{ query }}"</h1>
+                    <h1 class="font-weight-light">
+                        Results for "<span
+                            class="light-green--text capitalize"
+                            >{{ query }}</span
+                        >"
+                    </h1>
                 </v-col>
             </v-row>
         </v-container>
-        <search-section
-            v-if="anime.found"
-            :loading="loading"
-            :media="anime.data"
-            :query="query"
-            sectionType="anime"
-        />
-        <search-section
-            v-if="manga.found"
-            :loading="loading"
-            :media="manga.data"
-            :query="query"
-            sectionType="manga"
-        />
-        <search-section
-            v-if="characters.found"
-            :loading="loading"
-            :media="characters.data"
-            :query="query"
-            sectionType="characters"
-        />
+        <div>
+            <search-section
+                v-if="anime.found"
+                :loading="loading"
+                :media="anime.data"
+                :query="query"
+                sectionType="anime"
+            />
+            <search-section
+                v-if="manga.found"
+                :loading="loading"
+                :media="manga.data"
+                :query="query"
+                sectionType="manga"
+            />
+            <search-section
+                v-if="characters.found"
+                :loading="loading"
+                :media="characters.data"
+                :query="query"
+                sectionType="characters"
+            />
+        </div>
     </div>
 </template>
 
@@ -44,18 +51,17 @@ export default {
             query: this.$route.query.search,
             page: 1,
             loading: true,
-            anime: {},
-            manga: {},
-            characters: {},
+            anime: { found: true },
+            manga: { found: true },
+            characters: { found: true },
         };
     },
     methods: {
         searchQuery() {
-            this.query = this.$route.query.search;
             this.loading = true;
+            this.query = this.$route.query.search;
             getSearchPage(this.page, 6, this.query)
                 .then(res => {
-                    console.log(res);
                     this.anime = res.anime;
                     this.manga = res.manga;
                     this.characters = res.characters;
@@ -77,4 +83,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.capitalize {
+    text-transform: capitalize;
+}
+</style>

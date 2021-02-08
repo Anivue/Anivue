@@ -35,8 +35,7 @@ export default {
     },
     props: {
         media: {
-            type: [Array, Object],
-            required: true,
+            type: [Array, Object, null],
         },
         loading: {
             type: Boolean,
