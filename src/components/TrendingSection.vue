@@ -61,7 +61,6 @@ export default {
         this.loading = true;
         getMediaPageByTrending(this.sectionType, 1, 6)
             .then(res => {
-                console.log(res);
                 if (!res.res.ok) throw Error(res.res.status);
                 this.mediaArray = res.data.Page.media;
                 this.loading = false;

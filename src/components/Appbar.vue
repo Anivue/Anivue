@@ -25,7 +25,7 @@
                     </v-btn>
                 </template>
 
-                <v-card class="pa-1">
+                <v-card class="pa-1" @keypress.enter="search">
                     <v-card-actions>
                         <v-text-field
                             spellcheck="false"
@@ -35,7 +35,7 @@
                             class="font-weight-bold"
                         >
                         </v-text-field>
-                        <v-btn icon large class="ml-2">
+                        <v-btn icon large class="ml-2" @click="search">
                             <v-icon>mdi-send</v-icon>
                         </v-btn>
                     </v-card-actions>
@@ -104,6 +104,18 @@ export default {
     methods: {
         goToHome() {
             this.$router.push("/");
+        },
+        search() {
+            this.dialog = false;
+            this.$router.push({
+                path: "/search",
+                query: { search: this.searchText },
+            });
+        },
+    },
+    computed: {
+        searchQuery() {
+            return this.searchText.toLowerCase();
         },
     },
 };

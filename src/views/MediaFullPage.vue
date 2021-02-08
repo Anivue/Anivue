@@ -100,6 +100,7 @@ import MediaDuration from "../components/MediaDuration";
 import MediaDescription from "../components/MediaDescription";
 import { getMediaById, getCharacterById } from "../utils/APIutils/Anime";
 export default {
+    name: "MediaFullPage",
     components: {
         MediaTabs,
         MediaRating,

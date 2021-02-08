@@ -12,7 +12,9 @@ const routes = [
     },
     {
         path: "/search",
-        redirect: "/home",
+        name: "search",
+        component: () => import("../views/Search.vue"),
+        props: true,
     },
     {
         path: "/home",
