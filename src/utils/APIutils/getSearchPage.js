@@ -21,7 +21,7 @@ const getSearchPage = async (page, perPage, title) => {
         .then(res => {
             if (res.res.ok) {
                 anime.data = res.data.Page.media;
-                if (anime.data) {
+                if (anime.data.length) {
                     anime.found = true;
                 }
             } else {
@@ -33,8 +33,8 @@ const getSearchPage = async (page, perPage, title) => {
     getMediaPageByTitle("MANGA", title, page, perPage)
         .then(res => {
             if (res.res.ok) {
-                manga.data = res.data.Page.Media;
-                if (manga.data) {
+                manga.data = res.data.Page.media;
+                if (manga.data.length) {
                     manga.found = true;
                 }
             } else {
@@ -46,8 +46,8 @@ const getSearchPage = async (page, perPage, title) => {
     getCharactersPageByTitle(title, page, perPage)
         .then(res => {
             if (res.res.ok) {
-                characters.data = res.data.Page.characters.data;
-                if (characters.data) {
+                characters.data = res.data.Page.characters;
+                if (characters.data.length) {
                     characters.found = true;
                 }
             } else {

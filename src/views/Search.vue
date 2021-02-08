@@ -1,26 +1,65 @@
 <template>
     <div>
-        Search page
-        {{ query }}
+        <v-container>
+            <v-row>
+                <v-col class="d-flex justify-center align-center my-10">
+                    <h1 class="font-weight-light">Results for "{{ query }}"</h1>
+                </v-col>
+            </v-row>
+        </v-container>
+        <search-section
+            v-if="anime.found"
+            :loading="loading"
+            :media="anime.data"
+            :query="query"
+            sectionType="anime"
+        />
+        <search-section
+            v-if="manga.found"
+            :loading="loading"
+            :media="manga.data"
+            :query="query"
+            sectionType="manga"
+        />
+        <search-section
+            v-if="characters.found"
+            :loading="loading"
+            :media="characters.data"
+            :query="query"
+            sectionType="characters"
+        />
     </div>
 </template>
 
 <script>
 import { getSearchPage } from "../utils/APIutils/Anime";
+import SearchSection from "../components/SearchSection";
 export default {
     name: "Search",
+    components: {
+        SearchSection,
+    },
     data() {
         return {
             query: this.$route.query.search,
             page: 1,
+            loading: true,
+            anime: {},
+            manga: {},
+            characters: {},
         };
     },
     methods: {
         searchQuery() {
             this.query = this.$route.query.search;
-            getSearchPage(this.page, 50, this.query)
+            this.loading = true;
+            getSearchPage(this.page, 6, this.query)
                 .then(res => {
                     console.log(res);
+                    this.anime = res.anime;
+                    this.manga = res.manga;
+                    this.characters = res.characters;
+                    this.loading = false;
                 })
                 .catch(err => {
                     console.log(err.message);

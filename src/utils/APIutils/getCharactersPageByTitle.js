@@ -5,6 +5,7 @@ const getCharactersPageByTitle = async (title, pageNumber, perPage) => {
         title,
         pageNumber,
         perPage,
+        sortBy: "SEARCH_MATCH",
     };
     return await getCharactersPage(variables);
 };
