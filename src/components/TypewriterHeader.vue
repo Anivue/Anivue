@@ -3,7 +3,7 @@
         <v-row>
             <v-col class="d-flex justify-center">
                 <v-img
-                    class="mb-5 rounded elevation-24"
+                    class="mb-5 rounded elevation-0"
                     lazy-src="../assets/anivueBannerBlur-min.jpg"
                     src="../assets/anivueBannerBlur.jpg"
                     max-height="360"
