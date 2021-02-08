@@ -21,14 +21,16 @@
                     </v-row>
                 </template>
             </v-img>
-            <v-card-title
-                @click="openMedia"
-                class="break-word text-subtitle-1 bold-title font-weight-regular d-inline-block text-truncate pl-0 pt-5"
-                :style="[hover ? { color } : {}]"
-                style="max-width: 170px"
-            >
-                {{ title }}
-            </v-card-title>
+            <center>
+                <v-card-title
+                    @click="openMedia"
+                    class="break-word text-subtitle-1 bold-title font-weight-regular d-inline-block text-truncate px-0 pt-5 text-center"
+                    :style="[hover ? { color } : {}]"
+                    style="max-width: 170px"
+                >
+                    {{ title }}
+                </v-card-title>
+            </center>
         </v-card>
     </v-hover>
 </template>
