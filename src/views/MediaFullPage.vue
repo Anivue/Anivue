@@ -12,7 +12,12 @@
                 <v-img
                     v-if="bannerImage"
                     class="mb-5 d-none d-md-block"
-                    :lazy-src="bannerImage"
+                    :lazy-src="
+                        `https://via.placeholder.com/24x5/${media.coverImage.color.slice(
+                            1,
+                            -1
+                        )}/fff?text=%20`
+                    "
                     :src="bannerImage"
                     max-height="360"
                     gradient="0deg, rgba(0,0,0,0.8225490025111607) 0%, rgba(255,255,255,0) 100%"

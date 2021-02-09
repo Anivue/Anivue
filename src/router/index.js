@@ -29,13 +29,17 @@ const routes = [
     {
         path: "/search/:type",
         name: "mediahome",
-        component: () => import("../views/MediaHome.vue"),
+        component: () =>
+            import(/* webpackChunkName: "media" */ "../views/MediaHome.vue"),
         props: true,
     },
     {
         path: "/search/:type/:id",
         name: "mediafullpage",
-        component: () => import("../views/MediaFullPage.vue"),
+        component: () =>
+            import(
+                /* webpackChunkName: "media" */ "../views/MediaFullPage.vue"
+            ),
         props: true,
     },
     {

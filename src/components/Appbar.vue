@@ -106,7 +106,9 @@ export default {
     },
     methods: {
         goToHome() {
-            this.$router.push("/");
+            this.$router.push("/home").catch(err => {
+                err;
+            });
         },
         search() {
             this.dialog = false;
