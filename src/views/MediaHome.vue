@@ -47,7 +47,9 @@ import PageHeader from "../components/PageHeader.vue";
 import {
     getMediaPageByTrending,
     getMediaPageByBest,
+    getMediaPageByTitle,
     getCharactersPageByFav,
+    getCharactersPageByTitle,
 } from "../utils/APIutils/Anime";
 
 // this.handleResponse(getMediaPageByBest);
@@ -90,9 +92,15 @@ export default {
             this.handleFetch();
         },
         // Invoke callback promise, then append response to data
-        handleResponse(callback, isCharacters = false) {
+        handleResponse(callback, isCharacters = false, isTitle = false) {
             if (isCharacters) {
-                callback(this.page, 50)
+                let args = [];
+                if (isTitle) {
+                    args = [this.$route.query.search, this.page, 50];
+                } else {
+                    args = [this.page, 50];
+                }
+                callback(...args)
                     .then(res => {
                         if (!res.res.ok) throw Error(res.res.status);
                         this.media = res.data.Page.characters;
@@ -108,7 +116,13 @@ export default {
                         console.log(err);
                     });
             } else {
-                callback(this.type, this.page, 50)
+                let args = [];
+                if (isTitle) {
+                    args = [this.type, this.$route.query.search, this.page, 50];
+                } else {
+                    args = [this.type, this.page, 50];
+                }
+                callback(...args)
                     .then(res => {
                         if (!res.res.ok) throw Error(res.res.status);
                         this.media = res.data.Page.media;
@@ -136,9 +150,17 @@ export default {
             if (this.$route.query.trending === "1") {
                 this.handleResponse(getMediaPageByTrending);
             } else if (this.$route.params.type === "characters") {
-                this.handleResponse(getCharactersPageByFav, true);
+                if (this.$route.query.search) {
+                    this.handleResponse(getCharactersPageByTitle, true, true);
+                } else {
+                    this.handleResponse(getCharactersPageByFav, true, false);
+                }
             } else {
-                this.handleResponse(getMediaPageByBest);
+                if (this.$route.query.search) {
+                    this.handleResponse(getMediaPageByTitle, false, true);
+                } else {
+                    this.handleResponse(getMediaPageByBest, false);
+                }
             }
         },
     },
@@ -148,11 +170,8 @@ export default {
             handler() {
                 this.handleFetch();
             },
-            immediate: false,
+            immediate: true,
         },
-    },
-    created() {
-        this.handleFetch();
     },
 };
 </script>

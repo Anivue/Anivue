@@ -13,13 +13,13 @@
                     v-if="bannerImage"
                     class="mb-5 d-none d-md-block"
                     :lazy-src="
-                        `https://via.placeholder.com/24x5/${media.coverImage.color.slice(
+                        `https://via.placeholder.com/24x5/${bannerColor.slice(
                             1,
                             -1
                         )}/fff?text=%20`
                     "
                     :src="bannerImage"
-                    max-height="360"
+                    height="265"
                     gradient="0deg, rgba(0,0,0,0.8225490025111607) 0%, rgba(255,255,255,0) 100%"
                 >
                     <template v-slot:placeholder>
@@ -128,7 +128,8 @@ export default {
             type: this.$route.params.type,
             imageLarge: null,
             imageMedium: null,
-            bannerImage: false,
+            bannerImage: true,
+            bannerColor: "fff",
         };
     },
     methods: {
@@ -159,6 +160,8 @@ export default {
                         this.imageLarge = this.media.coverImage.extraLarge;
                         this.imageMedium = this.media.coverImage.medium;
                         this.bannerImage = this.media.bannerImage;
+                        this.bannerColor =
+                            this.media.coverImage.color || "#fff";
                         this.loading = false;
                         this.error = false;
                     })
