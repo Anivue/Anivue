@@ -14,6 +14,10 @@ const getMediaById = async (type, id) => {
                     romaji
                     native
                 }
+                status
+                startDate {
+                    year
+                }
                 type
                 genres
                 episodes

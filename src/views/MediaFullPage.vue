@@ -69,12 +69,24 @@
                                         </v-row>
                                     </template>
                                 </v-img>
-                                <div
-                                    class="d-flex flex-column mt-5"
-                                    v-if="type !== 'characters'"
-                                >
-                                    <media-rating :score="media.averageScore" />
-                                    <media-duration :media="media" />
+                                <div class="d-flex flex-column mt-5">
+                                    <div v-if="type !== 'characters'">
+                                        <media-rating
+                                            :score="media.averageScore"
+                                        />
+                                        <media-info :media="media" />
+                                    </div>
+                                    <div v-else>
+                                        <div class="d-flex flex-column mt-2">
+                                            <center>
+                                                <p
+                                                    class="text--disabled capitalize mb-1"
+                                                >
+                                                    Character
+                                                </p>
+                                            </center>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </v-col>
@@ -101,7 +113,7 @@
 <script>
 import MediaRating from "../components/MediaRating.vue";
 import MediaTabs from "../components/MediaTabs";
-import MediaDuration from "../components/MediaDuration";
+import MediaInfo from "../components/MediaInfo";
 import MediaDescription from "../components/MediaDescription";
 import { getMediaById, getCharacterById } from "../utils/APIutils/Anime";
 export default {
@@ -109,7 +121,7 @@ export default {
     components: {
         MediaTabs,
         MediaRating,
-        MediaDuration,
+        MediaInfo,
         MediaDescription,
     },
     props: {
