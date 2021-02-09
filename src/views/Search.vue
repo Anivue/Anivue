@@ -67,6 +67,10 @@ export default {
     methods: {
         searchQuery() {
             this.loading = true;
+            this.anime = { found: true };
+            this.manga = { found: true };
+            this.characters = { found: true };
+
             this.query = this.$route.query.search;
             getSearchPage(this.page, 6, this.query)
                 .then(res => {
