@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-app-bar dark app hide-on-scroll elevation="24">
+        <v-app-bar dark app :hide-on-scroll="hideOnScroll" elevation="24">
             <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
             <v-toolbar-title
@@ -92,6 +92,7 @@ export default {
             searchText: "",
             searchPlaceholder: "Search manga",
             colors: this.$store.state.colors,
+            hideOnScroll: true,
         };
     },
     watch: {
@@ -112,11 +113,21 @@ export default {
                 query: { search: this.searchText },
             });
         },
+        setHideOnScroll() {
+            this.hideOnScroll = window.innerWidth > 960;
+        },
     },
     computed: {
         searchQuery() {
             return this.searchText.toLowerCase();
         },
+    },
+    mounted() {
+        this.setHideOnScroll();
+        window.addEventListener("resize", this.setHideOnScroll);
+    },
+    beforeDestroy() {
+        window.removeEventListener("resize", this.setHideOnScroll);
     },
 };
 </script>
