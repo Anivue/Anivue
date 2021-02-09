@@ -98,7 +98,9 @@ export default {
     watch: {
         dialog(val) {
             if (!val) {
-                this.searchText = "";
+                setTimeout(() => {
+                    this.searchText = "";
+                }, 200);
             }
         },
     },

@@ -4,10 +4,16 @@
             <v-row>
                 <v-col class="d-flex justify-center align-center my-10">
                     <h1 class="font-weight-light text-center">
-                        Results for "<span
-                            class="light-green--text capitalize"
-                            >{{ query }}</span
-                        >"
+                        <div v-if="loading">
+                            Searching...
+                        </div>
+                        <div v-else>
+                            {{ foundTotal }} Results for
+                            <span
+                                class="orange--text capitalize font-weight-bold"
+                                >{{ query }}</span
+                            >
+                        </div>
                     </h1>
                 </v-col>
             </v-row>
@@ -54,6 +60,7 @@ export default {
             anime: { found: true },
             manga: { found: true },
             characters: { found: true },
+            foundTotal: 0,
         };
     },
     methods: {
@@ -66,6 +73,7 @@ export default {
                     this.manga = res.manga;
                     this.characters = res.characters;
                     this.loading = false;
+                    this.foundTotal = res.counter;
                 })
                 .catch(err => {
                     console.log(err.message);
