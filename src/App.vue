@@ -9,13 +9,15 @@
 
             <!-- <router-view /> -->
         </v-main>
-        <navbar />
+        <speed-dial />
+        <navbar class="d-none d-sm-flex" />
     </v-app>
 </template>
 
 <script>
 import Appbar from "./components/Appbar.vue";
 import Navbar from "./components/Navbar.vue";
+import SpeedDial from "./components/SpeedDial";
 
 export default {
     name: "App",
@@ -23,6 +25,7 @@ export default {
     components: {
         Navbar,
         Appbar,
+        SpeedDial,
     },
 
     data: () => ({
