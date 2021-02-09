@@ -31,7 +31,7 @@
                     </template>
                 </v-img>
                 <v-container>
-                    <v-row class="mb-10 elevation-24 pa-4">
+                    <v-row class=" elevation-24 pa-4">
                         <v-col
                             cols="12"
                             sm="6"

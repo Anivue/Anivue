@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <appbar />
-        <v-main class="pb-md-14 page-dark overflow-hidden-x">
+        <v-main class="pb-md-15 page-dark overflow-hidden-x">
             <!-- CACHE EXAMPLE -->
             <keep-alive include="Home">
                 <router-view />
@@ -9,7 +9,7 @@
 
             <!-- <router-view /> -->
         </v-main>
-        <navbar class="d-none d-sm-flex" />
+        <navbar />
     </v-app>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
     <div v-if="characters.length || episodes.length || relations.length">
-        <v-tabs grow v-model="tab" class="elevation-24" :color="color">
+        <v-tabs grow v-model="tab" class="elevation-24 mt-10" :color="color">
             <v-tab href="#characters-tab" v-if="characters.length"
                 >Characters</v-tab
             >
