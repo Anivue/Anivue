@@ -35,7 +35,7 @@ const getSearchPage = async (page, perPage, title) => {
     const resManga = await getMediaPageByTitle("MANGA", title, page, perPage);
     if (resManga.res.ok) {
         manga.data = resManga.data.Page.media;
-        counter += resAnime.data.Page.pageInfo.total;
+        counter += resManga.data.Page.pageInfo.total;
         if (manga.data.length) {
             manga.found = true;
         }
@@ -47,7 +47,7 @@ const getSearchPage = async (page, perPage, title) => {
     const resCharacters = await getCharactersPageByTitle(title, page, perPage);
     if (resCharacters.res.ok) {
         characters.data = resCharacters.data.Page.characters;
-        counter += resAnime.data.Page.pageInfo.total;
+        counter += resCharacters.data.Page.pageInfo.total;
         if (characters.data.length) {
             characters.found = true;
         }

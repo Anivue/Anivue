@@ -8,7 +8,8 @@
                             Searching...
                         </div>
                         <div v-else>
-                            {{ foundTotal }} Results for
+                            {{ foundTotal }}
+                            {{ foundTotal === 1 ? "Result" : "Results" }} for
                             <span
                                 class="orange--text capitalize font-weight-bold"
                                 >{{ query }}</span
