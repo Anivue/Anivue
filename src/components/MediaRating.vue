@@ -45,7 +45,7 @@ export default {
             this.emoji = "mdi-robot-love-outline";
             this.textColor = "green--text";
             this.emojiColor = "green";
-        } else if (+this.score >= 80) {
+        } else if (+this.score >= 70) {
             this.emoji = "mdi-robot-happy-outline";
             this.textColor = "light-green--text";
             this.emojiColor = "light-green";

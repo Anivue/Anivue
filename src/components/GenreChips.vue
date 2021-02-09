@@ -2,7 +2,7 @@
     <v-container fluid>
         <center class="d-block d-md-none">
             <v-chip
-                class="ma-2 elevation-24 text--secondary"
+                class="ma-2 elevation-5 text--secondary"
                 v-for="(genre, index) in genres"
                 :key="index"
                 >{{ genre }}</v-chip
@@ -10,7 +10,7 @@
         </center>
         <div class="d-none d-md-block">
             <v-chip
-                class="ma-2 elevation-24 text--secondary"
+                class="ma-2 elevation-5 text--secondary"
                 v-for="(genre, index) in genres"
                 :key="index"
                 >{{ genre }}</v-chip
