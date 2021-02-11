@@ -1,11 +1,11 @@
 <template>
     <div class="mb-10">
-        <v-container>
+        <v-container class="mb-3">
             <v-row justify="space-between">
                 <v-col cols="8">
                     <h2>
                         <v-icon color="red">mdi-fire</v-icon>
-                        <span class="font-weight-light">Trending </span>
+                        <span class="font-weight-light"> Trending </span>
                         <span :class="colors.text">{{ sectionType }}</span>
                     </h2>
                 </v-col>

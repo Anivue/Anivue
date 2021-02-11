@@ -1,6 +1,6 @@
 <template>
     <div class="mb-10">
-        <v-container>
+        <v-container class="mb-3">
             <v-row justify="space-between">
                 <v-col cols="8">
                     <h2>
