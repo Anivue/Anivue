@@ -19,7 +19,7 @@
                         )}/fff?text=%20`
                     "
                     :src="bannerImage"
-                    height="265"
+                    :aspect-ratio="1265 / 266"
                     gradient="0deg, rgba(0,0,0,0.8225490025111607) 0%, rgba(255,255,255,0) 100%"
                 >
                     <template v-slot:placeholder>
@@ -36,7 +36,7 @@
                     </template>
                 </v-img>
                 <v-container>
-                    <v-row class=" elevation-24 pa-4">
+                    <v-row class="elevation-24 pa-4">
                         <v-col
                             cols="12"
                             sm="6"
@@ -44,7 +44,7 @@
                             class="d-flex justify-center justify-md-start"
                         >
                             <div
-                                class="d-flex flex-column fullWidth"
+                                class="d-flex flex-column fullWidth align-center"
                                 :class="{
                                     'cover-image-column': bannerImage,
                                 }"
