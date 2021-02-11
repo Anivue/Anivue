@@ -5,7 +5,7 @@
                 :lazy-src="imageLQ"
                 ref="cardImg"
                 :src="image"
-                :aspect-ratio="173 / 250"
+                :aspect-ratio="150 / 250"
                 class="elevation-24 rounded"
                 @click="openMedia"
             >

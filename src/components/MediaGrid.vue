@@ -2,7 +2,14 @@
     <div>
         <v-container>
             <v-row v-if="loading">
-                <v-col v-for="card in limit" :key="card" cols="6" sm="3" md="2">
+                <v-col
+                    v-for="card in limit"
+                    :key="card"
+                    cols="6"
+                    sm="3"
+                    md="2"
+                    :xl="lgCols"
+                >
                     <v-skeleton-loader
                         type="card"
                         elevation="24"
@@ -16,15 +23,8 @@
                     cols="6"
                     sm="3"
                     md="2"
+                    :xl="lgCols"
                 >
-                    <!-- <media-card
-                        v-if="mediaType === 'characters'"
-                        :title="mediaItem.name.full"
-                        :mediaId="mediaItem.id"
-                        :image="mediaItem.image.medium"
-                        :imageLQ="mediaItem.image.medium"
-                        :mediaType="mediaType"
-                    /> -->
                     <media-card
                         :title="getCardTitle(mediaItem)"
                         :mediaId="mediaItem.id"
@@ -62,6 +62,11 @@ export default {
         charactersGrid: {
             type: Boolean,
             default: false,
+        },
+        // Number of columns on large screens.
+        lgCols: {
+            type: Number,
+            default: 1,
         },
     },
     methods: {
