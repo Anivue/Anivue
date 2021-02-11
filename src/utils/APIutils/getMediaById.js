@@ -36,6 +36,7 @@ const getMediaById = async (type, id) => {
                             romaji
                         }
                         coverImage {
+                            extraLarge
                             medium
                             large
                             color
