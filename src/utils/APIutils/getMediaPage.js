@@ -32,6 +32,7 @@ const getMediaPage = async variables => {
                     coverImage {
                         medium
                         large
+                        extraLarge
                         color
                     } 
                 }

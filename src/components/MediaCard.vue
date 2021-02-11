@@ -1,28 +1,30 @@
 <template>
     <v-hover v-slot="{ hover }">
         <v-card height="100%" color="transparent" elevation="0" class="pointer">
-            <v-img
-                :lazy-src="imageLQ"
-                ref="cardImg"
-                :src="image"
-                :aspect-ratio="150 / 250"
-                class="elevation-24 rounded"
-                @click="openMedia"
-            >
-                <template v-slot:placeholder>
-                    <v-row
-                        class="fill-height ma-0"
-                        align="center"
-                        justify="center"
-                    >
-                        <v-progress-circular
-                            indeterminate
-                            color="grey lighten-5"
-                        ></v-progress-circular>
-                    </v-row>
-                </template>
-            </v-img>
             <center>
+                <v-img
+                    :lazy-src="imageLQ"
+                    ref="cardImg"
+                    :src="image"
+                    max-height="350"
+                    max-width="210"
+                    :aspect-ratio="150 / 250"
+                    class="elevation-24 rounded"
+                    @click="openMedia"
+                >
+                    <template v-slot:placeholder>
+                        <v-row
+                            class="fill-height ma-0"
+                            align="center"
+                            justify="center"
+                        >
+                            <v-progress-circular
+                                indeterminate
+                                color="grey lighten-5"
+                            ></v-progress-circular>
+                        </v-row>
+                    </template>
+                </v-img>
                 <v-card-title
                     @click="openMedia"
                     class="break-word text-subtitle-1 bold-title font-weight-regular d-inline-block text-truncate px-0 pt-5 text-center"

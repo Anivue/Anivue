@@ -8,7 +8,7 @@
             <v-tab href="#relations-tab" v-if="relations.length">Related</v-tab>
         </v-tabs>
 
-        <v-tabs-items v-model="tab" class="elevation-24">
+        <v-tabs-items v-model="tab" class="elevation-24 rounded-b-xl">
             <v-tab-item
                 :transition="false"
                 value="characters-tab"

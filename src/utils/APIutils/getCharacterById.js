@@ -23,6 +23,7 @@ const getCharacterById = async id => {
                             english
                         }
                         coverImage {
+                            extraLarge
                             medium
                             large
                             color

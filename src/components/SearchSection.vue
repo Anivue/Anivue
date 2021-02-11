@@ -23,7 +23,7 @@
                 </v-col>
             </v-row>
         </v-container>
-        <media-grid :loading="loading" :media="media" :limit="6" />
+        <media-grid :loading="loading" :media="media" :limit="6" :lgCols="2" />
     </div>
 </template>
 
