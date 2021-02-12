@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-app-bar dark app :hide-on-scroll="hideOnScroll" elevation="24">
+        <v-app-bar dark app elevation="24" :collapse="hideOnScroll">
             <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
             <v-toolbar-title
@@ -14,7 +14,7 @@
             <v-spacer></v-spacer>
 
             <v-dialog
-                overlay-opacity="0.8"
+                overlay-opacity="0.9"
                 v-model="dialog"
                 width="500"
                 class="transparent"
@@ -25,7 +25,10 @@
                     </v-btn>
                 </template>
 
-                <v-card class="pa-1" @keypress.enter="search">
+                <v-card
+                    class="pa-1 rounded elevation-24"
+                    @keypress.enter="search"
+                >
                     <v-card-actions>
                         <v-text-field
                             spellcheck="false"
@@ -41,7 +44,6 @@
                     </v-card-actions>
                 </v-card>
             </v-dialog>
-
             <v-btn icon class="mr-1">
                 <v-icon>mdi-account</v-icon>
             </v-btn>
