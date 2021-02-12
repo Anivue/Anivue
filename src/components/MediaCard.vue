@@ -27,7 +27,7 @@
                 </v-img>
                 <v-card-title
                     @click="openMedia"
-                    class="break-word text-subtitle-1 bold-title font-weight-regular d-inline-block text-truncate px-0 pt-5 text-center"
+                    class="custom-gray break-word text-subtitle-1 bold-title font-weight-regular d-inline-block text-truncate px-0 pt-5 text-center"
                     :style="[hover ? { color, maxWidth } : { maxWidth }]"
                 >
                     {{ title }}
@@ -102,5 +102,9 @@ export default {
 
 .pointer {
     cursor: pointer;
+}
+
+.custom-gray {
+    color: #c9c9c9;
 }
 </style>
