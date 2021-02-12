@@ -6,7 +6,7 @@ const getMediaPage = async variables => {
     // Check if specific argument provided, pass it in query if yes, otherwise ignore
     // 'SORT' ARGUMENT
     const sortArgument = "sortBy" in variables ? "$sortBy: [MediaSort]," : "";
-    const sortVar = sortArgument ? "sort: $sortBy," : "";
+    const sortVar = sortArgument ? "sort: $sortBy," : "sort: FAVOURITES_DESC";
 
     // 'SEARCH BY TITLE' ARGUMENT
     const searchArgument = "title" in variables ? "$title: String," : "";
