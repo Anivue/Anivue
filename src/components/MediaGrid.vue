@@ -5,13 +5,14 @@
                 <v-col
                     v-for="card in limit"
                     :key="card"
-                    cols="6"
+                    cols="4"
                     sm="3"
                     md="2"
                     :xl="lgCols"
                 >
                     <v-skeleton-loader
-                        type="card"
+                        type="image"
+                        :height="skeletonHeigth"
                         elevation="24"
                     ></v-skeleton-loader>
                 </v-col>
@@ -20,7 +21,7 @@
                 <v-col
                     v-for="(mediaItem, index) in media"
                     :key="index"
-                    cols="6"
+                    cols="4"
                     sm="3"
                     md="2"
                     :xl="lgCols"
@@ -111,12 +112,34 @@ export default {
                 return "characters";
             }
         },
+        resizeSkeletonHeight() {
+            const width = window.innerWidth;
+            if (width > 1904) {
+                this.skeletonHeigth = 400;
+            } else if (width > 600) {
+                this.skeletonHeigth = 300;
+            } else {
+                this.skeletonHeigth = 170;
+            }
+        },
+    },
+    data() {
+        return {
+            skeletonHeigth: 150,
+        };
+    },
+    mounted() {
+        this.resizeSkeletonHeight();
+        window.addEventListener("resize", this.resizeSkeletonHeight);
+    },
+    beforeDestroy() {
+        window.removeEventListener("resize", this.resizeSkeletonHeight);
     },
 };
 </script>
 
 <style lang="scss">
 .v-skeleton-loader__image {
-    height: 260 !important;
+    height: 100% !important;
 }
 </style>

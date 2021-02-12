@@ -27,7 +27,7 @@
                 </v-img>
                 <v-card-title
                     @click="openMedia"
-                    class="custom-gray break-word text-subtitle-1 bold-title font-weight-regular d-inline-block text-truncate px-0 pt-5 text-center"
+                    class="custom-gray break-word text-caption text-sm-subtitle-1 bold-title font-weight-regular d-inline-block text-truncate px-0 pt-2 pt-sm-5 text-center"
                     :style="[hover ? { color, maxWidth } : { maxWidth }]"
                 >
                     {{ title }}
@@ -74,7 +74,7 @@ export default {
             });
         },
         trimTitle() {
-            this.maxWidth = `${this.$refs.cardImg.$el.offsetWidth - 30}px`;
+            this.maxWidth = `${this.$refs.cardImg.$el.offsetWidth - 15}px`;
         },
     },
     mounted() {
@@ -89,7 +89,7 @@ export default {
     },
     data() {
         return {
-            maxWidth: "170px",
+            maxWidth: "100px",
         };
     },
 };
