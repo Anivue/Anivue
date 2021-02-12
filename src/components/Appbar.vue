@@ -4,7 +4,7 @@
             <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
             <v-toolbar-title
-                class="font-weight-bold pl-0 font-weight-light pointer"
+                class="font-weight-bold pl-0 font-weight-light pointer nocopy"
                 @click="goToHome()"
             >
                 <v-icon color="light-green">mdi-vuejs</v-icon>
@@ -163,5 +163,9 @@ export default {
     font-size: 1.2em;
     color: #cfd8dc;
     text-transform: capitalize;
+}
+
+.nocopy {
+    user-select: none;
 }
 </style>
