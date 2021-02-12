@@ -205,7 +205,7 @@ export default {
 <style lang="scss" scoped>
 .cover-image-column {
     position: relative;
-    top: -200px;
+    top: calc(-372px / 100 * 50);
 }
 
 .fullWidth {
