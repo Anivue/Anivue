@@ -25,23 +25,29 @@
                     </v-btn>
                 </template>
 
-                <v-card
-                    class="pa-1 rounded elevation-24"
-                    @keypress.enter="search"
-                >
-                    <v-card-actions>
-                        <v-text-field
-                            spellcheck="false"
-                            placeholder="Search..."
-                            v-model="searchText"
-                            autofocus
-                            class="font-weight-bold"
-                        >
-                        </v-text-field>
-                        <v-btn icon large class="ml-2" @click="search">
-                            <v-icon>mdi-send</v-icon>
-                        </v-btn>
-                    </v-card-actions>
+                <v-card class="pa-1 rounded elevation-24">
+                    <v-form @submit.prevent="search" ref="searchForm">
+                        <v-card-actions>
+                            <v-text-field
+                                @input="watchButtonState"
+                                spellcheck="false"
+                                placeholder="Search..."
+                                v-model="searchText"
+                                autofocus
+                                :rules="rules"
+                            >
+                            </v-text-field>
+                            <v-btn
+                                icon
+                                large
+                                class="ml-2"
+                                type="submit"
+                                :disabled="buttonDisabled"
+                            >
+                                <v-icon>mdi-send</v-icon>
+                            </v-btn>
+                        </v-card-actions>
+                    </v-form>
                 </v-card>
             </v-dialog>
             <v-btn icon class="mr-1">
@@ -87,6 +93,7 @@
 export default {
     data() {
         return {
+            buttonDisabled: true,
             drawer: false,
             group: null,
             navLinks: this.$store.state.navLinks,
@@ -95,29 +102,42 @@ export default {
             searchPlaceholder: "Search manga",
             colors: this.$store.state.colors,
             hideOnScroll: true,
+            rules: [
+                value => !!value || "Required",
+                value => (value || "").length <= 20 || "Max 20 characters",
+            ],
         };
     },
     watch: {
         dialog(val) {
             if (!val) {
                 setTimeout(() => {
-                    this.searchText = "";
+                    this.$refs.searchForm.reset();
                 }, 200);
             }
         },
     },
     methods: {
+        watchButtonState() {
+            if (this.$refs.searchForm.validate()) {
+                this.buttonDisabled = false;
+            } else {
+                this.buttonDisabled = true;
+            }
+        },
         goToHome() {
             this.$router.push("/home").catch(err => {
                 err;
             });
         },
         search() {
-            this.dialog = false;
-            this.$router.push({
-                path: "/search",
-                query: { search: this.searchText },
-            });
+            if (this.$refs.searchForm.validate()) {
+                this.dialog = false;
+                this.$router.push({
+                    path: "/search",
+                    query: { search: this.searchText },
+                });
+            }
         },
         setHideOnScroll() {
             this.hideOnScroll = window.innerWidth > 960;

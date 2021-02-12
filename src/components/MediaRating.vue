@@ -45,7 +45,7 @@ export default {
         } else if (+this.score > 0) {
             this.textColor = "red--text";
         } else {
-            this.textColor = "gray--text";
+            this.textColor = "grey--text text-lighten-1";
         }
     },
 };
