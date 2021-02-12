@@ -115,7 +115,7 @@ export default {
         resizeSkeletonHeight() {
             const width = window.innerWidth;
             if (width > 1904) {
-                this.skeletonHeigth = 400;
+                this.skeletonHeigth = 230;
             } else if (width > 600) {
                 this.skeletonHeigth = 300;
             } else {
