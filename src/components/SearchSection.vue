@@ -2,9 +2,9 @@
     <div class="mb-10">
         <v-container class="mb-3">
             <v-row justify="space-between">
-                <v-col cols="8">
+                <v-col cols="7">
                     <h2>
-                        <v-icon :color="colors.block">mdi-magnify</v-icon>
+                        <v-icon :color="colors.block">{{ icon }}</v-icon>
                         <span :class="colors.text"> {{ sectionType }}</span>
                     </h2>
                 </v-col>
@@ -54,6 +54,18 @@ export default {
         colors() {
             return this.$store.state.colors[this.sectionType];
         },
+        icon() {
+            return this.icons[this.sectionType];
+        },
+    },
+    data() {
+        return {
+            icons: {
+                anime: "mdi-movie-search",
+                manga: "mdi-book-search",
+                characters: "mdi-account-search",
+            },
+        };
     },
 };
 </script>
