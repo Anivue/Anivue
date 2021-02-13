@@ -25,7 +25,7 @@
                     </v-btn>
                 </template>
 
-                <v-card class="pa-1 rounded elevation-24">
+                <v-card class="pa-1 px-4 rounded elevation-24">
                     <v-form @submit.prevent="search" ref="searchForm">
                         <v-card-actions>
                             <v-text-field
