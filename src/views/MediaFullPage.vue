@@ -103,10 +103,19 @@
         </div>
 
         <!-- ERROR -->
-        <div v-else>
+        <!-- <div v-else>
             error!
             {{ errorMsg }}
-        </div>
+        </div> -->
+        <v-snackbar v-model="error">
+            Error: {{ errorMsg }}
+
+            <template v-slot:action="{ attrs }">
+                <v-btn color="pink" text v-bind="attrs" @click="handleFetch">
+                    Try Again
+                </v-btn>
+            </template>
+        </v-snackbar>
     </div>
 </template>
 
@@ -148,6 +157,7 @@ export default {
         handleFetch() {
             this.loading = true;
             this.type = this.$route.params.type;
+            this.error = false;
             if (this.type === "characters") {
                 getCharacterById(this.id)
                     .then(res => {
@@ -162,7 +172,6 @@ export default {
                         this.error = true;
                         this.errorMsg = err.message;
                         this.loading = false;
-                        console.log(err);
                     });
             } else {
                 getMediaById(this.type, this.id)
@@ -181,7 +190,6 @@ export default {
                         this.error = true;
                         this.errorMsg = err.message;
                         this.loading = false;
-                        console.log(err);
                     });
             }
         },
@@ -193,6 +201,13 @@ export default {
                 this.handleFetch();
             },
             immediate: false,
+        },
+        errorMsg: {
+            handler() {
+                if (["404", "400"].includes(this.errorMsg)) {
+                    this.$router.push({ path: "/404" });
+                }
+            },
         },
     },
 

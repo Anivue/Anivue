@@ -39,9 +39,14 @@ const routes = [
         props: true,
     },
     {
+        path: "/404",
+        name: "404",
+        component: () => import("../views/NotFound.vue"),
+    },
+    {
         path: "*",
         name: "notfound",
-        component: () => import("../views/NotFound.vue"),
+        redirect: "/404",
     },
 ];
 

@@ -1,7 +1,6 @@
 <template>
     <v-bottom-navigation
         app
-        grow
         id="nav"
         fixed
         dark
