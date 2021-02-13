@@ -44,13 +44,7 @@
 <script>
 import MediaGrid from "../components/MediaGrid.vue";
 import PageHeader from "../components/PageHeader.vue";
-import {
-    getMediaPageByTrending,
-    getMediaPageByBest,
-    getMediaPageByTitle,
-    getCharactersPageByFav,
-    getCharactersPageByTitle,
-} from "../utils/APIutils/Anime";
+import { getMediaPage, getCharactersPage } from "../utils/APIutils/Anime";
 
 // this.handleResponse(getMediaPageByBest);
 
@@ -92,15 +86,9 @@ export default {
             this.handleFetch();
         },
         // Invoke callback promise, then append response to data
-        handleResponse(callback, isCharacters = false, isTitle = false) {
-            if (isCharacters) {
-                let args = [];
-                if (isTitle) {
-                    args = [this.$route.query.search, this.page, 50];
-                } else {
-                    args = [this.page, 50];
-                }
-                callback(...args)
+        handleResponse(callback, options) {
+            if (options.isCharacters) {
+                callback(options.vars)
                     .then(res => {
                         if (!res.res.ok) throw Error(res.res.status);
                         this.media = res.data.Page.characters;
@@ -116,13 +104,7 @@ export default {
                         console.log(err);
                     });
             } else {
-                let args = [];
-                if (isTitle) {
-                    args = [this.type, this.$route.query.search, this.page, 50];
-                } else {
-                    args = [this.type, this.page, 50];
-                }
-                callback(...args)
+                callback(options.vars)
                     .then(res => {
                         if (!res.res.ok) throw Error(res.res.status);
                         this.media = res.data.Page.media;
@@ -141,6 +123,8 @@ export default {
         },
         handleFetch() {
             this.loading = true;
+            let vars = {};
+            let options = {};
             // Check if query is empty, if yes then set to first page
             if (!this.$route.query.page) {
                 this.addQuery("page", 1);
@@ -148,19 +132,59 @@ export default {
             }
             //
             if (this.$route.query.trending === "1") {
-                this.handleResponse(getMediaPageByTrending);
+                vars = {
+                    pageNumber: this.page,
+                    perPage: 50,
+                    type: this.type,
+                    sortBy: "TRENDING_DESC",
+                };
+                options = {
+                    isCharacters: false,
+                    vars,
+                };
+                this.handleResponse(getMediaPage, options);
             } else if (this.$route.params.type === "characters") {
                 if (this.$route.query.search) {
-                    this.handleResponse(getCharactersPageByTitle, true, true);
+                    vars = {
+                        title: this.$route.query.search,
+                        pageNumber: this.page,
+                        perPage: 50,
+                        sortBy: "FAVOURITES_DESC",
+                    };
                 } else {
-                    this.handleResponse(getCharactersPageByFav, true, false);
+                    vars = {
+                        pageNumber: this.page,
+                        perPage: 50,
+                        sortBy: "FAVOURITES_DESC",
+                    };
                 }
+                options = {
+                    isCharacters: true,
+                    vars,
+                };
+                this.handleResponse(getCharactersPage, options);
             } else {
                 if (this.$route.query.search) {
-                    this.handleResponse(getMediaPageByTitle, false, true);
+                    vars = {
+                        pageNumber: this.page,
+                        perPage: 50,
+                        type: this.type,
+                        title: this.$route.query.search,
+                        sortBy: "FAVOURITES_DESC",
+                    };
                 } else {
-                    this.handleResponse(getMediaPageByBest, false);
+                    vars = {
+                        type: this.type,
+                        pageNumber: this.page,
+                        perPage: 50,
+                        sortBy: "FAVOURITES_DESC",
+                    };
                 }
+                options = {
+                    isCharacters: false,
+                    vars,
+                };
+                this.handleResponse(getMediaPage, options);
             }
         },
     },

@@ -3,8 +3,10 @@ import getMediaById from "./getMediaById";
 import getMediaPageByTitle from "./getMediaPageByTitle";
 import getMediaPageByTrending from "./getMediaPageByTrending";
 import getMediaPageByBest from "./getMediaPageByBest";
+import getMediaPage from "./getMediaPage";
 
 // Characters
+import getCharactersPage from "./getCharactersPage";
 import getCharactersPageByFav from "./getCharactersPageByFav";
 import getCharacterById from "./getCharacterById";
 import getCharactersPageByTitle from "./getCharactersPageByTitle";
@@ -13,10 +15,12 @@ import getCharactersPageByTitle from "./getCharactersPageByTitle";
 import getSearchPage from "./getSearchPage";
 
 export {
+    getMediaPage,
     getMediaById,
     getMediaPageByTitle,
     getMediaPageByTrending,
     getMediaPageByBest,
+    getCharactersPage,
     getCharactersPageByFav,
     getCharacterById,
     getCharactersPageByTitle,

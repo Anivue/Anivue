@@ -12,17 +12,21 @@ const getMediaPage = async variables => {
     const searchArgument = "title" in variables ? "$title: String," : "";
     const searchVar = searchArgument ? "search: $title," : "";
 
+    // 'GENRE' ARGUMENT
+    const genreArgument = "genre" in variables ? "$genre: String," : "";
+    const genreVar = genreArgument ? "genre: $genre," : "";
+
     //* THESE ARGUMENTS CAN BE USED TOGETHER FOR SOME CASES
 
     const query = `
-        query (${sortArgument} ${searchArgument} $type: MediaType $pageNumber: Int, $perPage: Int) {
+        query (${sortArgument} ${searchArgument} ${genreArgument} $type: MediaType $pageNumber: Int, $perPage: Int) {
             Page (page: $pageNumber, perPage: $perPage) {
                 pageInfo {
                     total
                     currentPage
                     hasNextPage
                 }
-                media (${searchVar} ${sortVar} type: $type, isAdult: false) {
+                media (${searchVar} ${sortVar} ${genreVar} type: $type, isAdult: false) {
                     id
                     type
                     title {
