@@ -35,7 +35,7 @@
 
 <script>
 import MediaGrid from "./MediaGrid.vue";
-import { getMediaPageByTrending } from "../utils/APIutils/Anime";
+import { getMediaPage } from "../utils/APIutils/Anime";
 export default {
     components: { MediaGrid },
     props: {
@@ -60,7 +60,13 @@ export default {
     },
     created() {
         this.loading = true;
-        getMediaPageByTrending(this.sectionType, 1, 6)
+        const vars = {
+            type: this.sectionType,
+            pageNumber: 1,
+            perPage: 6,
+            sortBy: "TRENDING_DESC",
+        };
+        getMediaPage(vars)
             .then(res => {
                 if (!res.res.ok) throw Error(res.res.status);
                 this.mediaArray = res.data.Page.media;

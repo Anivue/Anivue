@@ -1,4 +1,4 @@
-import { getMediaPageByTitle, getCharactersPageByTitle } from "./Anime";
+import { getMediaPage, getCharactersPage } from "./Anime";
 
 const getSearchPage = async (page, perPage, title) => {
     const anime = {
@@ -20,7 +20,13 @@ const getSearchPage = async (page, perPage, title) => {
     let counter = 0;
 
     // ANIME
-    const resAnime = await getMediaPageByTitle("ANIME", title, page, perPage);
+
+    const resAnime = await getMediaPage({
+        type: "ANIME",
+        title,
+        page,
+        perPage,
+    });
     if (resAnime.res.ok) {
         anime.data = resAnime.data.Page.media;
         counter += resAnime.data.Page.pageInfo.total;
@@ -32,7 +38,13 @@ const getSearchPage = async (page, perPage, title) => {
     }
 
     // MANGA
-    const resManga = await getMediaPageByTitle("MANGA", title, page, perPage);
+
+    const resManga = await getMediaPage({
+        type: "MANGA",
+        title,
+        page,
+        perPage,
+    });
     if (resManga.res.ok) {
         manga.data = resManga.data.Page.media;
         counter += resManga.data.Page.pageInfo.total;
@@ -44,7 +56,7 @@ const getSearchPage = async (page, perPage, title) => {
     }
 
     // CHARACTERS
-    const resCharacters = await getCharactersPageByTitle(title, page, perPage);
+    const resCharacters = await getCharactersPage({ title, page, perPage });
     if (resCharacters.res.ok) {
         characters.data = resCharacters.data.Page.characters;
         counter += resCharacters.data.Page.pageInfo.total;
