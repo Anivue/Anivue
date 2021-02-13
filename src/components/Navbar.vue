@@ -5,27 +5,29 @@
         fixed
         dark
         shift
-        class="align-center elevation-24"
+        class="align-center elevation-0"
     >
-        <v-tooltip
-            top
-            v-for="navLink in navLinks"
-            :key="navLink.title"
-            height="100%"
-        >
-            <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                    v-on="on"
-                    v-bind="attrs"
-                    :to="navLink.routePath"
-                    :class="colors[navLink.colorProp].text"
-                >
-                    <span>{{ navLink.title }}</span>
-                    <v-icon>{{ navLink.icon }}</v-icon>
-                </v-btn>
-            </template>
-            <span>{{ navLink.title }}</span>
-        </v-tooltip>
+        <div class="navbarBtns rounded-t-lg">
+            <v-tooltip
+                top
+                v-for="navLink in navLinks"
+                :key="navLink.title"
+                height="100%"
+            >
+                <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                        v-on="on"
+                        v-bind="attrs"
+                        :to="navLink.routePath"
+                        :class="colors[navLink.colorProp].text"
+                    >
+                        <span>{{ navLink.title }}</span>
+                        <v-icon>{{ navLink.icon }}</v-icon>
+                    </v-btn>
+                </template>
+                <span>{{ navLink.title }}</span>
+            </v-tooltip>
+        </div>
     </v-bottom-navigation>
 </template>
 
@@ -44,6 +46,12 @@ export default {
 
 <style lang="scss" scoped>
 #nav {
+    // background: rgb(39, 39, 39);
+    background: transparent;
+}
+
+.navbarBtns {
+    height: 56px;
     background: rgb(39, 39, 39);
 }
 </style>
