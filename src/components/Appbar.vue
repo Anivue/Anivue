@@ -1,6 +1,12 @@
 <template>
     <div>
-        <v-app-bar dark app elevation="24" :collapse="hideOnScroll">
+        <v-app-bar
+            dark
+            app
+            elevation="24"
+            :collapse="hideOnScroll"
+            :hide-on-scroll="hideOnScroll"
+        >
             <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
             <v-toolbar-title
