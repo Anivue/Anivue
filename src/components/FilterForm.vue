@@ -85,6 +85,16 @@ export default {
         };
     },
     methods: {
+        getKeyByValue(object, value) {
+            return Object.keys(object).find(key => object[key] === value);
+        },
+        filtersPreset() {
+            this.search = this.$route.query.search || "";
+            this.selectedSort =
+                this.getKeyByValue(this.sortQueries, this.$route.query.sort) ||
+                undefined;
+            this.selectedGenre = this.$route.query.genre || undefined;
+        },
         applyFilter() {
             let filters = {};
 
@@ -124,7 +134,9 @@ export default {
                 this.search = "";
                 this.selectedGenre = undefined;
                 this.selectedSort = undefined;
+                this.filtersPreset();
             },
+            immediate: true,
         },
     },
 };
