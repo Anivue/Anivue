@@ -1,7 +1,7 @@
 <template>
     <div class="d-flex my-1 card">
         <div class="mr-5 index d-md-flex d-none justify-center align-center">
-            <p class="text-h5 ma-0 pa-0">
+            <p class="text-h5 ma-0 pa-0 nocopy">
                 <span class="hashtag">#</span
                 ><span class="number">{{ index + 1 }}</span>
             </p>
@@ -153,6 +153,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.nocopy {
+    user-select: none;
+}
+
 .index {
     width: 50px;
     height: 100%;

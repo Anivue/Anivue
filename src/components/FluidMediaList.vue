@@ -1,8 +1,16 @@
 <template>
     <v-container>
         <v-row>
-            <v-col>
-                <h5 class="text-h4 text-center mb-10">Top 10 Anime</h5>
+            <v-col class="text-center mb-6">
+                <h5 class="text-h4 mb-3 font-weight-light">
+                    Top 10
+                    <span :class="colors['anime'].text" class="font-weight-bold"
+                        >Anime</span
+                    >
+                </h5>
+                <p class="text-subtitle text--secondary">
+                    Based on users rating
+                </p>
             </v-col>
             <v-col cols="12" v-for="(anime, i) in media" :key="i">
                 <fluid-media-item :index="i" :media="anime" />
@@ -21,6 +29,7 @@ export default {
     data() {
         return {
             media: {},
+            colors: this.$store.state.colors,
         };
     },
     mounted() {
