@@ -2,6 +2,7 @@
     <v-container fluid>
         <center class="d-block d-md-none">
             <v-chip
+                :to="{ name: 'mediahome', params: { type }, query: { genre } }"
                 class="ma-2 elevation-5 text--secondary"
                 v-for="(genre, index) in genres"
                 :key="index"
@@ -10,6 +11,7 @@
         </center>
         <div class="d-none d-md-block">
             <v-chip
+                :to="{ name: 'mediahome', params: { type }, query: { genre } }"
                 class="ma-2 elevation-5 text--secondary"
                 v-for="(genre, index) in genres"
                 :key="index"
@@ -25,6 +27,11 @@ export default {
         genres: {
             type: Array,
             required: true,
+        },
+    },
+    computed: {
+        type() {
+            return this.$route.params.type;
         },
     },
 };

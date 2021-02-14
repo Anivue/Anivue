@@ -46,6 +46,7 @@ export default {
             sort: this.$route.query.sort,
             mediaType: null,
             search: null,
+            genre: null,
             isTypeOk: true,
         };
     },
@@ -109,6 +110,7 @@ export default {
         setupQueries() {
             this.search = this.$route.query.search;
             this.mediaType = this.$route.params.type;
+            this.genre = this.$route.query.genre;
 
             if (!this.$route.query.page) {
                 this.addQuery("page", 1);
@@ -127,52 +129,35 @@ export default {
         },
         handleFetch() {
             this.loading = true;
-            let vars = {};
+            let vars = { perPage: 50, pageNumber: this.page };
             let options = {};
             // Check if query is empty, if yes then set to first page
 
             //
+            if (this.search) {
+                vars.title = this.search;
+            }
+
             if (this.mediaType === "characters") {
-                if (this.search) {
-                    vars = {
-                        title: this.search,
-                        pageNumber: this.page,
-                        perPage: 50,
-                        sortBy: "FAVOURITES_DESC",
-                    };
-                } else {
-                    vars = {
-                        pageNumber: this.page,
-                        perPage: 50,
-                        sortBy: "FAVOURITES_DESC",
-                    };
-                }
+                vars.sortBy = "FAVOURITES_DESC";
+
                 options = {
                     isCharacters: true,
                     vars,
                 };
                 this.handleResponse(getCharactersPage, options);
             } else {
-                if (this.search) {
-                    vars = {
-                        pageNumber: this.page,
-                        perPage: 50,
-                        type: this.type,
-                        title: this.search,
-                        sortBy: this.sort,
-                    };
-                } else {
-                    vars = {
-                        type: this.type,
-                        pageNumber: this.page,
-                        perPage: 50,
-                        sortBy: this.sort,
-                    };
+                vars.type = this.type;
+                vars.sortBy = this.sort;
+
+                if (this.genre) {
+                    vars.genre = this.genre;
                 }
                 options = {
                     isCharacters: false,
                     vars,
                 };
+
                 this.handleResponse(getMediaPage, options);
             }
         },

@@ -8,7 +8,6 @@
                         maxlength="20"
                         ref="textField"
                         clearable
-                        :rules="rules"
                         v-model="search"
                         solo
                         autocomplete="off"
@@ -52,7 +51,6 @@ export default {
     },
     data() {
         return {
-            rules: [v => v.length <= 20 || "Max 20 characters"],
             selectedGenre: undefined,
             selectedSort: undefined,
             search: "",
