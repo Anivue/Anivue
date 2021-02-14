@@ -45,7 +45,9 @@ export default {
         const timer = setInterval(() => {
             if (this.time === 0) {
                 clearInterval(timer);
-                this.$router.push({ path: "/home" });
+                if (this.$route.name === "404") {
+                    this.$router.push({ path: "/home" });
+                }
             }
             this.time--;
         }, 1000);
