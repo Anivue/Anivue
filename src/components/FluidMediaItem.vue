@@ -6,7 +6,11 @@
                 ><span class="number">{{ index + 1 }}</span>
             </p>
         </div>
-        <v-card class="pa-2 flex-grow-1 d-flex">
+        <div class="flex-grow-1 d-flex" v-if="loading">
+            <v-skeleton-loader type="image" style="width: 100%; height: 100%">
+            </v-skeleton-loader>
+        </div>
+        <v-card class="pa-2 flex-grow-1 d-flex" v-else>
             <div
                 class="coverImage d-flex justify-center align-center cursor"
                 @click="goToMedia"
@@ -74,7 +78,11 @@ export default {
         },
         media: {
             type: Object,
-            // required: true
+            required: true,
+        },
+        loading: {
+            type: Boolean,
+            default: true,
         },
     },
     computed: {
@@ -127,7 +135,7 @@ export default {
             return { textColor, iconColor };
         },
         getGenreColor() {
-            const hex = this.media.coverImage.color;
+            const hex = this.media.coverImage.color || "#ffffff";
             function hex_to_rgb(hex) {
                 let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
                     hex

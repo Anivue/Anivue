@@ -4,16 +4,38 @@
             <v-col class="text-center mb-6">
                 <h5 class="text-h4 mb-3 font-weight-light">
                     Top 10
-                    <span :class="colors['anime'].text" class="font-weight-bold"
-                        >Anime</span
+                    <span
+                        :class="colors[type.toLowerCase()].text"
+                        class="font-weight-bold"
+                        >{{ title }}</span
                     >
+                    <v-tooltip top>
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                                @click="switchTab"
+                                icon
+                                class="ml-2"
+                                v-bind="attrs"
+                                v-on="on"
+                            >
+                                <v-icon>
+                                    {{ mediaIcon }}
+                                </v-icon>
+                            </v-btn>
+                        </template>
+                        <span>Swtitch to {{ nextTab }}</span>
+                    </v-tooltip>
                 </h5>
                 <p class="text-subtitle text--secondary">
                     Based on users rating
                 </p>
             </v-col>
             <v-col cols="12" v-for="(anime, i) in media" :key="i">
-                <fluid-media-item :index="i" :media="anime" />
+                <fluid-media-item
+                    :loading="loading"
+                    :index="i"
+                    :media="anime"
+                />
             </v-col>
         </v-row>
     </v-container>
@@ -30,22 +52,58 @@ export default {
         return {
             media: {},
             colors: this.$store.state.colors,
+            mangaIcon: this.$store.state.navLinks[3].icon,
+            animeIcon: this.$store.state.navLinks[1].icon,
+            type: "ANIME",
+            loading: true,
         };
     },
+    computed: {
+        mediaIcon() {
+            return this.type === "ANIME" ? this.animeIcon : this.mangaIcon;
+        },
+        title() {
+            return this.type === "ANIME" ? "Anime" : "Manga";
+        },
+        nextTab() {
+            return this.type === "ANIME" ? "Manga" : "Anime";
+        },
+    },
+    methods: {
+        switchTab() {
+            if (this.type === "ANIME") {
+                this.type = "MANGA";
+            } else {
+                this.type = "ANIME";
+            }
+        },
+        fetchMedia() {
+            this.loading = true;
+            const variables = {
+                sortBy: "SCORE_DESC",
+                type: this.type,
+                pageNumber: 1,
+                perPage: 10,
+            };
+            getMediaPage(variables)
+                .then(res => {
+                    this.media = res.data.Page.media;
+                    this.loading = false;
+                })
+                .catch(e => {
+                    console.log(e);
+                });
+        },
+    },
     mounted() {
-        const variables = {
-            sortBy: "SCORE_DESC",
-            type: "ANIME",
-            pageNumber: 1,
-            perPage: 10,
-        };
-        getMediaPage(variables)
-            .then(res => {
-                this.media = res.data.Page.media;
-            })
-            .catch(e => {
-                console.log(e);
-            });
+        this.fetchMedia();
+    },
+    watch: {
+        type: {
+            handler() {
+                this.fetchMedia();
+            },
+        },
     },
 };
 </script>
