@@ -3,7 +3,7 @@
         <v-row>
             <v-col class="d-flex justify-center">
                 <h1>
-                    <span class="font-weight-light">{{ slogan }} </span>
+                    <span class="font-weight-light">Browse </span>
                     <span :class="this.$store.state.colors[title].text">{{
                         title
                     }}</span>
@@ -20,11 +20,6 @@ export default {
             type: String,
             default: "",
             required: true,
-        },
-        slogan: {
-            type: String,
-            default: "Browse",
-            required: false,
         },
     },
 };

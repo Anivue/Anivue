@@ -16,7 +16,7 @@
                         :to="{
                             name: 'mediahome',
                             params: { type: sectionType },
-                            query: { trending: 1 },
+                            query: { sort: 'TRENDING_DESC' },
                         }"
                     >
                         See more

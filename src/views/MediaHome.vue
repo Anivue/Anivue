@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-header :slogan="slogan" :title="type" />
+        <page-header :title="type" />
         <div class="text-center">
             <v-container>
                 <v-row justify="center">
@@ -19,6 +19,7 @@
                 </v-row>
             </v-container>
         </div>
+        <filter-form :type="mediaType" />
         <media-grid :loading="loading" :limit="limit" :media="media" />
         <div class="text-center">
             <v-container>
@@ -44,23 +45,13 @@
 <script>
 import MediaGrid from "../components/MediaGrid.vue";
 import PageHeader from "../components/PageHeader.vue";
+import FilterForm from "../components/FilterForm";
 import { getMediaPage, getCharactersPage } from "../utils/APIutils/Anime";
 
-// this.handleResponse(getMediaPageByBest);
-
 export default {
-    components: { MediaGrid, PageHeader },
+    components: { MediaGrid, PageHeader, FilterForm },
     name: "MediaHome",
     props: ["type", "trending"],
-    computed: {
-        slogan() {
-            if (this.$route.query.trending === "1") {
-                return "Trending";
-            } else {
-                return "Browse";
-            }
-        },
-    },
     data() {
         return {
             limit: 50,
@@ -70,6 +61,9 @@ export default {
             media: {},
             page: +this.$route.query.page,
             totalPages: null,
+            sort: this.$route.query.sort,
+            mediaType: null,
+            search: null,
         };
     },
     methods: {
@@ -86,6 +80,7 @@ export default {
             this.handleFetch();
         },
         // Invoke callback promise, then append response to data
+
         handleResponse(callback, options) {
             if (options.isCharacters) {
                 callback(options.vars)
@@ -99,6 +94,7 @@ export default {
                         this.error = false;
                     })
                     .catch(err => {
+                        alert(JSON.stringify(err));
                         this.error = true;
                         this.errorMsg = err.message;
                         console.log(err);
@@ -121,32 +117,36 @@ export default {
                     });
             }
         },
+        setupQueries() {
+            this.search = this.$route.query.search;
+            this.mediaType = this.$route.params.type;
+
+            if (!this.$route.query.page) {
+                this.addQuery("page", 1);
+                this.page = 1;
+            }
+
+            if (this.mediaType !== "characters") {
+                if (!this.$route.query.sort) {
+                    let sort = "SCORE_DESC";
+                    this.addQuery("sort", sort);
+                    this.sort = sort;
+                } else {
+                    this.sort = this.$route.query.sort;
+                }
+            }
+        },
         handleFetch() {
             this.loading = true;
             let vars = {};
             let options = {};
             // Check if query is empty, if yes then set to first page
-            if (!this.$route.query.page) {
-                this.addQuery("page", 1);
-                this.page = 1;
-            }
+
             //
-            if (this.$route.query.trending === "1") {
-                vars = {
-                    pageNumber: this.page,
-                    perPage: 50,
-                    type: this.type,
-                    sortBy: "TRENDING_DESC",
-                };
-                options = {
-                    isCharacters: false,
-                    vars,
-                };
-                this.handleResponse(getMediaPage, options);
-            } else if (this.$route.params.type === "characters") {
-                if (this.$route.query.search) {
+            if (this.mediaType === "characters") {
+                if (this.search) {
                     vars = {
-                        title: this.$route.query.search,
+                        title: this.search,
                         pageNumber: this.page,
                         perPage: 50,
                         sortBy: "FAVOURITES_DESC",
@@ -162,22 +162,23 @@ export default {
                     isCharacters: true,
                     vars,
                 };
+                console.log(options.vars);
                 this.handleResponse(getCharactersPage, options);
             } else {
-                if (this.$route.query.search) {
+                if (this.search) {
                     vars = {
                         pageNumber: this.page,
                         perPage: 50,
                         type: this.type,
-                        title: this.$route.query.search,
-                        sortBy: "FAVOURITES_DESC",
+                        title: this.search,
+                        sortBy: this.sort,
                     };
                 } else {
                     vars = {
                         type: this.type,
                         pageNumber: this.page,
                         perPage: 50,
-                        sortBy: "FAVOURITES_DESC",
+                        sortBy: this.sort,
                     };
                 }
                 options = {
@@ -188,10 +189,11 @@ export default {
             }
         },
     },
-    // Watch for url param changes. For example, useful when user switches from anime tab to manga tab
+    // Watch for url query changes. For example, useful when user switches from anime tab to manga tab
     watch: {
-        "$route.params": {
+        "$route.query": {
             handler() {
+                this.setupQueries();
                 this.handleFetch();
             },
             immediate: true,

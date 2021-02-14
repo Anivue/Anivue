@@ -1,7 +1,7 @@
 import handleRes from "./handleRes";
 
 // Anilist api graphql POST request template
-const fetchApi = async (query, variables) => {
+const fetchApi = async (query, variables = null) => {
     const url = "https://graphql.anilist.co",
         options = {
             method: "POST",

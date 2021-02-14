@@ -49,8 +49,8 @@ export default new Vuex.Store({
                 block: "blue accent-4",
             },
             characters: {
-                text: "purple--text accent-3",
-                block: "purple accent-3",
+                text: "pink--text text--lighten-2",
+                block: "pink lighten-2",
             },
             home: {
                 text: "light-green--text",
