@@ -29,6 +29,8 @@ const getMediaPage = async variables => {
                 media (${searchVar} ${sortVar} ${genreVar} type: $type, isAdult: false) {
                     id
                     type
+                    genres
+                    averageScore
                     title {
                         english
                         romaji

@@ -74,11 +74,12 @@ export default {
                 "Supernatural",
                 "Thriller",
             ],
-            sort: ["Trending", "Score", "Favourites"],
+            sort: ["Trending", "Score", "Favourites", "Popularity"],
             sortQueries: {
                 Trending: "TRENDING_DESC",
                 Score: "SCORE_DESC",
                 Favourites: "FAVOURITES_DESC",
+                Popularity: "POPULARITY_DESC",
             },
         };
     },
