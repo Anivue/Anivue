@@ -64,5 +64,42 @@ export default {
             return this.media.description;
         },
     },
+    mounted() {
+        // HIDE SPOILERS
+        const spoilers = document.querySelectorAll(".markdown_spoiler");
+        for (let spoiler of spoilers) {
+            const spoilerSpan = spoiler.children[0];
+            const spoilerText = spoilerSpan.textContent;
+            let spoilerActive = false;
+            spoilerSpan.textContent = "Spoiler, click to view.";
+            spoilerSpan.classList.add("spoiler");
+            spoilerSpan.addEventListener("click", () => {
+                spoilerActive = !spoilerActive;
+                if (spoilerActive) {
+                    spoilerSpan.textContent = "Spoiler, click to view.";
+                    spoilerSpan.classList.add("spoiler");
+                    spoilerSpan.classList.remove("spoiler_active");
+                } else {
+                    spoilerSpan.textContent = spoilerText;
+                    spoilerSpan.classList.remove("spoiler");
+                    spoilerSpan.classList.add("spoiler_active");
+                }
+            });
+        }
+    },
 };
 </script>
+
+<style lang="scss">
+.spoiler {
+    color: #2196f3;
+}
+
+.spoiler_active {
+    font-style: italic;
+}
+
+.markdown_spoiler {
+    cursor: pointer;
+}
+</style>
