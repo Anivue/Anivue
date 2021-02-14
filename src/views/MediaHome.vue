@@ -1,27 +1,9 @@
 <template>
-    <div>
+    <div v-if="isTypeOk">
         <page-header :title="type" />
-        <div class="text-center">
-            <v-container>
-                <v-row justify="center">
-                    <v-col cols="12">
-                        <v-container class="max-width">
-                            <v-pagination
-                                @input="changePage"
-                                v-model="page"
-                                class="mb-4"
-                                :length="totalPages"
-                                :total-visible="5"
-                                :color="this.$store.state.colors[type].block"
-                            ></v-pagination>
-                        </v-container>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </div>
         <filter-form :type="mediaType" />
         <media-grid :loading="loading" :limit="limit" :media="media" />
-        <div class="text-center">
+        <div class="text-center" v-if="!loading">
             <v-container>
                 <v-row justify="center">
                     <v-col cols="12">
@@ -64,9 +46,16 @@ export default {
             sort: this.$route.query.sort,
             mediaType: null,
             search: null,
+            isTypeOk: true,
         };
     },
     methods: {
+        validateType() {
+            const possibleTypes = ["anime", "manga", "characters"];
+            const requestedType = this.$route.params.type;
+            this.isTypeOk = possibleTypes.includes(requestedType);
+            return this.isTypeOk;
+        },
         // Adds ?query to url
         addQuery(queryName, queryValue) {
             this.$router.push({
@@ -162,7 +151,6 @@ export default {
                     isCharacters: true,
                     vars,
                 };
-                console.log(options.vars);
                 this.handleResponse(getCharactersPage, options);
             } else {
                 if (this.search) {
@@ -193,8 +181,12 @@ export default {
     watch: {
         "$route.query": {
             handler() {
-                this.setupQueries();
-                this.handleFetch();
+                if (this.validateType()) {
+                    this.setupQueries();
+                    this.handleFetch();
+                } else {
+                    this.$router.replace({ path: "/404" });
+                }
             },
             immediate: true,
         },
