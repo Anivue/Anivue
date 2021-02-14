@@ -8,7 +8,7 @@
                             class="mb-5"
                             src="../assets/404.png"
                             width="150"
-                            height="150"
+                            height="170"
                         ></v-img>
                         <h1>Oops! Page is gone.</h1>
                         <p>
@@ -45,6 +45,7 @@ export default {
         const timer = setInterval(() => {
             if (this.time === 0) {
                 clearInterval(timer);
+                // Check if user still on 404 page
                 if (this.$route.name === "404") {
                     this.$router.push({ path: "/home" });
                 }
