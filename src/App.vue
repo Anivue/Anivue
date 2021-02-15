@@ -3,7 +3,7 @@
         <appbar />
         <v-main class="pb-md-15 pt-md-0 page-dark overflow-hidden-x">
             <!-- CACHE EXAMPLE -->
-            <keep-alive include="Home">
+            <keep-alive :include="['Home', 'Profile']">
                 <router-view />
             </keep-alive>
 

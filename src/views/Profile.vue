@@ -9,7 +9,7 @@
 import Login from "../components/Login";
 import ProfileInfo from "../components/ProfileInfo";
 export default {
-    name: "profile",
+    name: "Profile",
     components: {
         Login,
         ProfileInfo,
