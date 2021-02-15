@@ -17,7 +17,7 @@
                             <v-img :src="user.avatar.large"></v-img>
                         </v-avatar>
                         <div class="d-flex align-end justify-center">
-                            <h3 class="white--text">
+                            <h3 class="white--text text-md-h2 text-h5">
                                 {{ user.name }}
                             </h3>
                         </div>
@@ -49,19 +49,23 @@
             </v-col>
         </v-row>
         <v-row>
-            <v-col class="px-10">
-                <v-tabs-items v-model="tab" class="transparent">
+            <v-col class="px-10 pt-8">
+                <v-tabs-items mandatory v-model="tab" class="transparent">
                     <v-tab-item :transition="false" value="anime-list">
-                        <h1>Anime list</h1>
+                        <h1 class="font-weight-light text-center">
+                            Anime list
+                        </h1>
                     </v-tab-item>
                     <v-tab-item :transition="false" value="manga-list">
-                        <h1>Manga list</h1>
+                        <h1 class="font-weight-light text-center">
+                            Manga list
+                        </h1>
                     </v-tab-item>
                     <v-tab-item :transition="false" value="favorites">
-                        <h1>Favorites</h1>
+                        <h1 class="font-weight-light text-center">Favorites</h1>
                     </v-tab-item>
                     <v-tab-item :transition="false" value="settings">
-                        <h1>Settings</h1>
+                        <h1 class="font-weight-light text-center">Settings</h1>
                     </v-tab-item>
                 </v-tabs-items>
             </v-col>
