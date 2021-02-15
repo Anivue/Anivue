@@ -44,6 +44,12 @@ const routes = [
         component: () => import("../views/NotFound.vue"),
     },
     {
+        path: "/profile",
+        name: "profile",
+        component: () => import("../views/Profile.vue"),
+    },
+
+    {
         path: "*",
         name: "notfound",
         redirect: "/404",

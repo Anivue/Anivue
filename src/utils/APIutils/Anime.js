@@ -1,13 +1,13 @@
 // Media
-import getMediaById from "./getMediaById";
-import getMediaPage from "./getMediaPage";
+import getMediaById from "./UnauthModules/getMediaById";
+import getMediaPage from "./UnauthModules/getMediaPage";
 
 // Characters
-import getCharactersPage from "./getCharactersPage";
-import getCharacterById from "./getCharacterById";
+import getCharactersPage from "./UnauthModules/getCharactersPage";
+import getCharacterById from "./UnauthModules/getCharacterById";
 
 // Global search
-import getSearchPage from "./getSearchPage";
+import getSearchPage from "./UnauthModules/getSearchPage";
 
 export {
     getMediaPage,

@@ -1,4 +1,5 @@
-import { getMediaPage, getCharactersPage } from "./Anime";
+import getMediaPage from "./getMediaPage";
+import getCharactersPage from "./getCharactersPage";
 
 const getSearchPage = async (page, perPage, title) => {
     const anime = {

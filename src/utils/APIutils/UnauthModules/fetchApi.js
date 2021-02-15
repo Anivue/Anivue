@@ -1,4 +1,4 @@
-import handleRes from "./handleRes";
+import handleRes from "../handleRes";
 
 // Anilist api graphql POST request template
 const fetchApi = async (query, variables = null) => {
@@ -16,7 +16,7 @@ const fetchApi = async (query, variables = null) => {
         };
 
     // Return handled promise output
-    return await handleRes(fetch, url, options);
+    return await handleRes(url, options);
 };
 
 export default fetchApi;

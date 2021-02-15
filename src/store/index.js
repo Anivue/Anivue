@@ -5,6 +5,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        anilistClientId: "4769",
+        user: {
+            loggedIn: false,
+            token: null,
+            data: {},
+        },
         //! Only 5 navLinks allowed
         navLinks: [
             {
@@ -33,10 +39,10 @@ export default new Vuex.Store({
                 colorProp: "manga",
             },
             {
-                title: "Favorites",
-                routePath: "/search/favorites",
-                icon: "mdi-star",
-                colorProp: "favorites",
+                title: "Profile",
+                routePath: "/profile",
+                icon: "mdi-account",
+                colorProp: "profile",
             },
         ],
         colors: {
@@ -56,13 +62,19 @@ export default new Vuex.Store({
                 text: "light-green--text",
                 block: "light-green",
             },
-            favorites: {
+            profile: {
                 text: "yellow--text lighten-1",
                 block: "yellow lighten-1",
             },
         },
     },
-    mutations: {},
+    mutations: {
+        setUser(state, payload) {
+            state.user.loggedIn = payload.loggedIn;
+            state.user.token = payload.token;
+            state.user.data = payload.data;
+        },
+    },
     actions: {},
     modules: {},
 });

@@ -56,7 +56,7 @@
                     </v-form>
                 </v-card>
             </v-dialog>
-            <v-btn icon class="mr-1">
+            <v-btn icon class="mr-1 d-md-none" to="/profile">
                 <v-icon>mdi-account</v-icon>
             </v-btn>
         </v-app-bar>
