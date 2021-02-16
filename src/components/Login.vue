@@ -4,13 +4,17 @@
             <v-col>
                 <div>
                     <center>
-                        <h1>Login page!</h1>
-                        <a :href="url">
-                            <v-btn>
-                                Login
-                            </v-btn>
-                        </a>
-                        <p>Your token {{ token }}</p>
+                        <div v-if="loading">
+                            Logging in...
+                        </div>
+                        <div v-else>
+                            <h1>Login page!</h1>
+                            <a :href="url">
+                                <v-btn>
+                                    Login
+                                </v-btn>
+                            </a>
+                        </div>
                     </center>
                 </div>
             </v-col>
@@ -23,7 +27,7 @@ import { getAuthedUser } from "../utils/APIutils/AuthActions";
 export default {
     data() {
         return {
-            token: "",
+            loading: false,
             url: `https://anilist.co/api/v2/oauth/authorize?client_id=${this.$store.state.anilistClientId}&response_type=token`,
         };
     },
@@ -31,18 +35,23 @@ export default {
         getToken() {
             const hash = this.$route.hash;
             const token = hash.replace(/#access_token=(.*?)&(?:.*)/g, "$1");
-            this.token = token;
-            this.setUser();
+
+            this.setUser(token);
         },
-        async setUser() {
-            const userData = await getAuthedUser(this.token);
+        async setUser(token) {
+            this.loading = true;
+            const userData = await getAuthedUser(token);
             const user = {
                 loggedIn: true,
-                token: this.token,
+                token: token,
                 data: userData.data.Viewer,
             };
 
+            // Store user in cookies
+            this.$cookies.set("user", user);
+            // Add user to store
             this.$store.commit("setUser", user);
+            // Remove hash from url
             this.$router.replace({ path: "/profile" });
         },
     },

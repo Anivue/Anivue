@@ -31,6 +31,13 @@ export default {
     data: () => ({
         //
     }),
+    mounted() {
+        // Check if user was authenticated before
+        const user = this.$cookies.get("user");
+        if (user) {
+            this.$store.commit("setUser", user);
+        }
+    },
 };
 </script>
 

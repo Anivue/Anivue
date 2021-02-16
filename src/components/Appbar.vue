@@ -13,8 +13,15 @@
                 class="font-weight-bold pl-0 font-weight-light pointer nocopy"
                 @click="goToHome()"
             >
-                <v-icon color="light-green">mdi-vuejs</v-icon>
-                Ani<span class="light-green--text">Vue</span>
+                <!-- <v-icon color="light-green">mdi-vuejs</v-icon> -->
+                <!-- Ani<span class="light-green--text">Vue</span> -->
+                <v-img
+                    class="logoImg"
+                    src="../assets/logoAnivue.png"
+                    height="30"
+                    width="150"
+                    :aspect-ratio="20 / 5"
+                ></v-img>
             </v-toolbar-title>
 
             <v-spacer></v-spacer>
@@ -173,5 +180,9 @@ export default {
 
 .nocopy {
     user-select: none;
+}
+
+.logoImg {
+    filter: brightness(0) invert(1);
 }
 </style>
