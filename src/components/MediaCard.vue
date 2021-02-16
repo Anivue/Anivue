@@ -90,8 +90,6 @@ export default {
         window.addEventListener("resize", this.trimTitle);
         this.trimTitle();
 
-        console.log(this.maxWidth);
-
         this.$refs.mediaCard.$el.addEventListener("mouseenter", () => {
             this.$refs.mediaCardTitle.style.color = this.color;
         });
