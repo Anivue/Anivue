@@ -7,6 +7,11 @@
                     <span :class="this.$store.state.colors[title].text">{{
                         title
                     }}</span>
+                    <span class="ml-3">
+                        <v-icon>
+                            {{ this.$store.state.icons[title] }}
+                        </v-icon>
+                    </span>
                 </h1>
             </v-col>
         </v-row>

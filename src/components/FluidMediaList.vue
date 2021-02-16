@@ -52,8 +52,8 @@ export default {
         return {
             media: {},
             colors: this.$store.state.colors,
-            mangaIcon: this.$store.state.navLinks[3].icon,
-            animeIcon: this.$store.state.navLinks[1].icon,
+            mangaIcon: this.$store.state.icons.manga,
+            animeIcon: this.$store.state.icons.anime,
             type: "ANIME",
             loading: true,
         };

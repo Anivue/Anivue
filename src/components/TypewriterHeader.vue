@@ -4,14 +4,13 @@
             <v-col class="d-flex justify-center">
                 <v-img
                     class="mb-5 elevation-0"
-                    lazy-src="../assets/anivueBannerBlur-min.jpg"
-                    src="../assets/anivueBannerBlur.jpg"
+                    src="../assets/pattern.jpg"
                     max-height="360"
                     min-height="150"
                     gradient="0deg, rgba(0,0,0,0.7973389184775472) 6%, rgba(0,0,0,0.8001400389257265) 86%"
                 >
                     <v-row
-                        class="fill-height ma-0 insetShadow"
+                        class="fill-height ma-0 insetShadow flex-column"
                         align="center"
                         justify="center"
                     >
@@ -19,6 +18,16 @@
                             <span class="font-weight-light">Explore </span>
                             <span ref="typed"></span>
                         </h1>
+                        <v-btn
+                            class="mt-5"
+                            elevation="24"
+                            @click="$emit('btnClicked')"
+                        >
+                            Let's Explore
+                            <v-icon right>
+                                mdi-robot-excited-outline
+                            </v-icon>
+                        </v-btn>
                     </v-row>
                 </v-img>
             </v-col>

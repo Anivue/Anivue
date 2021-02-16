@@ -17,9 +17,9 @@
                 <!-- Ani<span class="light-green--text">Vue</span> -->
                 <v-img
                     class="logoImg"
-                    src="../assets/logoAnivue.png"
-                    height="30"
-                    width="150"
+                    src="../assets/appbarLogo.png"
+                    height="25"
+                    width="125"
                     :aspect-ratio="20 / 5"
                 ></v-img>
             </v-toolbar-title>
@@ -76,8 +76,19 @@
         >
             <v-list-item>
                 <v-list-item-content>
-                    <v-list-item-title class="title">
-                        Menu
+                    <v-list-item-title
+                        class="title pointer"
+                        @click="goToHome()"
+                    >
+                        <center>
+                            <v-img
+                                class="logoImg"
+                                src="../assets/appbarLogo.png"
+                                height="25"
+                                width="125"
+                                :aspect-ratio="20 / 5"
+                            ></v-img>
+                        </center>
                     </v-list-item-title>
                 </v-list-item-content>
             </v-list-item>

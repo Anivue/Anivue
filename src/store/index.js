@@ -45,6 +45,13 @@ export default new Vuex.Store({
                 colorProp: "profile",
             },
         ],
+        icons: {
+            anime: "mdi-movie",
+            manga: "mdi-book",
+            profile: "mdi-profile",
+            home: "mdi-home",
+            characters: "mdi-characters",
+        },
         colors: {
             anime: {
                 text: "red--text darken-1",
@@ -73,6 +80,13 @@ export default new Vuex.Store({
             state.user.loggedIn = payload.loggedIn;
             state.user.token = payload.token;
             state.user.data = payload.data;
+        },
+        clearUser(state) {
+            state.user = {
+                loggedIn: false,
+                token: null,
+                data: {},
+            };
         },
     },
     actions: {},

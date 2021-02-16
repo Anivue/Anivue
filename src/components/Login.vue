@@ -34,11 +34,13 @@ export default {
     methods: {
         getToken() {
             const hash = this.$route.hash;
-            const token = hash.replace(/#access_token=(.*?)&(?:.*)/g, "$1");
 
-            this.setUser(token);
+            const token = hash.replace(/#access_token=(.*?)&(?:.*)/g, "$1");
+            let expires_in = hash.replace(/.*expires_in=(.*?)(?:&.*)/g, "$1");
+            expires_in = Math.floor(expires_in / 100);
+            this.setUser(token, expires_in);
         },
-        async setUser(token) {
+        async setUser(token, expires_in) {
             this.loading = true;
             const userData = await getAuthedUser(token);
             const user = {
@@ -48,7 +50,7 @@ export default {
             };
 
             // Store user in cookies
-            this.$cookies.set("user", user);
+            this.$cookies.set("user", user, expires_in);
             // Add user to store
             this.$store.commit("setUser", user);
             // Remove hash from url

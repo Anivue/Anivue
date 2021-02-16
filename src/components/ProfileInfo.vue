@@ -51,21 +51,24 @@
         <v-row>
             <v-col class="px-10 pt-8">
                 <v-tabs-items mandatory v-model="tab" class="transparent">
+                    <!-- ANIME LIST TAB -->
                     <v-tab-item :transition="false" value="anime-list">
-                        <h1 class="font-weight-light text-center">
-                            Anime list
-                        </h1>
+                        <media-list type="anime" />
                     </v-tab-item>
+
+                    <!-- MANGA LIST TAB -->
                     <v-tab-item :transition="false" value="manga-list">
-                        <h1 class="font-weight-light text-center">
-                            Manga list
-                        </h1>
+                        <media-list type="manga" />
                     </v-tab-item>
+
+                    <!-- FAVORITES LIST TAB -->
                     <v-tab-item :transition="false" value="favorites">
-                        <h1 class="font-weight-light text-center">Favorites</h1>
+                        <media-list type="favorites" />
                     </v-tab-item>
+
+                    <!-- SETTINGS TAB -->
                     <v-tab-item :transition="false" value="settings">
-                        <h1 class="font-weight-light text-center">Settings</h1>
+                        <settings />
                     </v-tab-item>
                 </v-tabs-items>
             </v-col>
@@ -74,7 +77,13 @@
 </template>
 
 <script>
+import MediaList from "./MediaList";
+import Settings from "./Settings";
 export default {
+    components: {
+        MediaList,
+        Settings,
+    },
     data() {
         return {
             user: this.$store.state.user.data,

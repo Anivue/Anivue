@@ -4,6 +4,7 @@
             <v-row>
                 <v-col cols="12" md="4">
                     <v-text-field
+                        prepend-inner-icon="mdi-magnify"
                         counter
                         maxlength="20"
                         ref="textField"
@@ -18,6 +19,7 @@
                 </v-col>
                 <v-col cols="6" md="4" v-if="type !== 'characters'">
                     <v-select
+                        prepend-inner-icon="mdi-drama-masks"
                         solo
                         :items="genres"
                         label="Genres"
@@ -28,6 +30,7 @@
                 </v-col>
                 <v-col cols="6" md="4" v-if="type !== 'characters'">
                     <v-select
+                        prepend-inner-icon="mdi-sort"
                         solo
                         :items="sort"
                         label="Sort"
@@ -55,6 +58,7 @@ export default {
             selectedSort: undefined,
             search: "",
             genres: [
+                "Any",
                 "Action",
                 "Adventure",
                 "Comedy",
@@ -92,7 +96,7 @@ export default {
             this.selectedSort =
                 this.getKeyByValue(this.sortQueries, this.$route.query.sort) ||
                 undefined;
-            this.selectedGenre = this.$route.query.genre || undefined;
+            this.selectedGenre = this.$route.query.genre || "Any";
         },
         applyFilter() {
             let filters = {};
@@ -103,15 +107,16 @@ export default {
                 };
             } else {
                 filters = {
-                    genre: this.selectedGenre,
+                    genre:
+                        this.selectedGenre === "Any" ? "" : this.selectedGenre,
                     sort: this.sortQueries[this.selectedSort],
                     search: this.search,
                 };
             }
-            filters = Object.fromEntries(
-                // eslint-disable-next-line no-unused-vars
-                Object.entries(filters).filter(([_, v]) => !!v)
-            );
+            // filters = Object.fromEntries(
+            //     // eslint-disable-next-line no-unused-vars
+            //     Object.entries(filters).filter(([_, v]) => !!v)
+            // );
 
             // HIDE SCREEN KEYBOARD AFTER FILTER APPLIED
             const input = this.$refs.textField.$el.children[0].children[0]
