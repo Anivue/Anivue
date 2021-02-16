@@ -48,9 +48,9 @@ export default new Vuex.Store({
         icons: {
             anime: "mdi-movie",
             manga: "mdi-book",
-            profile: "mdi-profile",
+            profile: "mdi-account",
             home: "mdi-home",
-            characters: "mdi-characters",
+            characters: "mdi-account-group",
         },
         colors: {
             anime: {

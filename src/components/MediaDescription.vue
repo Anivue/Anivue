@@ -8,7 +8,10 @@
             <p class="text--secondary">{{ subtitle }}</p>
         </div>
 
-        <p class="subtitle-1 text--secondary" v-html="description"></p>
+        <p
+            class="subtitle-1 text--secondary text-center text-md-left"
+            v-html="description"
+        ></p>
         <genre-chips v-if="mediaType !== 'characters'" :genres="media.genres" />
     </v-col>
 </template>

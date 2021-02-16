@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex my-1 card">
+    <div class="d-flex my-1 card" ref="mediaCard">
         <div class="mr-5 index d-md-flex d-none justify-center align-center">
             <p class="text-h5 ma-0 pa-0 nocopy">
                 <span class="hashtag">#</span
@@ -25,7 +25,11 @@
             </div>
             <div class="mediaInfo pa-2 d-flex justify-space-between">
                 <div class="mediaMain d-flex flex-column justify-space-around">
-                    <div class="mediaTitle cursor" @click="goToMedia">
+                    <div
+                        class="mediaTitle cursor"
+                        @click="goToMedia"
+                        ref="mediaCardTitle"
+                    >
                         <span class="d-md-inline d-none font-weight-bold">{{
                             title
                         }}</span>
@@ -156,6 +160,15 @@ export default {
             }
             return hex_inverse_bw(hex);
         },
+    },
+    mounted() {
+        this.$refs.mediaCard.addEventListener("mouseenter", () => {
+            this.$refs.mediaCardTitle.style.color = this.media.coverImage.color;
+        });
+
+        this.$refs.mediaCard.addEventListener("mouseleave", () => {
+            this.$refs.mediaCardTitle.style.color = "#fff";
+        });
     },
 };
 </script>
