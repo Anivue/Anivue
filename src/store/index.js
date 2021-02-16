@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        anilistClientId: "4769",
+        anilistClientId: process.env.VUE_APP_ANILIST_CLIENT_ID,
         user: {
             loggedIn: false,
             token: null,
