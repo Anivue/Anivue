@@ -54,12 +54,13 @@
                                 }"
                             >
                                 <!-- MEDIA TITLE ON TOP ON SMALL SCREENS -->
-                                <div class="mb-3 text-center d-sm-none">
+                                <!-- <div class="mb-3 text-center d-sm-none">
                                     <h2 class="mb-3 text-h4">{{ title }}</h2>
                                     <p class="text--secondary">
                                         {{ subtitle }}
                                     </p>
-                                </div>
+                                </div> -->
+                                <media-title :media="media" :mobile="true" />
                                 <!-- MEDIA COVER IMAGE -->
                                 <v-img
                                     width="250"
@@ -136,6 +137,7 @@
 </template>
 
 <script>
+import MediaTitle from "../components/MediaTitle";
 import ErrorFullscreen from "../components/ErrorFullscreen";
 import MediaLoading from "../components/MediaLoading";
 import MediaRating from "../components/MediaRating.vue";
@@ -152,6 +154,7 @@ export default {
         MediaDescription,
         MediaLoading,
         ErrorFullscreen,
+        MediaTitle,
     },
     props: {
         id: {
@@ -211,28 +214,6 @@ export default {
                         this.errorMsg = err.message;
                         this.loading = false;
                     });
-            }
-        },
-    },
-    computed: {
-        title() {
-            if (this.type !== "characters") {
-                if (this.media.title.english) {
-                    return this.media.title.english;
-                } else {
-                    return this.media.title.romaji;
-                }
-            } else {
-                return Object.values(this.media.name)
-                    .slice(0, -1)
-                    .join(" ");
-            }
-        },
-        subtitle() {
-            if (this.type === "characters") {
-                return this.media.name.native;
-            } else {
-                return this.media.title.native;
             }
         },
     },

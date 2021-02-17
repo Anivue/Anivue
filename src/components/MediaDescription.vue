@@ -3,25 +3,21 @@
         md="9"
         class="d-flex justify-center justify-md-start align-center align-md-start flex-column"
     >
-        <div class="mb-10 text-center text-md-left d-none d-sm-block">
-            <h2 class="mb-3 text-h4">{{ title }}</h2>
-            <p class="text--secondary">{{ subtitle }}</p>
-        </div>
+        <media-title :media="media" :mobile="false" />
 
         <p
             class="subtitle-1 text--secondary text-center text-md-left"
             v-html="description"
         ></p>
-        <!-- <genre-chips v-if="mediaType !== 'characters'" :genres="media.genres" /> -->
     </v-col>
 </template>
 
 <script>
-// import GenreChips from "./GenreChips";
+import MediaTitle from "./MediaTitle";
 export default {
-    // components: {
-    //     GenreChips,
-    // },
+    components: {
+        MediaTitle,
+    },
     props: {
         media: {
             type: Object,
