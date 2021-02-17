@@ -5,20 +5,25 @@
                 {{ type }}, {{ media.startDate.year }}
             </p>
             <p class="text--disabled capitalize mb-1">{{ status }}</p>
-            <div v-if="media.type === 'ANIME'">
+            <div v-if="media.type === 'ANIME' && episodes">
                 <p class="text--disabled">
-                    {{ totalEpisodes }} {{ formatEpisodesWord }}
+                    {{ episodes }} {{ formatEpisodesWord }}
                 </p>
             </div>
-            <div v-else-if="media.chapters">
-                <p class="text--disabled">{{ media.chapters }} chapters</p>
+            <div v-else-if="chapters">
+                <p class="text--disabled">{{ chapters }} chapters</p>
             </div>
+            <genre-chips v-if="type !== 'characters'" :genres="media.genres" />
         </center>
     </div>
 </template>
 
 <script>
+import GenreChips from "./GenreChips";
 export default {
+    components: {
+        GenreChips,
+    },
     props: {
         media: {
             type: Object,
@@ -26,8 +31,11 @@ export default {
         },
     },
     computed: {
-        totalEpisodes() {
-            return this.media.episodes ? this.media.episodes : "???";
+        episodes() {
+            return this.media.episodes;
+        },
+        chapters() {
+            return this.media.chapters;
         },
         formatEpisodesWord() {
             return this.media.episodes === 1 ? "episode" : "episodes";

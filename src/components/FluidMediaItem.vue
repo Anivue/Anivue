@@ -15,13 +15,22 @@
                 class="coverImage d-flex justify-center align-center cursor"
                 @click="goToMedia"
             >
-                <v-img
-                    class="mr-2"
-                    :aspect-ratio="48 / 60"
-                    width="50"
-                    height="70"
-                    :src="media.coverImage.medium"
-                ></v-img>
+                <v-badge
+                    :color="media.coverImage.color"
+                    left
+                    bordered
+                    overlap
+                    :content="index + 1"
+                    :value="showBadge"
+                >
+                    <v-img
+                        class="mr-2"
+                        :aspect-ratio="48 / 60"
+                        width="50"
+                        height="70"
+                        :src="media.coverImage.medium"
+                    ></v-img>
+                </v-badge>
             </div>
             <div class="mediaInfo pa-2 d-flex justify-space-between">
                 <div class="mediaMain d-flex flex-column justify-space-around">
@@ -109,11 +118,17 @@ export default {
             const title = this.title;
             return `${title.slice(0, 22)}${title.length > 22 ? "..." : ""}`;
         },
+        showBadge() {
+            const windowWidth = window.innerWidth;
+            return windowWidth <= 600;
+        },
     },
     methods: {
         goToMedia() {
             const type = this.media.type.toLowerCase();
             const id = this.media.id;
+            // RESET HOVER COLOR AFTER CLICK
+            this.$refs.mediaCardTitle.style.color = "#fff";
             this.$router.push({ name: "mediafullpage", params: { type, id } });
         },
         getRatingColor() {

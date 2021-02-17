@@ -1,6 +1,6 @@
 <template>
     <!-- TODO: add skeleton loader -->
-    <div>
+    <div style="overflow-y: hidden;">
         <!-- OK -->
         <div v-if="!error">
             <!-- LOADER -->
@@ -41,7 +41,7 @@
                             cols="12"
                             sm="6"
                             md="3"
-                            class="d-flex justify-center justify-md-start"
+                            class="d-flex justify-center justify-md-start cover-image-column-wrapper"
                         >
                             <div
                                 class="d-flex flex-column fullWidth align-center"
@@ -49,6 +49,14 @@
                                     'cover-image-column': bannerImage,
                                 }"
                             >
+                                <!-- MEDIA TITLE ON TOP ON SMALL SCREENS -->
+                                <div class="mb-3 text-center d-sm-none">
+                                    <h2 class="mb-3 text-h4">{{ title }}</h2>
+                                    <p class="text--secondary">
+                                        {{ subtitle }}
+                                    </p>
+                                </div>
+                                <!-- MEDIA COVER IMAGE -->
                                 <v-img
                                     width="250"
                                     max-height="372"
@@ -69,6 +77,7 @@
                                         </v-row>
                                     </template>
                                 </v-img>
+                                <!-- MEDIA INFO (rating; type; etc..) -->
                                 <div class="d-flex flex-column mt-5">
                                     <div v-if="type !== 'characters'">
                                         <media-rating
@@ -87,6 +96,25 @@
                                             </center>
                                         </div>
                                     </div>
+                                    <!-- BUTTON GROUP (Add to fav; Add to list) -->
+                                    <!-- <div class="d-flex justify-center mt-2">
+                                        <v-btn icon>
+                                            <v-btn-toggle borderless multiple>
+                                                <v-btn>
+                                                    <v-icon>
+                                                        mdi-star
+                                                    </v-icon>
+                                                </v-btn>
+                                                <v-btn
+                                                    v-if="type !== 'characters'"
+                                                >
+                                                    <v-icon>
+                                                        mdi-playlist-plus
+                                                    </v-icon>
+                                                </v-btn>
+                                            </v-btn-toggle>
+                                        </v-btn>
+                                    </div> -->
                                 </div>
                             </div>
                         </v-col>
@@ -96,22 +124,14 @@
                     <media-tabs :media="media" :loading="loading" />
                 </v-container>
             </div>
-            <!-- CHARACTER -->
-            <!-- <div v-else>
-                character!
-            </div> -->
         </div>
 
-        <!-- ERROR -->
-        <!-- <div v-else>
-            error!
-            {{ errorMsg }}
-        </div> -->
+        <!-- ERROR SNACKBAR -->
         <v-snackbar v-model="error">
             Error: {{ errorMsg }}
 
             <template v-slot:action="{ attrs }">
-                <v-btn color="pink" text v-bind="attrs" @click="handleFetch">
+                <v-btn color="red" text v-bind="attrs" @click="handleFetch">
                     Try Again
                 </v-btn>
             </template>
@@ -194,6 +214,28 @@ export default {
             }
         },
     },
+    computed: {
+        title() {
+            if (this.type !== "characters") {
+                if (this.media.title.english) {
+                    return this.media.title.english;
+                } else {
+                    return this.media.title.romaji;
+                }
+            } else {
+                return Object.values(this.media.name)
+                    .slice(0, -1)
+                    .join(" ");
+            }
+        },
+        subtitle() {
+            if (this.type === "characters") {
+                return this.media.name.native;
+            } else {
+                return this.media.title.native;
+            }
+        },
+    },
 
     watch: {
         "$route.params": {
@@ -223,6 +265,10 @@ export default {
     top: calc(-372px / 100 * 50);
 }
 
+.cover-image-column-wrapper {
+    margin-bottom: calc(-372px / 100 * 50);
+}
+
 .fullWidth {
     width: 100%;
 }
@@ -233,6 +279,10 @@ export default {
     }
     .fullWidth {
         width: auto;
+    }
+
+    .cover-image-column-wrapper {
+        margin-bottom: 0;
     }
 }
 </style>
