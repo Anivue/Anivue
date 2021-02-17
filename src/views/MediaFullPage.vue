@@ -5,7 +5,7 @@
         <div v-if="!error">
             <!-- LOADER -->
             <div v-if="loading">
-                loading...
+                <media-loading />
             </div>
             <!-- MEDIA -->
             <div v-else>
@@ -41,7 +41,11 @@
                             cols="12"
                             sm="6"
                             md="3"
-                            class="d-flex justify-center justify-md-start cover-image-column-wrapper"
+                            :class="{
+                                'cover-image-column-wrapper':
+                                    type !== 'characters',
+                            }"
+                            class="d-flex justify-center justify-md-start"
                         >
                             <div
                                 class="d-flex flex-column fullWidth align-center"
@@ -127,19 +131,13 @@
         </div>
 
         <!-- ERROR SNACKBAR -->
-        <v-snackbar v-model="error">
-            Error: {{ errorMsg }}
-
-            <template v-slot:action="{ attrs }">
-                <v-btn color="red" text v-bind="attrs" @click="handleFetch">
-                    Try Again
-                </v-btn>
-            </template>
-        </v-snackbar>
+        <error-fullscreen v-if="error" @tryAgain="handleFetch" />
     </div>
 </template>
 
 <script>
+import ErrorFullscreen from "../components/ErrorFullscreen";
+import MediaLoading from "../components/MediaLoading";
 import MediaRating from "../components/MediaRating.vue";
 import MediaTabs from "../components/MediaTabs";
 import MediaInfo from "../components/MediaInfo";
@@ -152,6 +150,8 @@ export default {
         MediaRating,
         MediaInfo,
         MediaDescription,
+        MediaLoading,
+        ErrorFullscreen,
     },
     props: {
         id: {
