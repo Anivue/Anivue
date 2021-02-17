@@ -43,7 +43,7 @@
                             md="3"
                             :class="{
                                 'cover-image-column-wrapper':
-                                    type !== 'characters',
+                                    type !== 'characters' && bannerImage,
                             }"
                             class="d-flex justify-center justify-md-start"
                         >
@@ -54,12 +54,6 @@
                                 }"
                             >
                                 <!-- MEDIA TITLE ON TOP ON SMALL SCREENS -->
-                                <!-- <div class="mb-3 text-center d-sm-none">
-                                    <h2 class="mb-3 text-h4">{{ title }}</h2>
-                                    <p class="text--secondary">
-                                        {{ subtitle }}
-                                    </p>
-                                </div> -->
                                 <media-title :media="media" :mobile="true" />
                                 <!-- MEDIA COVER IMAGE -->
                                 <v-img
