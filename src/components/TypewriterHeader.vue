@@ -4,6 +4,7 @@
             <v-col class="d-flex justify-center">
                 <v-img
                     class="mb-5 elevation-0"
+                    lazy-src="../assets/pattern-min.jpg"
                     src="../assets/pattern.jpg"
                     max-height="360"
                     min-height="150"
