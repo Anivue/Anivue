@@ -57,7 +57,7 @@ export default {
             search: null,
             genre: null,
             isTypeOk: true,
-            md: true,
+            md: false,
         };
     },
     methods: {
