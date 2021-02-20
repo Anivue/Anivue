@@ -1,7 +1,7 @@
 import fetchApi from "./fetchApi";
 
 //* Anime page template (page means that there will be many anime objects in return).
-const getMediaPage = async variables => {
+const getMediaPage = async (variables) => {
     variables.type = variables.type.toUpperCase();
     // Check if specific argument provided, pass it in query if yes, otherwise ignore
     // 'SORT' ARGUMENT
@@ -29,8 +29,19 @@ const getMediaPage = async variables => {
                 media (${searchVar} ${sortVar} ${genreVar} type: $type, isAdult: false) {
                     id
                     type
+                    status
                     genres
                     averageScore
+                    description (asHtml: true)
+                    format
+                    startDate {
+                        year
+                    }
+                    studios (isMain: true) {
+                        nodes {
+                            name
+                        }
+                    }
                     title {
                         english
                         romaji

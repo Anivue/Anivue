@@ -36,16 +36,18 @@ export default {
         };
     },
     mounted() {
-        if (+this.score >= 90) {
-            this.textColor = "green--text";
-        } else if (+this.score >= 70) {
-            this.textColor = "light-green--text";
-        } else if (+this.score >= 50) {
-            this.textColor = "orange--text text--lighten-1";
-        } else if (+this.score > 0) {
+        const scoreColors = this.$store.state.score;
+
+        if (+this.score >= scoreColors.super.score) {
+            this.textColor = scoreColors.super.text;
+        } else if (+this.score >= scoreColors.good.score) {
+            this.textColor = scoreColors.good.text;
+        } else if (+this.score >= scoreColors.meh.score) {
+            this.textColor = scoreColors.meh.text;
+        } else if (+this.score > scoreColors.bad.score) {
             this.textColor = "red--text";
         } else {
-            this.textColor = "grey--text text-lighten-1";
+            this.textColor = scoreColors.none.text;
         }
     },
 };

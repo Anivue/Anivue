@@ -48,7 +48,11 @@ const routes = [
         name: "profile",
         component: () => import("../views/Profile.vue"),
     },
-
+    {
+        path: "/pg",
+        name: "pg",
+        component: () => import("../views/Playground.vue"),
+    },
     {
         path: "*",
         name: "notfound",

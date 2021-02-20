@@ -46,24 +46,7 @@
                             trimmedTitle
                         }}</span>
                     </div>
-                    <div class="mediaGenres d-flex">
-                        <v-chip
-                            small
-                            class="mr-2 font-weight-bold"
-                            :color="media.coverImage.color"
-                            v-for="(genre, i) in genres"
-                            :key="i"
-                            :to="{
-                                name: 'mediahome',
-                                params: { type: media.type.toLowerCase() },
-                                query: { genre },
-                            }"
-                        >
-                            <span :style="{ color: genreColor }">
-                                {{ genre }}
-                            </span>
-                        </v-chip>
-                    </div>
+                    <media-card-genres :media="media" />
                 </div>
                 <div
                     class="mediaRating d-flex flex-column justify-center align-center"
@@ -83,7 +66,11 @@
 </template>
 
 <script>
+import MediaCardGenres from "./MediaCardGenres";
 export default {
+    components: {
+        MediaCardGenres,
+    },
     props: {
         index: {
             type: [Number, String],
@@ -99,14 +86,8 @@ export default {
         },
     },
     computed: {
-        genres() {
-            return this.media.genres.slice(0, 2);
-        },
         title() {
             return this.media.title.english || this.media.title.romaji;
-        },
-        genreColor() {
-            return this.getGenreColor();
         },
         ratingIconColor() {
             return this.getRatingColor().iconColor;
@@ -133,47 +114,26 @@ export default {
         },
         getRatingColor() {
             const score = this.media.averageScore;
+            const scoreColors = this.$store.state.colors.score;
             let textColor = "";
             let iconColor = "";
-            if (score >= 90) {
-                textColor = "green--text";
-                iconColor = "green";
-            } else if (score >= 70) {
-                textColor = "light-green--text";
-                iconColor = "light-green";
-            } else if (score >= 50) {
-                textColor = "orange--text text--lighten-1";
-                iconColor = "orange lighten-1";
-            } else if (score > 0) {
-                textColor = "red--text";
-                iconColor = "red";
+            if (score >= scoreColors.super.score) {
+                textColor = scoreColors.super.text;
+                iconColor = scoreColors.super.icon;
+            } else if (score >= scoreColors.good.score) {
+                textColor = scoreColors.good.text;
+                iconColor = scoreColors.good.icon;
+            } else if (score >= scoreColors.meh.score) {
+                textColor = scoreColors.meh.text;
+                iconColor = scoreColors.meh.icon;
+            } else if (score > scoreColors.bad.score) {
+                textColor = scoreColors.bad.text;
+                iconColor = scoreColors.bad.icon;
             } else {
-                textColor = "grey--text text-lighten-1";
-                iconColor = "grey lighten-1";
+                textColor = scoreColors.none.text;
+                iconColor = scoreColors.none.icon;
             }
             return { textColor, iconColor };
-        },
-        getGenreColor() {
-            const hex = this.media.coverImage.color || "#ffffff";
-            function hex_to_rgb(hex) {
-                let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
-                    hex
-                );
-                return result
-                    ? {
-                          r: parseInt(result[1], 16),
-                          g: parseInt(result[2], 16),
-                          b: parseInt(result[3], 16),
-                      }
-                    : null;
-            }
-            function hex_inverse_bw(hex) {
-                let rgb = hex_to_rgb(hex);
-                let luminance =
-                    0.2126 * rgb["r"] + 0.7152 * rgb["g"] + 0.0722 * rgb["b"];
-                return luminance < 140 ? "#ffffff" : "#8a2c0f";
-            }
-            return hex_inverse_bw(hex);
         },
     },
     mounted() {

@@ -2,7 +2,15 @@
     <div v-if="isTypeOk">
         <page-header :title="type" />
         <filter-form :type="mediaType" />
-        <media-grid :loading="loading" :limit="limit" :media="media" />
+
+        <media-grid-large
+            v-if="mediaType != 'characters' && md"
+            :loading="loading"
+            :media="media"
+        />
+        <media-grid v-else :loading="loading" :limit="limit" :media="media" />
+
+        <!-- Pagination -->
         <div class="text-center" v-if="!loading">
             <v-container>
                 <v-row justify="center">
@@ -25,13 +33,14 @@
 </template>
 
 <script>
+import MediaGridLarge from "../components/MediaGridLarge";
 import MediaGrid from "../components/MediaGrid.vue";
 import PageHeader from "../components/PageHeader.vue";
 import FilterForm from "../components/FilterForm";
 import { getMediaPage, getCharactersPage } from "../utils/APIutils/Anime";
 
 export default {
-    components: { MediaGrid, PageHeader, FilterForm },
+    components: { MediaGrid, MediaGridLarge, PageHeader, FilterForm },
     name: "MediaHome",
     props: ["type", "trending"],
     data() {
@@ -48,6 +57,7 @@ export default {
             search: null,
             genre: null,
             isTypeOk: true,
+            md: true,
         };
     },
     methods: {
@@ -74,7 +84,7 @@ export default {
         handleResponse(callback, options) {
             if (options.isCharacters) {
                 callback(options.vars)
-                    .then(res => {
+                    .then((res) => {
                         if (!res.res.ok) throw Error(res.res.status);
                         this.media = res.data.Page.characters;
                         this.totalPages = Math.ceil(
@@ -83,7 +93,7 @@ export default {
                         this.loading = false;
                         this.error = false;
                     })
-                    .catch(err => {
+                    .catch((err) => {
                         alert(JSON.stringify(err));
                         this.error = true;
                         this.errorMsg = err.message;
@@ -91,7 +101,7 @@ export default {
                     });
             } else {
                 callback(options.vars)
-                    .then(res => {
+                    .then((res) => {
                         if (!res.res.ok) throw Error(res.res.status);
                         this.media = res.data.Page.media;
                         this.totalPages = Math.ceil(
@@ -100,7 +110,7 @@ export default {
                         this.loading = false;
                         this.error = false;
                     })
-                    .catch(err => {
+                    .catch((err) => {
                         this.error = true;
                         this.errorMsg = err.message;
                         console.log(err);
@@ -161,6 +171,15 @@ export default {
                 this.handleResponse(getMediaPage, options);
             }
         },
+        refreshMd() {
+            this.md = window.innerWidth >= 960;
+        },
+    },
+    mounted() {
+        window.addEventListener("resize", this.refreshMd);
+    },
+    beforeDestroy() {
+        window.removeEventListener("reize", this.refreshMd);
     },
     // Watch for url query changes. For example, useful when user switches from anime tab to manga tab
     watch: {

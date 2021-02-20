@@ -11,7 +11,6 @@ export default new Vuex.Store({
             token: null,
             data: {},
         },
-        //! Only 5 navLinks allowed
         navLinks: [
             {
                 title: "Characters",
@@ -72,6 +71,37 @@ export default new Vuex.Store({
             profile: {
                 text: "yellow--text lighten-1",
                 block: "yellow lighten-1",
+            },
+            score: {
+                super: {
+                    score: 90,
+                    text: "green--text",
+                    icon: "green",
+                    iconValue: "mdi-robot-happy",
+                },
+                good: {
+                    score: 70,
+                    text: "light-green--text",
+                    icon: "light-green",
+                    iconValue: "mdi-robot-happy",
+                },
+                meh: {
+                    score: 50,
+                    text: "orange--text text--lighten-1",
+                    icon: "orange lighten-1",
+                    iconValue: "mdi-robot",
+                },
+                bad: {
+                    score: 0,
+                    text: "red--text",
+                    icon: "red",
+                    iconValue: "mdi-robot-dead",
+                },
+                none: {
+                    text: "grey--text text-lighten-1",
+                    icon: "grey lighten-1",
+                    iconValue: "mdi-robot-confused",
+                },
             },
         },
     },
