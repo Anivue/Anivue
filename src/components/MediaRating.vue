@@ -36,7 +36,7 @@ export default {
         };
     },
     mounted() {
-        const scoreColors = this.$store.state.score;
+        const scoreColors = this.$store.state.colors.score;
 
         if (+this.score >= scoreColors.super.score) {
             this.textColor = scoreColors.super.text;
