@@ -7,7 +7,6 @@ module.exports = {
         msTileColor: "#272727",
         manifestOptions: {
             background_color: "#272727",
-            start_url: "index.html",
         },
     },
 };
