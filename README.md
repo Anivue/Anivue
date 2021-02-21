@@ -23,4 +23,31 @@ Built with <a href="https://vuejs.org/" target="_blank">Vue.js</a> Javascript Fr
 
 ---
 
+###Screenshots
+
+<p>
+Some screenshots to demonstrate the appearance of the site.
+</p>
+
+-   **Home Page**
+    <img src="https://user-images.githubusercontent.com/78701914/108635718-f128e080-7491-11eb-8dab-4b6f5b19c055.png">
+
+*   **404 Page**
+    <img src="https://user-images.githubusercontent.com/78701914/108635728-fab24880-7491-11eb-8e0d-4986cb766e26.png">
+
+*   **Search Results Page**
+    <img src="https://user-images.githubusercontent.com/78701914/108635726-f9811b80-7491-11eb-90bb-734a4ee0560d.png">
+
+*   **Full Media Page**
+    <img src="https://user-images.githubusercontent.com/78701914/108635722-f7b75800-7491-11eb-97f6-5ecebe098e13.png">
+
+<h4 align="center">
+Follow this url to see more: <a target="_blank" href="https://anivue.ru/">anilist.ru</a>
+</h4>
+<p align="center">
+<a href="https://github.com/VadimZb/" target="_blank">VadimZb</a>
+</p>
+
+---
+
 > Made as a practice project
