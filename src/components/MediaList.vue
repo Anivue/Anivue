@@ -1,8 +1,9 @@
 <template>
     <div>
-        <h1 class="font-weight-light text-center">
+        <h1 class="font-weight-light text-center primary--text capitalize">
             {{ type }}
         </h1>
+        <p class="secondary--text">Nothing here yet...</p>
     </div>
 </template>
 
@@ -16,3 +17,9 @@ export default {
     },
 };
 </script>
+
+<style lang="scss" scoped>
+.capitalize {
+    text-transform: capitalize;
+}
+</style>

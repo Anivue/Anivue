@@ -5,7 +5,7 @@
                 :src="user.bannerImage"
                 class="bannerDiv d-flex align-end"
                 :aspect-ratio="1265 / 266"
-                gradient="0deg, rgba(0,0,0,0.8225490025111607) 0%, rgba(255,255,255,0) 100%"
+                :gradient="gradient"
                 height="300"
             >
                 <v-col class="pa-0">
@@ -13,11 +13,11 @@
                         tile
                         class="d-flex justify-start transparent elevation-0 px-10"
                     >
-                        <v-avatar tile size="120">
+                        <v-avatar tile size="150">
                             <v-img :src="user.avatar.large"></v-img>
                         </v-avatar>
                         <div class="d-flex align-end justify-center">
-                            <h3 class="white--text text-md-h2 text-h5">
+                            <h3 class="white--text  text-md-h2 text-h5">
                                 {{ user.name }}
                             </h3>
                         </div>
@@ -89,6 +89,12 @@ export default {
             user: this.$store.state.user.data,
             tab: null,
         };
+    },
+    computed: {
+        gradient() {
+            const gradients = this.$store.state.colors.gradient.bannerImage;
+            return this.$vuetify.theme.dark ? gradients.dark : gradients.light;
+        },
     },
 };
 </script>

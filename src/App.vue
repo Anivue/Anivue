@@ -32,6 +32,12 @@ export default {
         //
     }),
     mounted() {
+        const isDarkTheme = this.$cookies.get("isDarkTheme");
+        if (isDarkTheme) {
+            this.$vuetify.theme.dark = true;
+        } else {
+            this.$vuetify.theme.dark = false;
+        }
         // Check if user was authenticated before
         const user = this.$cookies.get("user");
         if (user) {

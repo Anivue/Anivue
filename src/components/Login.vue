@@ -5,12 +5,18 @@
                 <div>
                     <center>
                         <div v-if="loading">
-                            Logging in...
+                            <media-loading />
                         </div>
                         <div v-else>
-                            <h1>Login page!</h1>
+                            <h1 class="primary--text">Log in to Anivue</h1>
+                            <p class="secondary--text">
+                                You will be redirected to Anilist login page
+                            </p>
                             <a :href="url">
-                                <v-btn>
+                                <v-btn
+                                    class="navbar white--text"
+                                    elevation="24"
+                                >
                                     Login
                                 </v-btn>
                             </a>
@@ -23,8 +29,12 @@
 </template>
 
 <script>
+import MediaLoading from "./MediaLoading";
 import { getAuthedUser } from "../utils/APIutils/AuthActions";
 export default {
+    components: {
+        MediaLoading,
+    },
     data() {
         return {
             loading: false,

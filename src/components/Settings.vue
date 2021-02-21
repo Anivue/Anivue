@@ -1,9 +1,9 @@
 <template>
     <div>
-        <h1 class="font-weight-light text-center">
+        <h1 class="font-weight-light text-center primary--text">
             Settings
         </h1>
-        <v-btn @click="logout">Logout</v-btn>
+        <v-btn @click="logout" class="navbar white--text">Logout</v-btn>
     </div>
 </template>
 

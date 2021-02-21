@@ -16,7 +16,6 @@
             >
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                        @click="log(on, attrs)"
                         v-on="on"
                         v-bind="attrs"
                         :to="navLink.routePath"
@@ -48,11 +47,6 @@ export default {
         return {
             currentBtn: 2,
         };
-    },
-    methods: {
-        log(on, attrs) {
-            console.log(on, attrs);
-        },
     },
 };
 </script>
