@@ -10,11 +10,15 @@
                             width="150"
                             height="170"
                         ></v-img>
-                        <h1>Oops! Page is gone.</h1>
-                        <p>
+                        <h1 class="primary--text">Oops! Page is gone.</h1>
+                        <p class="secondary--text">
                             The page you are looking for is missing...
                         </p>
-                        <v-btn elevation="24" to="/home">
+                        <v-btn
+                            class="navbar white--text"
+                            elevation="24"
+                            to="/home"
+                        >
                             Get ready! Going home in {{ fancyTime }}
                         </v-btn>
                     </center>

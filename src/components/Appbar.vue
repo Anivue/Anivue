@@ -1,13 +1,17 @@
 <template>
     <div>
         <v-app-bar
-            dark
+            elevate-on-scroll
             app
-            elevation="24"
+            class="navbar"
+            :elevation="hideOnScroll ? 4 : ''"
             :collapse="hideOnScroll"
             :hide-on-scroll="hideOnScroll"
         >
-            <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon
+                class="white--text"
+                @click="drawer = true"
+            ></v-app-bar-nav-icon>
 
             <v-toolbar-title
                 class="font-weight-bold pl-0 font-weight-light pointer nocopy"
@@ -17,10 +21,9 @@
                 <!-- Ani<span class="light-green--text">Vue</span> -->
                 <v-img
                     class="logoImg"
-                    src="../assets/appbarLogo.png"
-                    height="25"
-                    width="125"
-                    :aspect-ratio="20 / 5"
+                    src="../assets/logo.png"
+                    height="30"
+                    width="115"
                 ></v-img>
             </v-toolbar-title>
 
@@ -34,7 +37,7 @@
             >
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn class="mr-1" icon v-bind="attrs" v-on="on">
-                        <v-icon>mdi-magnify</v-icon>
+                        <v-icon color="white">mdi-magnify</v-icon>
                     </v-btn>
                 </template>
 
@@ -64,7 +67,7 @@
                 </v-card>
             </v-dialog>
             <v-btn icon class="mr-1 d-md-none" to="/profile">
-                <v-icon>mdi-account</v-icon>
+                <v-icon color="white">mdi-account</v-icon>
             </v-btn>
         </v-app-bar>
 
@@ -74,7 +77,7 @@
             v-model="drawer"
             temporary
         >
-            <v-list-item>
+            <v-list-item class="navbar">
                 <v-list-item-content>
                     <v-list-item-title
                         class="title pointer"
@@ -83,10 +86,9 @@
                         <center>
                             <v-img
                                 class="logoImg"
-                                src="../assets/appbarLogo.png"
-                                height="25"
-                                width="125"
-                                :aspect-ratio="20 / 5"
+                                src="../assets/logo.png"
+                                height="30"
+                                width="115"
                             ></v-img>
                         </center>
                     </v-list-item-title>
@@ -106,6 +108,16 @@
                         <v-list-item-title>{{
                             navLink.title
                         }}</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item @click="changeTheme">
+                        <v-list-item-icon>
+                            <v-icon>
+                                mdi-theme-light-dark
+                            </v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title>
+                            Change Theme
+                        </v-list-item-title>
                     </v-list-item>
                 </v-list-item-group>
             </v-list>
@@ -127,8 +139,8 @@ export default {
             colors: this.$store.state.colors,
             hideOnScroll: true,
             rules: [
-                value => !!value || "Required",
-                value => (value || "").length <= 20 || "Max 20 characters",
+                (value) => !!value || "Required",
+                (value) => (value || "").length <= 20 || "Max 20 characters",
             ],
         };
     },
@@ -142,6 +154,9 @@ export default {
         },
     },
     methods: {
+        changeTheme() {
+            this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+        },
         watchButtonState() {
             if (this.$refs.searchForm.validate()) {
                 this.buttonDisabled = false;
@@ -150,7 +165,7 @@ export default {
             }
         },
         goToHome() {
-            this.$router.push("/home").catch(err => {
+            this.$router.push("/home").catch((err) => {
                 err;
             });
         },

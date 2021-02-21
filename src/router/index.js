@@ -49,11 +49,6 @@ const routes = [
         component: () => import("../views/Profile.vue"),
     },
     {
-        path: "/pg",
-        name: "pg",
-        component: () => import("../views/Playground.vue"),
-    },
-    {
         path: "*",
         name: "notfound",
         redirect: "/404",

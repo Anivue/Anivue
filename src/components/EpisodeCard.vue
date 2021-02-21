@@ -4,9 +4,9 @@
             :src="thumbnail"
             height="125"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.7)"
-            class="white--text align-end"
+            class="align-end"
         >
-            <v-card-subtitle>
+            <v-card-subtitle class="white--text">
                 {{ trimmedTitle }}
             </v-card-subtitle>
         </v-img>

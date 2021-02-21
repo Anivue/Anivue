@@ -1,28 +1,31 @@
 <template>
     <v-bottom-navigation
+        v-model="currentBtn"
         app
         id="nav"
         fixed
-        dark
         shift
         class="align-center elevation-0"
     >
-        <div class="navbarBtns rounded-t-lg">
+        <div class="navbarBtns navbar rounded-t elevation-24">
             <v-tooltip
                 top
-                v-for="navLink in navLinks"
-                :key="navLink.title"
+                v-for="(navLink, i) in navLinks"
+                :key="i"
                 height="100%"
             >
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn
+                        @click="log(on, attrs)"
                         v-on="on"
                         v-bind="attrs"
                         :to="navLink.routePath"
                         :class="colors[navLink.colorProp].text"
                     >
                         <span>{{ navLink.title }}</span>
-                        <v-icon>{{ navLink.icon }}</v-icon>
+                        <v-icon :color="i === currentBtn ? '' : 'white'">{{
+                            navLink.icon
+                        }}</v-icon>
                     </v-btn>
                 </template>
                 <span>{{ navLink.title }}</span>
@@ -41,6 +44,16 @@ export default {
             return this.$store.state.colors;
         },
     },
+    data() {
+        return {
+            currentBtn: 2,
+        };
+    },
+    methods: {
+        log(on, attrs) {
+            console.log(on, attrs);
+        },
+    },
 };
 </script>
 
@@ -52,6 +65,5 @@ export default {
 
 .navbarBtns {
     height: 56px;
-    background: rgb(39, 39, 39);
 }
 </style>

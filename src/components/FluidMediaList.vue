@@ -2,7 +2,7 @@
     <v-container>
         <v-row>
             <v-col class="text-center mb-6">
-                <h5 class="text-h4 mb-3 font-weight-light">
+                <h5 class="text-h4 mb-3 font-weight-light primary--text">
                     Top 10
                     <span
                         :class="colors[type.toLowerCase()].text"
@@ -30,8 +30,17 @@
                     Based on users rating
                 </p>
             </v-col>
-            <v-col cols="12" v-for="(anime, i) in media" :key="i">
+            <v-col cols="12" v-if="loading">
+                <fluid-media-item-loader
+                    v-for="(emptyItem, index) in media"
+                    :key="index"
+                    :index="index"
+                />
+            </v-col>
+            <v-col v-else cols="12">
                 <fluid-media-item
+                    v-for="(anime, i) in media"
+                    :key="i"
                     :loading="loading"
                     :index="i"
                     :media="anime"
@@ -43,14 +52,16 @@
 
 <script>
 import FluidMediaItem from "./FluidMediaItem.vue";
+import FluidMediaItemLoader from "./FluidMediaItemLoader";
 import { getMediaPage } from "../utils/APIutils/Anime";
 export default {
     components: {
         FluidMediaItem,
+        FluidMediaItemLoader,
     },
     data() {
         return {
-            media: {},
+            media: Array(10),
             colors: this.$store.state.colors,
             mangaIcon: this.$store.state.icons.manga,
             animeIcon: this.$store.state.icons.anime,
@@ -86,11 +97,11 @@ export default {
                 perPage: 10,
             };
             getMediaPage(variables)
-                .then(res => {
+                .then((res) => {
                     this.media = res.data.Page.media;
                     this.loading = false;
                 })
-                .catch(e => {
+                .catch((e) => {
                     console.log(e);
                 });
         },

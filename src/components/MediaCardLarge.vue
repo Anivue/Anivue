@@ -1,5 +1,5 @@
 <template>
-    <v-card>
+    <v-card elevation="8" class="mediaCard">
         <div class="d-flex">
             <v-img
                 @click="openMedia"
@@ -15,7 +15,9 @@
                     :style="{ background: 'rgba(36, 36, 36, 0.9)' }"
                 >
                     <div class="d-flex flex-column fullWidth">
-                        <span class="title subtitle-2">{{ title }}</span>
+                        <span class="title subtitle-2 white--text">{{
+                            media.startDate.year
+                        }}</span>
 
                         <span
                             v-if="studio"
@@ -33,7 +35,9 @@
                     <!-- Card header -->
                     <div class="d-flex justify-space-between">
                         <div class="">
-                            <p class="mb-1">{{ media.startDate.year }}</p>
+                            <p class="mb-1 primary--text">
+                                {{ title }}
+                            </p>
                             <p class="caption text--secondary capitalize">
                                 <span>{{ format }}</span
                                 >&nbsp;
@@ -41,7 +45,6 @@
                             </p>
                         </div>
                         <div>
-                            <!-- <p>{{ media.averageScore }}</p> -->
                             <div class="d-flex justify-center align-center">
                                 <div class="mr-2">
                                     <span :class="ratingColorText">
@@ -181,6 +184,13 @@ export default {
 <style lang="scss" scoped>
 .fullWidth {
     width: 100%;
+}
+
+.mediaCard {
+    transition: 0.3s;
+    &:hover {
+        transform: scale(1.03);
+    }
 }
 
 .cursor {

@@ -4,7 +4,7 @@
         height="100%"
         color="transparent"
         elevation="0"
-        class="pointer"
+        class="pointer mediaCard"
     >
         <center>
             <v-img
@@ -14,7 +14,7 @@
                 max-height="400"
                 max-width="240"
                 :aspect-ratio="150 / 250"
-                class="elevation-24 rounded"
+                class="elevation-12 rounded"
                 @click="openMedia"
             >
                 <template v-slot:placeholder>
@@ -32,7 +32,7 @@
             </v-img>
             <v-card-title
                 @click="openMedia"
-                class="custom-gray break-word text-caption text-sm-subtitle-1 bold-title font-weight-regular d-inline-block text-truncate px-0 pt-2 pt-sm-5 text-center"
+                class="secondary--text break-word text-caption text-sm-subtitle-1 bold-title font-weight-regular d-inline-block text-truncate px-0 pt-2 pt-sm-5 text-center"
                 ref="mediaCardTitle"
                 :style="{ 'max-width': maxWidth }"
             >
@@ -112,9 +112,17 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .break-word {
     word-break: break-word;
+}
+
+.mediaCard {
+    transition: 0.3s;
+
+    &:hover {
+        transform: scale(1.05);
+    }
 }
 
 .pointer {

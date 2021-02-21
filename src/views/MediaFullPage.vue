@@ -11,7 +11,7 @@
             <div v-else>
                 <v-img
                     v-if="bannerImage"
-                    class="mb-5 d-none d-md-block"
+                    class="mb-0 d-none d-md-block"
                     :lazy-src="
                         `https://via.placeholder.com/24x5/${bannerColor.slice(
                             1,
@@ -20,7 +20,7 @@
                     "
                     :src="bannerImage"
                     :aspect-ratio="1265 / 266"
-                    gradient="0deg, rgba(0,0,0,0.8225490025111607) 0%, rgba(255,255,255,0) 100%"
+                    :gradient="gradient"
                 >
                     <template v-slot:placeholder>
                         <v-row
@@ -35,8 +35,8 @@
                         </v-row>
                     </template>
                 </v-img>
-                <v-container>
-                    <v-row class="elevation-24 pa-4">
+                <v-container fluid>
+                    <v-row class="elevation-8 pa-4">
                         <v-col
                             cols="12"
                             sm="6"
@@ -61,7 +61,7 @@
                                     max-height="372"
                                     :lazy-src="imageMedium"
                                     :src="imageLarge"
-                                    class="elevation-24 rounded-lg"
+                                    class="elevation-17 rounded-lg"
                                 >
                                     <template v-slot:placeholder>
                                         <v-row
@@ -95,25 +95,6 @@
                                             </center>
                                         </div>
                                     </div>
-                                    <!-- BUTTON GROUP (Add to fav; Add to list) -->
-                                    <!-- <div class="d-flex justify-center mt-2">
-                                        <v-btn icon>
-                                            <v-btn-toggle borderless multiple>
-                                                <v-btn>
-                                                    <v-icon>
-                                                        mdi-star
-                                                    </v-icon>
-                                                </v-btn>
-                                                <v-btn
-                                                    v-if="type !== 'characters'"
-                                                >
-                                                    <v-icon>
-                                                        mdi-playlist-plus
-                                                    </v-icon>
-                                                </v-btn>
-                                            </v-btn-toggle>
-                                        </v-btn>
-                                    </div> -->
                                 </div>
                             </div>
                         </v-col>
@@ -125,7 +106,7 @@
             </div>
         </div>
 
-        <!-- ERROR SNACKBAR -->
+        <!-- ERROR -->
         <error-fullscreen v-if="error" @tryAgain="handleFetch" />
     </div>
 </template>
@@ -170,6 +151,12 @@ export default {
             bannerColor: "fff",
         };
     },
+    computed: {
+        gradient() {
+            const gradients = this.$store.state.colors.gradient.bannerImage;
+            return this.$vuetify.theme.dark ? gradients.dark : gradients.light;
+        },
+    },
     methods: {
         handleFetch() {
             this.loading = true;
@@ -177,7 +164,7 @@ export default {
             this.error = false;
             if (this.type === "characters") {
                 getCharacterById(this.id)
-                    .then(res => {
+                    .then((res) => {
                         if (!res.res.ok) throw Error(res.res.status);
                         this.media = res.data.Character;
                         this.imageLarge = this.media.image.large;
@@ -185,14 +172,14 @@ export default {
                         this.bannerImage = false;
                         this.loading = false;
                     })
-                    .catch(err => {
+                    .catch((err) => {
                         this.error = true;
                         this.errorMsg = err.message;
                         this.loading = false;
                     });
             } else {
                 getMediaById(this.type, this.id)
-                    .then(res => {
+                    .then((res) => {
                         if (!res.res.ok) throw Error(res.res.status);
                         this.media = res.data.Media;
                         this.imageLarge = this.media.coverImage.extraLarge;
@@ -203,7 +190,7 @@ export default {
                         this.loading = false;
                         this.error = false;
                     })
-                    .catch(err => {
+                    .catch((err) => {
                         this.error = true;
                         this.errorMsg = err.message;
                         this.loading = false;

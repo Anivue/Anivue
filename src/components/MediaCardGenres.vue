@@ -2,7 +2,7 @@
     <div class="d-flex">
         <v-chip
             small
-            class="mr-2 font-weight-bold"
+            class="mr-2 font-weight-bold mediaGenre"
             :color="media.coverImage.color"
             v-for="(genre, i) in genres"
             :key="i"
@@ -62,3 +62,12 @@ export default {
     },
 };
 </script>
+
+<style lang="scss" scoped>
+.mediaGenre {
+    transition: 0.3s;
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+</style>

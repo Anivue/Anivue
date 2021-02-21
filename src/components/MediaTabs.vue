@@ -4,7 +4,7 @@
             grow
             show-arrows
             v-model="tab"
-            class="elevation-24 mt-10"
+            class="elevation-4 mt-10"
             :color="color"
         >
             <v-tab href="#characters-tab" v-if="characters.length"
@@ -14,7 +14,7 @@
             <v-tab href="#relations-tab" v-if="relations.length">Related</v-tab>
         </v-tabs>
 
-        <v-tabs-items v-model="tab" class="elevation-24 rounded-b-xl">
+        <v-tabs-items v-model="tab" class="elevation-4 rounded-b">
             <v-tab-item
                 :transition="false"
                 value="characters-tab"

@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <appbar />
-        <v-main class="pb-md-15 pt-md-0 page-dark overflow-hidden-x">
+        <v-main class="pb-md-15 pt-md-0 overflow-hidden-x background">
             <!-- CACHE EXAMPLE -->
             <keep-alive :include="['Home', 'Profile']">
                 <router-view />
@@ -42,11 +42,6 @@ export default {
 </script>
 
 <style lang="scss">
-.page-dark {
-    background-color: #181818;
-    border-color: #181818;
-}
-
 .overflow-hidden-x {
     overflow-x: hidden;
 }

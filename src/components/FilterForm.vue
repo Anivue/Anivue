@@ -1,11 +1,13 @@
 <template>
     <v-form @submit.prevent="">
         <v-container>
-            <v-row>
+            <v-row class="mb-5">
                 <v-col cols="12" md="4">
                     <v-text-field
+                        flat
+                        :class="{ 'elevation-4': md }"
+                        hide-details
                         prepend-inner-icon="mdi-magnify"
-                        counter
                         maxlength="20"
                         ref="textField"
                         clearable
@@ -19,6 +21,9 @@
                 </v-col>
                 <v-col cols="6" md="4" v-if="type !== 'characters'">
                     <v-select
+                        hide-details
+                        flat
+                        :class="{ 'elevation-4': md }"
                         prepend-inner-icon="mdi-drama-masks"
                         solo
                         :items="genres"
@@ -30,6 +35,9 @@
                 </v-col>
                 <v-col cols="6" md="4" v-if="type !== 'characters'">
                     <v-select
+                        hide-details
+                        flat
+                        :class="{ 'elevation-4': md }"
                         prepend-inner-icon="mdi-sort"
                         solo
                         :items="sort"
@@ -85,11 +93,12 @@ export default {
                 Favourites: "FAVOURITES_DESC",
                 Popularity: "POPULARITY_DESC",
             },
+            md: window.innerWidth >= 960,
         };
     },
     methods: {
         getKeyByValue(object, value) {
-            return Object.keys(object).find(key => object[key] === value);
+            return Object.keys(object).find((key) => object[key] === value);
         },
         filtersPreset() {
             this.search = this.$route.query.search || "";
@@ -127,10 +136,19 @@ export default {
                 .replace({
                     query: Object.assign({}, this.$route.query, filters),
                 })
-                .catch(e => e);
+                .catch((e) => e);
 
             // this.$emit("filterSelected", filters);
         },
+        setMd() {
+            this.md = window.innerWidth >= 960;
+        },
+    },
+    mounted() {
+        window.addEventListener("resize", this.setMd);
+    },
+    beforeDestroy() {
+        window.removeEventListener("resize", this.setMd);
     },
     watch: {
         "$route.params.type": {

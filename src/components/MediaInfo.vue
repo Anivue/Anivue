@@ -13,7 +13,11 @@
             <div v-else-if="chapters">
                 <p class="text--disabled">{{ chapters }} chapters</p>
             </div>
-            <genre-chips v-if="type !== 'characters'" :genres="media.genres" />
+            <genre-chips
+                v-if="type !== 'characters'"
+                :genres="media.genres"
+                :color="media.coverImage.color"
+            />
         </center>
     </div>
 </template>

@@ -1,9 +1,9 @@
 <template>
-    <v-container class="my-10">
+    <v-container class="my-md-10 mt-5 px-0">
         <v-row>
             <v-col class="d-flex justify-center">
                 <h1>
-                    <span class="font-weight-light">Browse </span>
+                    <span class="font-weight-light primary--text">Browse </span>
                     <span :class="this.$store.state.colors[title].text">{{
                         title
                     }}</span>

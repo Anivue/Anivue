@@ -10,9 +10,13 @@
                             width="150"
                             height="170"
                         ></v-img>
-                        <h1>Oops! We have stumbled over an error.</h1>
-                        <p>Error code: {{ error }}</p>
-                        <v-btn elevation="24" @click="$emit('tryAgain')">
+                        <h1 class="primary--text">Oops! Error {{ error }}</h1>
+                        <p class="secondary--text">Error code: {{ error }}</p>
+                        <v-btn
+                            class="navbar white--text"
+                            elevation="24"
+                            @click="$emit('tryAgain')"
+                        >
                             Try again
                         </v-btn>
                     </center>

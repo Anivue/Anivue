@@ -1,16 +1,12 @@
 <template>
-    <div class="d-flex my-1 card" ref="mediaCard">
+    <div class="d-flex my-5 card" ref="mediaCard">
         <div class="mr-5 index d-md-flex d-none justify-center align-center">
             <p class="text-h5 ma-0 pa-0 nocopy">
-                <span class="hashtag">#</span
-                ><span class="number">{{ index + 1 }}</span>
+                <span class="hashtag secondary--text">#</span
+                ><span class="number primary--text">{{ index + 1 }}</span>
             </p>
         </div>
-        <div class="flex-grow-1 d-flex" v-if="loading">
-            <v-skeleton-loader type="image" style="width: 100%; height: 100%">
-            </v-skeleton-loader>
-        </div>
-        <v-card class="pa-2 flex-grow-1 d-flex" v-else>
+        <v-card class="pa-2 flex-grow-1 d-flex mediaCard" elevation="2">
             <div
                 class="coverImage d-flex justify-center align-center cursor"
                 @click="goToMedia"
@@ -35,7 +31,7 @@
             <div class="mediaInfo pa-2 d-flex justify-space-between">
                 <div class="mediaMain d-flex flex-column justify-space-around">
                     <div
-                        class="mediaTitle cursor"
+                        class="mediaTitle cursor primary--text"
                         @click="goToMedia"
                         ref="mediaCardTitle"
                     >
@@ -79,10 +75,6 @@ export default {
         media: {
             type: Object,
             required: true,
-        },
-        loading: {
-            type: Boolean,
-            default: true,
         },
     },
     computed: {
@@ -153,13 +145,19 @@ export default {
     user-select: none;
 }
 
+.mediaCard {
+    transition: 0.3s;
+    &:hover {
+        transform: scale(1.02);
+    }
+}
+
 .index {
     width: 50px;
     height: 100%;
 }
 
 .hashtag {
-    color: rgba(255, 255, 255, 0.8);
     font-size: 18px;
     font-weight: bold;
 }

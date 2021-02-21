@@ -103,6 +103,14 @@ export default new Vuex.Store({
                     iconValue: "mdi-robot-confused",
                 },
             },
+            gradient: {
+                bannerImage: {
+                    dark:
+                        "0deg, rgba(0,0,0,0.8225490025111607) 0%, rgba(255,255,255,0) 100%",
+                    light:
+                        "0deg, rgba(52,52,52,0.4402354691876751) 0%, rgba(179,179,179,0.18253238795518212) 100%",
+                },
+            },
         },
     },
     mutations: {

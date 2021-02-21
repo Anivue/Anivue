@@ -5,12 +5,15 @@
                 <v-col cols="8">
                     <h2>
                         <v-icon color="red">mdi-fire</v-icon>
-                        <span class="font-weight-light"> Trending </span>
+                        <span class="font-weight-light primary--text">
+                            Trending
+                        </span>
                         <span :class="colors.text">{{ sectionType }}</span>
                     </h2>
                 </v-col>
                 <v-col class="d-flex justify-end" cols="4">
                     <v-btn
+                        class="white--text"
                         elevation="24"
                         :color="colors.block"
                         :to="{
@@ -67,13 +70,13 @@ export default {
             sortBy: "TRENDING_DESC",
         };
         getMediaPage(vars)
-            .then(res => {
+            .then((res) => {
                 if (!res.res.ok) throw Error(res.res.status);
                 this.mediaArray = res.data.Page.media;
                 this.loading = false;
                 this.error = false;
             })
-            .catch(err => {
+            .catch((err) => {
                 this.error = true;
                 this.errorMsg = err.message;
             });

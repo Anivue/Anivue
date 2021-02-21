@@ -5,7 +5,7 @@
                 <v-skeleton-loader
                     type="image"
                     :height="265"
-                    elevation="24"
+                    elevation="12"
                 ></v-skeleton-loader>
             </v-col>
         </v-row>

@@ -9,7 +9,7 @@
         direction="top"
     >
         <template v-slot:activator>
-            <v-btn elevation="24" large color="#363636" dark fab>
+            <v-btn elevation="24" large color="navbar white--text" fab>
                 <v-icon v-if="fab">
                     mdi-close
                 </v-icon>
@@ -18,13 +18,19 @@
                 </v-icon>
             </v-btn>
         </template>
-        <v-btn fab dark medium color="#4a4a4a" @click="scrollToTop">
+        <v-btn
+            fab
+            class="navbar white--text"
+            medium
+            color="#4a4a4a"
+            @click="scrollToTop"
+        >
             <v-icon>mdi-arrow-up</v-icon>
         </v-btn>
         <v-btn
             fab
-            dark
             small
+            dark
             v-for="navLink in navLinks"
             :key="navLink.title"
             :to="navLink.routePath"

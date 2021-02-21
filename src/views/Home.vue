@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- Header -->
-        <typewriter-header @btnClicked="scrollToContent" />
+        <typewriter-header />
         <!-- Anime Section -->
         <trending-section sectionType="anime" ref="animeSection" />
         <!-- Manga Section -->
@@ -17,13 +17,5 @@ import FluidMediaList from "../components/FluidMediaList";
 export default {
     name: "Home",
     components: { TrendingSection, TypewriterHeader, FluidMediaList },
-    methods: {
-        scrollToContent() {
-            this.$refs.animeSection.$el.scrollIntoView({
-                block: "center",
-                behavior: "smooth",
-            });
-        },
-    },
 };
 </script>
