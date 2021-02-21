@@ -32,13 +32,16 @@ export default {
         //
     }),
     mounted() {
+        //! Requires fix, only caching once [fix or remove later]
+        /*
         const isDarkTheme = this.$cookies.get("isDarkTheme");
         if (isDarkTheme) {
             this.$vuetify.theme.dark = true;
         } else {
             this.$vuetify.theme.dark = false;
-        }
-        // Check if user was authenticated before
+        } */
+
+        //? Check if user was authenticated before
         const user = this.$cookies.get("user");
         if (user) {
             this.$store.commit("setUser", user);

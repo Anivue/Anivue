@@ -156,7 +156,8 @@ export default {
     methods: {
         changeTheme() {
             this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-            this.$cookies.set("isDarkTheme", this.$vuetify.theme.dark);
+            // ! Requires fix, only caching once [fix or remove later]
+            // this.$cookies.set("isDarkTheme", this.$vuetify.theme.dark);
         },
         watchButtonState() {
             if (this.$refs.searchForm.validate()) {
