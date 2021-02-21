@@ -23,7 +23,7 @@ Built with <a href="https://vuejs.org/" target="_blank">Vue.js</a> Javascript Fr
 
 ---
 
-###Screenshots
+### Screenshots
 
 <p>
 Some screenshots to demonstrate the appearance of the site.
