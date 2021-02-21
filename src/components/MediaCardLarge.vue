@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <!-- Card genres -->
-                <div class="pa-2 genres">
+                <div class="pa-2 genres cardgenres">
                     <media-card-genres :media="media" />
                 </div>
             </div>
@@ -227,6 +227,9 @@ export default {
     height: 100%;
     display: flex;
     align-items: center;
+    position: relative;
+    bottom: 0;
+    // background-color: #fff;
 }
 
 .description {
