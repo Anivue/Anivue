@@ -6,7 +6,7 @@
                 ><span class="number primary--text">{{ index + 1 }}</span>
             </p>
         </div>
-        <v-card class="pa-2 flex-grow-1 d-flex mediaCard" elevation="12">
+        <v-card class="pa-2 flex-grow-1 d-flex mediaCard" elevation="1">
             <div
                 class="coverImage d-flex justify-center align-center cursor"
                 @click="goToMedia"

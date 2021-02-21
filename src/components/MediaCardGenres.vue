@@ -29,11 +29,15 @@ export default {
     },
     data() {
         return {
-            genres: this.media.genres.slice(0, 2),
+            genres: this.media.genres.slice(0, 4),
             genreColor: "#fff",
         };
     },
     methods: {
+        trimGenres() {
+            const max = window.innerWidth >= 960 ? 4 : 2;
+            this.genres = this.media.genres.slice(0, max);
+        },
         getGenreColor() {
             const hex = this.media.coverImage.color || "#ffffff";
             function hex_to_rgb(hex) {
@@ -59,6 +63,11 @@ export default {
     },
     mounted() {
         this.genreColor = this.getGenreColor();
+        this.trimGenres();
+        window.addEventListener("resize", this.trimGenres);
+    },
+    beforeDestroy() {
+        window.removeEventListener("resize", this.trimGenres);
     },
 };
 </script>

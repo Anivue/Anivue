@@ -101,6 +101,7 @@ export default {
             return Object.keys(object).find((key) => object[key] === value);
         },
         filtersPreset() {
+            // Grab queries from url and apply them to input fields values
             this.search = this.$route.query.search || "";
             this.selectedSort =
                 this.getKeyByValue(this.sortQueries, this.$route.query.sort) ||
@@ -122,10 +123,6 @@ export default {
                     search: this.search,
                 };
             }
-            // filters = Object.fromEntries(
-            //     // eslint-disable-next-line no-unused-vars
-            //     Object.entries(filters).filter(([_, v]) => !!v)
-            // );
 
             // HIDE SCREEN KEYBOARD AFTER FILTER APPLIED
             const input = this.$refs.textField.$el.children[0].children[0]
@@ -137,8 +134,6 @@ export default {
                     query: Object.assign({}, this.$route.query, filters),
                 })
                 .catch((e) => e);
-
-            // this.$emit("filterSelected", filters);
         },
         setMd() {
             this.md = window.innerWidth >= 960;
@@ -159,6 +154,11 @@ export default {
                 this.filtersPreset();
             },
             immediate: true,
+        },
+        "$route.query": {
+            handler() {
+                this.filtersPreset();
+            },
         },
     },
 };

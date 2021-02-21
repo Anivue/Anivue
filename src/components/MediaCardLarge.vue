@@ -1,5 +1,5 @@
 <template>
-    <v-card elevation="8" class="mediaCard">
+    <v-card elevation="3" class="mediaCard">
         <div class="d-flex">
             <v-img
                 @click="openMedia"
@@ -31,7 +31,7 @@
             <div
                 class="pa-0 d-flex flex-column justify-space-between flex-grow-1"
             >
-                <div class="px-3 pt-3">
+                <div class="px-3 pt-3 cardBody">
                     <!-- Card header -->
                     <div class="d-flex justify-space-between">
                         <div class="">
@@ -39,9 +39,12 @@
                                 {{ title }}
                             </p>
                             <p class="caption text--secondary capitalize">
-                                <span>{{ format }}</span
-                                >&nbsp;
+                                <span>{{ format }}</span>
+                                &nbsp;&#8226;&nbsp;
                                 <span>{{ status }}</span>
+                                <span v-if="isAnyParts">
+                                    &nbsp;&#8226;&nbsp;{{ parts }}
+                                </span>
                             </p>
                         </div>
                         <div>
@@ -91,6 +94,7 @@ export default {
             ratingIcon: "",
             ratingColorText: "",
             ratingColorIcon: "",
+            isAnyParts: this.media.episodes || this.media.chapters,
         };
     },
     computed: {
@@ -120,6 +124,16 @@ export default {
         status() {
             const status = this.media.status;
             return this.capitalize(status);
+        },
+        parts() {
+            const episodes = this.media.episodes;
+            const chapters = this.media.chapters;
+
+            if (episodes) {
+                return `${episodes} ${episodes > 1 ? "episodes" : "episode"}`;
+            } else {
+                return `${chapters} ${chapters > 1 ? "chapters" : "chapter"}`;
+            }
         },
     },
     methods: {
@@ -195,6 +209,10 @@ export default {
 
 .cursor {
     cursor: pointer;
+}
+
+.cardBody {
+    height: 206px;
 }
 
 .capitalize {

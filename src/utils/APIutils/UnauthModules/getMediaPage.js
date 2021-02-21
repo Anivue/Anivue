@@ -31,6 +31,8 @@ const getMediaPage = async (variables) => {
                     type
                     status
                     genres
+                    episodes
+                    chapters
                     averageScore
                     description (asHtml: true)
                     format

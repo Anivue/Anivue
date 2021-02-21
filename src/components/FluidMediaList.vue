@@ -26,7 +26,7 @@
                         <span>Swtitch to {{ nextTab }}</span>
                     </v-tooltip>
                 </h5>
-                <p class="text-subtitle text--secondary">
+                <p class="text-subtitle secondary--text">
                     Based on users rating
                 </p>
             </v-col>
