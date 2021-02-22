@@ -33,11 +33,12 @@
                     <div
                         class="mediaTitle cursor primary--text"
                         @click="goToMedia"
-                        ref="mediaCardTitle"
                     >
-                        <span class="d-md-inline d-none font-weight-bold">{{
-                            title
-                        }}</span>
+                        <span
+                            ref="mediaCardTitle"
+                            class="cardTitle d-md-inline d-none font-weight-bold"
+                            >{{ title }}</span
+                        >
                         <span class="d-md-none font-weight-bold">{{
                             trimmedTitle
                         }}</span>
@@ -134,7 +135,7 @@ export default {
         });
 
         this.$refs.mediaCard.addEventListener("mouseleave", () => {
-            this.$refs.mediaCardTitle.style.color = "#fff";
+            this.$refs.mediaCardTitle.style.color = "";
         });
     },
 };
@@ -143,6 +144,10 @@ export default {
 <style lang="scss" scoped>
 .nocopy {
     user-select: none;
+}
+
+.cardTitle {
+    transition: 0.2s;
 }
 
 .mediaCard {

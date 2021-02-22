@@ -33,10 +33,11 @@
             <v-card-title
                 @click="openMedia"
                 class="secondary--text break-word text-caption text-sm-subtitle-1 bold-title font-weight-regular d-inline-block text-truncate px-0 pt-2 pt-sm-5 text-center"
-                ref="mediaCardTitle"
                 :style="{ 'max-width': maxWidth }"
             >
-                {{ title }}
+                <span class="cardTitle" ref="mediaCardTitle">
+                    {{ title }}
+                </span>
             </v-card-title>
         </center>
     </v-card>
@@ -73,9 +74,6 @@ export default {
     },
     methods: {
         openMedia() {
-            // REMOVE HOVER COLOR FROM TITLE
-            this.$refs.mediaCardTitle.style.color = "#c9c9c9";
-
             // Go to media full page
             this.$router.push({
                 name: "mediafullpage",
@@ -95,7 +93,7 @@ export default {
         });
 
         this.$refs.mediaCard.$el.addEventListener("mouseleave", () => {
-            this.$refs.mediaCardTitle.style.color = "#c9c9c9";
+            this.$refs.mediaCardTitle.style.color = "";
         });
     },
     beforeDestroy() {
@@ -123,6 +121,10 @@ export default {
     &:hover {
         transform: scale(1.05);
     }
+}
+
+.cardTitle {
+    transition: 0.2s;
 }
 
 .pointer {
