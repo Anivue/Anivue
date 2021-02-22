@@ -6,7 +6,7 @@
         <media-title :media="media" :mobile="false" />
 
         <p
-            class="subtitle-1 text--secondary text-center text-md-left"
+            class="subtitle-1 secondary--text text-center text-md-left"
             v-html="description"
         ></p>
     </v-col>
