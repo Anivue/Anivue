@@ -7,8 +7,10 @@
                         <div v-if="loading">
                             Searching...
                         </div>
-                        <div v-else>
-                            {{ foundTotal }}
+                        <div v-else class="primary--text">
+                            <span class="font-weight-bold orange--text">
+                                {{ foundTotal }}
+                            </span>
                             {{ foundTotal === 1 ? "Result" : "Results" }} for
                             <span
                                 class="orange--text capitalize font-weight-bold"
@@ -19,10 +21,11 @@
                 </v-col>
             </v-row>
         </v-container>
-        <div>
+        <div v-if="anyFound">
             <search-section
                 v-if="anime.found"
                 :loading="loading"
+                :found="anime.found"
                 :media="anime.data"
                 :query="query"
                 sectionType="anime"
@@ -31,16 +34,21 @@
                 v-if="manga.found"
                 :loading="loading"
                 :media="manga.data"
+                :found="manga.found"
                 :query="query"
                 sectionType="manga"
             />
             <search-section
                 v-if="characters.found"
                 :loading="loading"
+                :found="characters.found"
                 :media="characters.data"
                 :query="query"
                 sectionType="characters"
             />
+        </div>
+        <div v-else>
+            Nothing was found :(
         </div>
     </div>
 </template>
@@ -62,27 +70,36 @@ export default {
             manga: { found: true },
             characters: { found: true },
             foundTotal: 0,
+            anyFound: true,
         };
     },
     methods: {
-        searchQuery() {
+        async searchQuery() {
+            this.refreshData();
+            const res = await getSearchPage(this.page, 6, this.query);
+            this.setupData(res);
+        },
+        refreshData() {
             this.loading = true;
             this.anime = { found: true };
             this.manga = { found: true };
             this.characters = { found: true };
-
+            this.anyFound = true;
             this.query = this.$route.query.search;
-            getSearchPage(this.page, 6, this.query)
-                .then(res => {
-                    this.anime = res.anime;
-                    this.manga = res.manga;
-                    this.characters = res.characters;
-                    this.loading = false;
-                    this.foundTotal = res.counter;
-                })
-                .catch(err => {
-                    console.log(err.message);
-                });
+        },
+        setupData(res) {
+            this.anime = res.anime;
+            this.manga = res.manga;
+            this.characters = res.characters;
+            this.loading = false;
+            this.foundTotal =
+                res.anime.found + res.manga.found + res.characters.found;
+
+            this.anyFound = [
+                this.anime.found,
+                this.manga.found,
+                this.characters.found,
+            ].some((found) => found);
         },
     },
     watch: {

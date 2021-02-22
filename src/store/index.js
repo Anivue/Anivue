@@ -58,7 +58,7 @@ export default new Vuex.Store({
             },
             manga: {
                 text: "blue--text",
-                block: "blue accent-4",
+                block: "blue",
             },
             characters: {
                 text: "pink--text text--lighten-2",

@@ -18,7 +18,7 @@
                                 v-bind="attrs"
                                 v-on="on"
                             >
-                                <v-icon>
+                                <v-icon color="primary">
                                     {{ mediaIcon }}
                                 </v-icon>
                             </v-btn>

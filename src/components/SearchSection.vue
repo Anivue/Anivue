@@ -4,13 +4,20 @@
             <v-row justify="space-between">
                 <v-col cols="7">
                     <h2>
-                        <v-icon :color="colors.block">{{ icon }}</v-icon>
+                        <!-- <v-icon :color="colors.block">{{ icon }}</v-icon> -->
+                        <span
+                            v-if="found !== true"
+                            :class="colors.block"
+                            class="white--text mr-2 pa-1 rounded"
+                            >{{ found }}</span
+                        >
                         <span :class="colors.text"> {{ sectionType }}</span>
                     </h2>
                 </v-col>
                 <v-col class="d-flex justify-end" cols="4">
                     <v-btn
                         elevation="24"
+                        class="white--text"
                         :color="colors.block"
                         :to="{
                             name: 'mediahome',
@@ -48,6 +55,9 @@ export default {
         query: {
             type: String,
             required: true,
+        },
+        found: {
+            type: [String, Number, Boolean],
         },
     },
     computed: {

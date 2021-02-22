@@ -8,7 +8,7 @@
                         title
                     }}</span>
                     <span class="ml-3">
-                        <v-icon>
+                        <v-icon color="primary">
                             {{ this.$store.state.icons[title] }}
                         </v-icon>
                     </span>

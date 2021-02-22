@@ -1,39 +1,5 @@
 <template>
     <v-container fluid class="mb-0 pa-0">
-        <!-- <v-row>
-            <v-col class="d-flex justify-center">
-                <v-img
-                    class="mb-5 elevation-0"
-                    lazy-src="../assets/pattern-min.jpg"
-                    src="../assets/pattern.jpg"
-                    max-height="360"
-                    min-height="150"
-                    gradient="0deg, rgba(0,0,0,0.7973389184775472) 6%, rgba(0,0,0,0.8001400389257265) 86%"
-                >
-                    <v-row
-                        class="fill-height ma-0 insetShadow flex-column"
-                        align="center"
-                        justify="center"
-                    >
-                        <h1 class="primary--text">
-                            <span class="font-weight-light">Explore </span>
-                            <span ref="typed"></span>
-                        </h1>
-                        <v-btn
-                            color="primary--text"
-                            class="mt-5"
-                            elevation="24"
-                            @click="$emit('btnClicked')"
-                        >
-                            Let's Explore
-                            <v-icon right>
-                                mdi-robot-excited-outline
-                            </v-icon>
-                        </v-btn>
-                    </v-row>
-                </v-img>
-            </v-col>
-        </v-row> -->
         <v-row
             class="fill-height my-10 flex-column"
             align="center"
@@ -107,7 +73,8 @@ export default {
             ],
             autoStart: true,
             loop: true,
-            deleteSpeed: "natural",
+            delay: 100,
+            deleteSpeed: 30,
         });
     },
     beforeDestroy() {
