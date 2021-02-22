@@ -69,7 +69,6 @@ export default {
         },
         color: {
             type: String,
-            default: "#fff",
         },
     },
     methods: {
@@ -89,7 +88,11 @@ export default {
         this.trimTitle();
 
         this.$refs.mediaCard.$el.addEventListener("mouseenter", () => {
-            this.$refs.mediaCardTitle.style.color = this.color;
+            const vuetifyTheme = this.$vuetify.theme;
+            const color = vuetifyTheme.dark
+                ? vuetifyTheme.themes.dark.primary
+                : vuetifyTheme.themes.light.primary;
+            this.$refs.mediaCardTitle.style.color = color;
         });
 
         this.$refs.mediaCard.$el.addEventListener("mouseleave", () => {

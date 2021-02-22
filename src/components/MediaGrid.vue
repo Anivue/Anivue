@@ -56,7 +56,7 @@ export default {
         },
         limit: {
             // ! DEV PROP; REMOVE LATER
-            //* Possible props: 50 (for global section | favorites) / 6 (for trending section)
+            //* Possible props: 50 (for global section ) / 6 (for trending section)
             type: Number,
             default: 50,
         },
@@ -99,9 +99,7 @@ export default {
             }
         },
         checkForColor(mediaItem) {
-            if (this.getType(mediaItem) === "characters") {
-                return "#fff";
-            } else {
+            if (this.getType(mediaItem) !== "characters") {
                 return mediaItem.coverImage.color;
             }
         },

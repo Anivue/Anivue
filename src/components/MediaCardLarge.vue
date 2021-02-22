@@ -15,9 +15,10 @@
                     :style="{ background: 'rgba(36, 36, 36, 0.9)' }"
                 >
                     <div class="d-flex flex-column fullWidth">
-                        <span class="title subtitle-2 white--text">{{
-                            media.startDate.year
-                        }}</span>
+                        <span
+                            class="title subtitle-2 white--text font-weight-bold"
+                            >{{ media.startDate.year }}</span
+                        >
 
                         <span
                             v-if="studio"
@@ -139,6 +140,7 @@ export default {
     methods: {
         capitalize(string) {
             if (string === "TV") return string;
+            string = string.toUpperCase();
             const capitalized = string[0] + string.slice(1).toLowerCase();
             return capitalized;
         },
