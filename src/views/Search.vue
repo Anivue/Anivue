@@ -48,18 +48,20 @@
             />
         </div>
         <div v-else>
-            Nothing was found :(
+            <search-not-found />
         </div>
     </div>
 </template>
 
 <script>
+import SearchNotFound from "../components/SearchNotFound";
 import { getSearchPage } from "../utils/APIutils/Anime";
 import SearchSection from "../components/SearchSection";
 export default {
     name: "Search",
     components: {
         SearchSection,
+        SearchNotFound,
     },
     data() {
         return {
