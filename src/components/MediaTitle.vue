@@ -3,7 +3,16 @@
         class="mb-3 text-center d-sm-none"
         :class="[mobile ? classMobile : classDefault]"
     >
-        <h2 class="mb-3 text-h4 primary--text">{{ title }}</h2>
+        <h2 class="mb-3 text-h4 primary--text">
+            {{ title }}
+            <add-fav-btn
+                v-if="this.$store.state.user.loggedIn"
+                :type="type"
+                :id="media.id"
+                :fav="media.isFavourite"
+            />
+        </h2>
+
         <p class="text--secondary">
             {{ subtitle }}
         </p>
@@ -11,7 +20,11 @@
 </template>
 
 <script>
+import AddFavBtn from "../components/buttons/AddFavBtn";
 export default {
+    components: {
+        AddFavBtn,
+    },
     props: {
         media: {
             type: Object,
@@ -41,7 +54,9 @@ export default {
     computed: {
         type() {
             // Characters dont have "type" key so any media without "type" will be character
-            return "type" in this.media ? "media" : "characters";
+            return "type" in this.media
+                ? this.media.type.toLowerCase()
+                : "characters";
         },
         title() {
             if (this.type !== "characters") {
@@ -66,5 +81,3 @@ export default {
     },
 };
 </script>
-
-<style lang="scss" scoped></style>

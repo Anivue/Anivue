@@ -21,6 +21,8 @@ const getMediaById = async (type, id) => {
                 type
                 genres
                 episodes
+                id
+                isFavourite
                 chapters
                 duration
                 status

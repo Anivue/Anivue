@@ -1,6 +1,6 @@
 import fetchApi from "./fetchApi";
 
-const getCharacterById = async id => {
+const getCharacterById = async (id) => {
     const query = `
         query ($id: Int) {
             Character (id: $id) {
@@ -13,6 +13,8 @@ const getCharacterById = async id => {
                     medium
                     large
                 }
+                isFavourite
+                id
                 description (asHtml: true)
                 media (page: 1, perPage: 25, sort: FAVOURITES_DESC) {
                     nodes {
