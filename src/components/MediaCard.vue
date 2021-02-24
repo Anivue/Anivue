@@ -1,6 +1,5 @@
 <template>
     <v-card
-        ref="mediaCard"
         height="100%"
         color="transparent"
         elevation="0"
@@ -35,7 +34,7 @@
                 class="secondary--text break-word text-caption text-sm-subtitle-1 bold-title font-weight-regular d-inline-block text-truncate px-0 pt-2 pt-sm-5 text-center"
                 :style="{ 'max-width': maxWidth }"
             >
-                <span class="cardTitle" ref="mediaCardTitle">
+                <span class="cardTitle">
                     {{ title }}
                 </span>
             </v-card-title>
@@ -86,18 +85,6 @@ export default {
     mounted() {
         window.addEventListener("resize", this.trimTitle);
         this.trimTitle();
-
-        this.$refs.mediaCard.$el.addEventListener("mouseenter", () => {
-            const vuetifyTheme = this.$vuetify.theme;
-            const color = vuetifyTheme.dark
-                ? vuetifyTheme.themes.dark.primary
-                : vuetifyTheme.themes.light.primary;
-            this.$refs.mediaCardTitle.style.color = color;
-        });
-
-        this.$refs.mediaCard.$el.addEventListener("mouseleave", () => {
-            this.$refs.mediaCardTitle.style.color = "";
-        });
     },
     beforeDestroy() {
         window.removeEventListener("resize", this.trimTitle);
