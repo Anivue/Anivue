@@ -6,11 +6,12 @@
                 ><span class="number primary--text">{{ index + 1 }}</span>
             </p>
         </div>
-        <v-card class="pa-2 flex-grow-1 d-flex mediaCard" elevation="1">
-            <div
-                class="coverImage d-flex justify-center align-center cursor"
-                @click="goToMedia"
-            >
+        <v-card
+            :to="{ name: 'mediafullpage', params: { type, id } }"
+            class="pa-2 flex-grow-1 d-flex mediaCard"
+            elevation="1"
+        >
+            <div class="coverImage d-flex justify-center align-center cursor">
                 <v-badge
                     :color="media.coverImage.color"
                     left
@@ -30,10 +31,7 @@
             </div>
             <div class="mediaInfo pa-2 d-flex justify-space-between">
                 <div class="mediaMain d-flex flex-column justify-space-around">
-                    <div
-                        class="mediaTitle cursor primary--text"
-                        @click="goToMedia"
-                    >
+                    <div class="mediaTitle cursor primary--text">
                         <span
                             ref="mediaCardTitle"
                             class="cardTitle d-md-inline d-none font-weight-bold"
@@ -96,15 +94,14 @@ export default {
             const windowWidth = window.innerWidth;
             return windowWidth <= 600;
         },
+        type() {
+            return this.media.type.toLowerCase();
+        },
+        id() {
+            return this.media.id;
+        },
     },
     methods: {
-        goToMedia() {
-            const type = this.media.type.toLowerCase();
-            const id = this.media.id;
-            // RESET HOVER COLOR AFTER CLICK
-            this.$refs.mediaCardTitle.style.color = "#fff";
-            this.$router.push({ name: "mediafullpage", params: { type, id } });
-        },
         getRatingColor() {
             const score = this.media.averageScore;
             const scoreColors = this.$store.state.colors.score;

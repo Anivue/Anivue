@@ -12,10 +12,11 @@ export default new Vuetify({
             light: {
                 primary: colors.blueGrey.darken3,
                 secondary: colors.blueGrey.lighten1,
-                accent: colors.lightBlue.darken2,
+                accent: colors.shades.white,
                 navbar: colors.blueGrey.darken3,
                 background: colors.blueGrey.lighten5,
                 cardgenres: "#fff",
+                description: colors.blueGrey.darken1,
             },
             dark: {
                 primary: colors.shades.white,
@@ -23,6 +24,8 @@ export default new Vuetify({
                 navbar: "#333333",
                 background: "#181818",
                 cardgenres: "#1e1e1e",
+                accent: "#333333",
+                description: colors.grey.lighten2,
             },
         },
         dark: false,

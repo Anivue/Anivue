@@ -5,7 +5,7 @@ function getType(type) {
         return "animeId";
     } else if (type === "manga") {
         return "mangaId";
-    } else if (type === "characters" || type === "character") {
+    } else if (type === "characters") {
         return "characterId";
     } else {
         console.error("Wrong type provided");
@@ -13,24 +13,29 @@ function getType(type) {
 }
 
 const schemas = {
-    anime: `
-        anime(page: 1, perPage: 1) {
-            nodes {
-                id
+    media: `
+        nodes {
+            id
+            title {
+                romaji
+                english
             }
-        }
-    `,
-    manga: `
-        manga(page: 1, perPage: 1) {
-            nodes {
-                id
+            type
+            coverImage {
+                medium
+                large
             }
         }
     `,
     characters: `
-        characters(page: 1, perPage: 1) {
-            nodes {
-                id
+        nodes {
+            id
+            name {
+                full
+            }
+            image {
+                large
+                medium
             }
         }
     `,
@@ -42,7 +47,13 @@ const toggleFavorite = async (token, type, id) => {
     const mutation = `
         mutation ($id: Int) {
             ToggleFavourite (${typeId}: $id) {
-                ${schemas[type]}
+                ${type}(page: 1, perPage: 50) {
+                    ${
+                        type === "characters"
+                            ? schemas.characters
+                            : schemas.media
+                    }
+                }
             } 
         }
     `;

@@ -6,7 +6,7 @@
         <media-title :media="media" :mobile="false" />
 
         <p
-            class="subtitle-1 secondary--text text-center text-md-left"
+            class="subtitle-1 description--text text-center text-md-left"
             v-html="description"
         ></p>
     </v-col>
@@ -50,16 +50,10 @@ export default {
             }
         },
         description() {
-            // ! FIX OR REMOVE
-            // if (this.mediaType === "characters") {
-            //     return this.media.description.replace(
-            //         /<a href="https:\/\/anilist\.co\/character\/(\d+)\/.+?">(.+?)<\/a>/g,
-            //         `<a href="/search/characters/$1">$2</a>`
-            //     );
-            // } else {
-            //     return this.media.description;
-            // }
-            return this.media.description;
+            return this.media.description.replace(
+                /<a href="https:\/\/anilist\.co\/.+?\/(\d+)\/.+?">(.+?)<\/a>/g,
+                `$2`
+            );
         },
     },
     mounted() {

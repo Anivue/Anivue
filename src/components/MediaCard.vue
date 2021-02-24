@@ -1,5 +1,9 @@
 <template>
     <v-card
+        :to="{
+            name: 'mediafullpage',
+            params: { type: mediaType, id: mediaId },
+        }"
         height="100%"
         color="transparent"
         elevation="0"
@@ -14,7 +18,6 @@
                 max-width="240"
                 :aspect-ratio="150 / 250"
                 class="elevation-12 rounded"
-                @click="openMedia"
             >
                 <template v-slot:placeholder>
                     <v-row
@@ -30,7 +33,6 @@
                 </template>
             </v-img>
             <v-card-title
-                @click="openMedia"
                 class="secondary--text break-word text-caption text-sm-subtitle-1 bold-title font-weight-regular d-inline-block text-truncate px-0 pt-2 pt-sm-5 text-center"
                 :style="{ 'max-width': maxWidth }"
             >
@@ -71,13 +73,6 @@ export default {
         },
     },
     methods: {
-        openMedia() {
-            // Go to media full page
-            this.$router.push({
-                name: "mediafullpage",
-                params: { type: this.mediaType, id: this.mediaId },
-            });
-        },
         trimTitle() {
             this.maxWidth = `${this.$refs.cardImg.$el.offsetWidth - 15}px`;
         },

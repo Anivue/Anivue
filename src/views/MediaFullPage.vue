@@ -1,5 +1,4 @@
 <template>
-    <!-- TODO: add skeleton loader -->
     <div style="overflow-y: hidden;">
         <!-- OK -->
         <div v-if="!error">

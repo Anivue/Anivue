@@ -13,7 +13,7 @@
             />
         </h2>
 
-        <p class="text--secondary">
+        <p class="secondary--text">
             {{ subtitle }}
         </p>
     </div>

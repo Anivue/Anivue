@@ -39,7 +39,7 @@
                             <p class="mb-1 primary--text">
                                 {{ title }}
                             </p>
-                            <p class="caption text--secondary capitalize">
+                            <p class="caption description--text capitalize">
                                 <span>{{ format }}</span>
                                 &nbsp;&#8226;&nbsp;
                                 <span>{{ status }}</span>
@@ -62,9 +62,9 @@
                         </div>
                     </div>
                     <!-- Card description -->
-                    <div class="description d-flex">
+                    <div class="descriptionBlock d-flex">
                         <p
-                            class="text--secondary caption"
+                            class="secondary--text caption"
                             v-html="description"
                         ></p>
                     </div>
@@ -234,7 +234,7 @@ export default {
     // background-color: #fff;
 }
 
-.description {
+.descriptionBlock {
     &::-webkit-scrollbar {
         display: none;
     }

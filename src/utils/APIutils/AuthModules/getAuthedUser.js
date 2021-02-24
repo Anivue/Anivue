@@ -11,7 +11,7 @@ const nodes = {
             type
             coverImage {
                 medium
-                extraLarge
+                large
             }
         }
     `,
