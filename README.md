@@ -15,7 +15,6 @@ Built with <a href="https://vuejs.org/" target="_blank">Vue.js</a> Javascript Fr
 
 ### Features
 
--   Progressive Web App
 -   Single Page Application
 -   Dark & Light Theme
 -   Material Design
@@ -32,13 +31,13 @@ Some screenshots to demonstrate the appearance of the site.
 -   **Home Page**
     <img src="https://user-images.githubusercontent.com/78701914/108635718-f128e080-7491-11eb-8dab-4b6f5b19c055.png">
 
-*   **404 Page**
+-   **404 Page**
     <img src="https://user-images.githubusercontent.com/78701914/108635728-fab24880-7491-11eb-8e0d-4986cb766e26.png">
 
-*   **Search Results Page**
+-   **Search Results Page**
     <img src="https://user-images.githubusercontent.com/78701914/108635726-f9811b80-7491-11eb-90bb-734a4ee0560d.png">
 
-*   **Full Media Page**
+-   **Full Media Page**
     <img src="https://user-images.githubusercontent.com/78701914/108635722-f7b75800-7491-11eb-97f6-5ecebe098e13.png">
 
 <h4 align="center">

@@ -33,12 +33,12 @@
                     background-color="transparent"
                     grow
                 >
-                    <v-tab href="#anime-list">
+                    <!-- <v-tab href="#anime-list">
                         Anime List
                     </v-tab>
                     <v-tab href="#manga-list">
                         Manga List
-                    </v-tab>
+                    </v-tab> -->
                     <v-tab href="#favorites">
                         Favorites
                     </v-tab>
@@ -52,14 +52,14 @@
             <v-col class="px-10 pt-8">
                 <v-tabs-items mandatory v-model="tab" class="transparent">
                     <!-- ANIME LIST TAB -->
-                    <v-tab-item :transition="false" value="anime-list">
+                    <!-- <v-tab-item :transition="false" value="anime-list">
                         <media-list type="anime" />
                     </v-tab-item>
 
-                    <!-- MANGA LIST TAB -->
+                    MANGA LIST TAB
                     <v-tab-item :transition="false" value="manga-list">
                         <media-list type="manga" />
-                    </v-tab-item>
+                    </v-tab-item> -->
 
                     <!-- FAVORITES LIST TAB -->
                     <v-tab-item :transition="false" value="favorites">
