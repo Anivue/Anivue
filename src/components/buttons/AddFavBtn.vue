@@ -1,9 +1,39 @@
 <template>
-    <v-btn :loading="loading" icon color="pink" @click="toggleFav">
-        <v-icon>
-            {{ isFav ? "mdi-heart" : "mdi-heart-outline" }}
-        </v-icon>
-    </v-btn>
+    <div class="d-inline">
+        <v-tooltip right>
+            <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                    v-bind="attrs"
+                    v-on="on"
+                    :loading="loading"
+                    icon
+                    color="pink"
+                    @click="toggleFav"
+                >
+                    <v-icon>
+                        {{ isFav ? "mdi-heart" : "mdi-heart-outline" }}
+                    </v-icon>
+                </v-btn>
+            </template>
+            <span>
+                {{ isFav ? "Remove from favorites" : "Add to favorites" }}
+            </span>
+        </v-tooltip>
+        <v-snackbar
+            elevation="24"
+            color="orange"
+            rounded
+            v-model="snackbar"
+            :timeout="snackbarTimeout"
+        >
+            <v-icon left>
+                {{ isFav ? "mdi-star" : "mdi-star-remove" }}
+            </v-icon>
+            <span class="font-weight-bold">
+                {{ isFav ? "Added to favorites" : "Removed from favorites" }}
+            </span>
+        </v-snackbar>
+    </div>
 </template>
 
 <script>
@@ -31,6 +61,8 @@ export default {
             loading: false,
             error: false,
             isFav: this.fav,
+            snackbar: false,
+            snackbarTimeout: 2000, // in ms
         };
     },
     methods: {
@@ -39,6 +71,7 @@ export default {
             const res = await toggleFavorite(this.token, this.type, this.id);
             this.loading = false;
             this.isFav = !this.isFav;
+            this.snackbar = true;
             this.error = res.ok;
             this.updateUser();
         },
