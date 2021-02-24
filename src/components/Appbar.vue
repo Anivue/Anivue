@@ -167,7 +167,7 @@ export default {
             }
         },
         goToHome() {
-            this.$router.push("/home").catch((err) => {
+            this.$router.push("/").catch((err) => {
                 err;
             });
         },
