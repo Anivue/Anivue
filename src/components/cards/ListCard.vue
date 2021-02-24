@@ -4,6 +4,7 @@
             <v-card
                 v-bind="attrs"
                 v-on="on"
+                width="85"
                 :to="{ name: 'mediafullpage', params: { type, id } }"
             >
                 <v-img

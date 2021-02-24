@@ -1,11 +1,14 @@
 <template>
-    <div v-if="characters.length || episodes.length || relations.length">
+    <div
+        class="elevation-5"
+        v-if="characters.length || episodes.length || relations.length"
+    >
         <v-tabs
             grow
             show-arrows
             v-model="tab"
-            class="elevation-4 mt-10"
-            :color="color"
+            color="navbar"
+            class=" mt-10 rounded-t"
         >
             <v-tab href="#characters-tab" v-if="characters.length"
                 >Characters</v-tab
@@ -14,7 +17,7 @@
             <v-tab href="#relations-tab" v-if="relations.length">Related</v-tab>
         </v-tabs>
 
-        <v-tabs-items v-model="tab" class="elevation-4 rounded-b">
+        <v-tabs-items v-model="tab" class=" rounded-b">
             <v-tab-item
                 :transition="false"
                 value="characters-tab"
@@ -97,15 +100,6 @@ export default {
                     ? this.media.relations.nodes
                     : this.media.media.nodes,
         };
-    },
-    computed: {
-        color() {
-            if ("image" in this.media) {
-                return "#fff";
-            } else {
-                return this.media.coverImage.color;
-            }
-        },
     },
 };
 </script>

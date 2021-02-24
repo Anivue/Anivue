@@ -35,7 +35,7 @@
                     </template>
                 </v-img>
                 <v-container fluid>
-                    <v-row class="elevation-8 pa-4">
+                    <v-row class="pa-4">
                         <v-col
                             cols="12"
                             sm="6"

@@ -7,7 +7,8 @@
                 </p>
                 <v-row class="accent rounded">
                     <v-col
-                        cols="6"
+                        cols="4"
+                        sm="2"
                         md="1"
                         v-for="i in media.data.length"
                         :key="i"
