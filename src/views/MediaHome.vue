@@ -81,40 +81,22 @@ export default {
         },
         // Invoke callback promise, then append response to data
 
-        handleResponse(callback, options) {
+        async handleResponse(callback, options) {
+            const prevPage = this.$route.params.type;
+            const res = await callback(options.vars);
+            this.totalPages = Math.ceil(res.data.Page.pageInfo.total / 50);
+            this.error = false;
             if (options.isCharacters) {
-                callback(options.vars)
-                    .then((res) => {
-                        if (!res.res.ok) throw Error(res.res.status);
-                        this.media = res.data.Page.characters;
-                        this.totalPages = Math.ceil(
-                            res.data.Page.pageInfo.total / 50
-                        );
-                        this.loading = false;
-                        this.error = false;
-                    })
-                    .catch((err) => {
-                        alert(JSON.stringify(err));
-                        this.error = true;
-                        this.errorMsg = err.message;
-                        console.log(err);
-                    });
+                this.media = res.data.Page.characters;
             } else {
-                callback(options.vars)
-                    .then((res) => {
-                        if (!res.res.ok) throw Error(res.res.status);
-                        this.media = res.data.Page.media;
-                        this.totalPages = Math.ceil(
-                            res.data.Page.pageInfo.total / 50
-                        );
-                        this.loading = false;
-                        this.error = false;
-                    })
-                    .catch((err) => {
-                        this.error = true;
-                        this.errorMsg = err.message;
-                        console.log(err);
-                    });
+                this.media = res.data.Page.media;
+            }
+            const currentPage = this.$route.params.type;
+
+            // Check if user still in the same page
+            // Useful when user switched page before promise was resolved
+            if (currentPage === prevPage) {
+                this.loading = false;
             }
         },
         setupQueries() {
