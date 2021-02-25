@@ -39,7 +39,7 @@ const routes = [
         component: () => import("../views/NotFound.vue"),
     },
     {
-        path: "/profile",
+        path: "/profile(&.*)?",
         name: "profile",
         component: () => import("../views/Profile.vue"),
     },

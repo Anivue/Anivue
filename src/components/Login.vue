@@ -45,32 +45,35 @@ export default {
     },
     methods: {
         getToken() {
-            const hash = this.$route.hash;
-
-            const token = hash.replace(/#access_token=(.*?)&(?:.*)/g, "$1");
+            const hash = this.$route.path.split("&")[1];
+            const token = hash.replace(/access_token=(.+)/g, "$1");
             this.setUser(token);
         },
         async setUser(token) {
             this.loading = true;
             const userData = await getAuthedUser(token);
-            const user = {
-                loggedIn: true,
-                token: token,
-                data: userData.data.Viewer,
-            };
+            if (userData.res.ok) {
+                const user = {
+                    loggedIn: true,
+                    token: token,
+                    data: userData.data.Viewer,
+                };
 
-            // Store user in cookies
-            this.$cookies.set("user", user);
-            // Add user to store
-            this.$store.commit("setUser", user);
-            // Remove hash from url
+                // Store user in cookies
+                this.$cookies.set("user", user);
+                // Add user to store
+                this.$store.commit("setUser", user);
+            } else {
+                this.loading = false;
+                alert("Wrong token");
+            }
             this.$router.replace({ path: "/profile" });
         },
     },
     watch: {
         "this.$route": {
             handler() {
-                if (this.$route.hash) {
+                if (this.$route.path.split("&").length > 1) {
                     this.getToken();
                 }
             },
