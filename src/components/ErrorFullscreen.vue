@@ -10,8 +10,8 @@
                             width="150"
                             height="170"
                         ></v-img>
-                        <h1 class="primary--text">Oops! Error {{ error }}</h1>
-                        <p class="secondary--text">Error code: {{ error }}</p>
+                        <h1 class="primary--text">Oops!</h1>
+                        <p class="secondary--text">We've got an error...</p>
                         <v-btn
                             class="navbar white--text"
                             elevation="24"

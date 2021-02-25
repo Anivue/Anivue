@@ -1,5 +1,6 @@
 <template>
     <v-card
+        :ripple="false"
         :to="{
             name: 'mediafullpage',
             params: { type: mediaType, id: mediaId },
@@ -105,6 +106,10 @@ export default {
 
     &:hover {
         transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(0.9);
     }
 }
 

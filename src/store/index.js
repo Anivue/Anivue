@@ -15,7 +15,7 @@ export default new Vuex.Store({
             {
                 title: "Characters",
                 routePath: "/search/characters",
-                icon: "mdi-account-group",
+                icon: "mdi-human-handsup",
                 colorProp: "characters",
             },
             {
@@ -49,7 +49,9 @@ export default new Vuex.Store({
             manga: "mdi-book",
             profile: "mdi-account",
             home: "mdi-home",
-            characters: "mdi-account-group",
+            characters: "mdi-human-handsup",
+            episodes: "mdi-play-box-multiple",
+            relations: "mdi-transit-connection-variant",
         },
         colors: {
             anime: {

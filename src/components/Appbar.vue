@@ -56,6 +56,7 @@
                             <v-btn
                                 icon
                                 large
+                                color="navbar"
                                 class="ml-2"
                                 type="submit"
                                 :disabled="buttonDisabled"
@@ -103,19 +104,19 @@
                         :to="navLink.routePath"
                     >
                         <v-list-item-icon>
-                            <v-icon>{{ navLink.icon }}</v-icon>
+                            <v-icon color="primary">{{ navLink.icon }}</v-icon>
                         </v-list-item-icon>
-                        <v-list-item-title>{{
+                        <v-list-item-title class="primary--text">{{
                             navLink.title
                         }}</v-list-item-title>
                     </v-list-item>
                     <v-list-item @click="changeTheme">
                         <v-list-item-icon>
-                            <v-icon>
+                            <v-icon color="primary">
                                 mdi-theme-light-dark
                             </v-icon>
                         </v-list-item-icon>
-                        <v-list-item-title>
+                        <v-list-item-title class="primary--text">
                             Change Theme
                         </v-list-item-title>
                     </v-list-item>

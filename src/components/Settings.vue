@@ -1,10 +1,14 @@
 <template>
-    <div>
-        <h1 class="font-weight-light text-center primary--text">
-            Settings
-        </h1>
-        <v-btn @click="logout" class="navbar white--text">Logout</v-btn>
-    </div>
+    <v-container fill-height>
+        <v-row>
+            <v-col class="d-flex justify-center">
+                <v-btn @click="logout" class="navbar my-5 white--text">
+                    <v-icon color="white" left>mdi-logout</v-icon>
+                    Logout
+                </v-btn>
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 
 <script>

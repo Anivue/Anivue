@@ -7,14 +7,24 @@
             grow
             show-arrows
             v-model="tab"
-            color="navbar"
-            class=" mt-10 rounded-t"
+            class="primary--text mt-10 rounded-t"
         >
-            <v-tab href="#characters-tab" v-if="characters.length"
-                >Characters</v-tab
-            >
-            <v-tab href="#episodes-tab" v-if="episodes.length">Episodes</v-tab>
-            <v-tab href="#relations-tab" v-if="relations.length">Related</v-tab>
+            <v-tab href="#characters-tab" v-if="characters.length">
+                <v-icon color="primary" left small>{{
+                    icons.characters
+                }}</v-icon>
+                Characters
+            </v-tab>
+            <v-tab href="#episodes-tab" v-if="episodes.length">
+                <v-icon color="primary" left small>{{ icons.episodes }}</v-icon>
+                Episodes
+            </v-tab>
+            <v-tab href="#relations-tab" v-if="relations.length">
+                <v-icon color="primary" left small>{{
+                    icons.relations
+                }}</v-icon>
+                Relations
+            </v-tab>
         </v-tabs>
 
         <v-tabs-items v-model="tab" class=" rounded-b">
@@ -100,6 +110,15 @@ export default {
                     ? this.media.relations.nodes
                     : this.media.media.nodes,
         };
+    },
+    computed: {
+        icons() {
+            return {
+                characters: this.$store.state.icons.characters,
+                episodes: this.$store.state.icons.episodes,
+                relations: this.$store.state.icons.relations,
+            };
+        },
     },
 };
 </script>

@@ -1,8 +1,5 @@
 <template>
     <div class="mb-5">
-        <h1 class="mb-7 font-weight-light text-center primary--text capitalize">
-            {{ type }}
-        </h1>
         <favorites-grid v-if="type === 'favorites'" />
     </div>
 </template>
@@ -18,6 +15,13 @@ export default {
             type: String,
             required: true,
         },
+    },
+    data() {
+        return {
+            icons: {
+                favorites: "mdi-star",
+            },
+        };
     },
 };
 </script>

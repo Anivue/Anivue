@@ -5,6 +5,7 @@
                 <v-col cols="12" md="4">
                     <v-text-field
                         flat
+                        color="secondary--text"
                         :class="{ 'elevation-4': md }"
                         hide-details
                         prepend-inner-icon="mdi-magnify"

@@ -16,7 +16,7 @@
                         <v-avatar tile size="150">
                             <v-img :src="user.avatar.large"></v-img>
                         </v-avatar>
-                        <div class="d-flex align-end justify-center">
+                        <div class="d-flex align-end justify-center ml-5">
                             <h3 class="white--text  text-md-h2 text-h5">
                                 {{ user.name }}
                             </h3>
@@ -33,16 +33,12 @@
                     background-color="transparent"
                     grow
                 >
-                    <!-- <v-tab href="#anime-list">
-                        Anime List
-                    </v-tab>
-                    <v-tab href="#manga-list">
-                        Manga List
-                    </v-tab> -->
                     <v-tab href="#favorites">
+                        <v-icon small left color="primary">mdi-star</v-icon>
                         Favorites
                     </v-tab>
                     <v-tab href="#settings">
+                        <v-icon small left color="primary">mdi-cog</v-icon>
                         Settings
                     </v-tab>
                 </v-tabs>
@@ -51,16 +47,6 @@
         <v-row>
             <v-col class="px-10 pt-8">
                 <v-tabs-items mandatory v-model="tab" class="transparent">
-                    <!-- ANIME LIST TAB -->
-                    <!-- <v-tab-item :transition="false" value="anime-list">
-                        <media-list type="anime" />
-                    </v-tab-item>
-
-                    MANGA LIST TAB
-                    <v-tab-item :transition="false" value="manga-list">
-                        <media-list type="manga" />
-                    </v-tab-item> -->
-
                     <!-- FAVORITES LIST TAB -->
                     <v-tab-item :transition="false" value="favorites">
                         <media-list type="favorites" />
