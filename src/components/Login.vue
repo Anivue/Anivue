@@ -12,14 +12,16 @@
                             <p class="secondary--text">
                                 You will be redirected to Anilist login page
                             </p>
-                            <a :href="url">
-                                <v-btn
-                                    class="navbar white--text"
-                                    elevation="24"
+                            <v-btn
+                                :href="url"
+                                class="navbar white--text"
+                                elevation="24"
+                            >
+                                <v-icon small left color="white"
+                                    >mdi-login</v-icon
                                 >
-                                    Login
-                                </v-btn>
-                            </a>
+                                <span>Login</span>
+                            </v-btn>
                         </div>
                     </center>
                 </div>
@@ -77,5 +79,3 @@ export default {
     },
 };
 </script>
-
-<style lang="scss" scoped></style>

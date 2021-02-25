@@ -8,8 +8,7 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: "/",
-        name: "home",
-        component: Home,
+        redirect: "/home",
     },
     {
         path: "/search",
@@ -19,7 +18,8 @@ const routes = [
     },
     {
         path: "/home",
-        redirect: "/",
+        name: "home",
+        component: Home,
     },
     {
         path: "/search/:type",
@@ -51,7 +51,6 @@ const routes = [
 ];
 
 const router = new VueRouter({
-    mode: "history",
     base: process.env.BASE_URL,
     routes,
     scrollBehavior() {

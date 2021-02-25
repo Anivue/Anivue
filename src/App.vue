@@ -2,12 +2,9 @@
     <v-app>
         <appbar />
         <v-main class="pb-md-15 pt-md-0 overflow-hidden-x background">
-            <!-- CACHE EXAMPLE -->
             <keep-alive :include="['Home', 'Profile']">
                 <router-view />
             </keep-alive>
-
-            <!-- <router-view /> -->
         </v-main>
         <speed-dial />
         <navbar class="d-none d-sm-flex" />
@@ -28,19 +25,7 @@ export default {
         SpeedDial,
     },
 
-    data: () => ({
-        //
-    }),
     mounted() {
-        //! Requires fix, only caching once [fix or remove later]
-        /*
-        const isDarkTheme = this.$cookies.get("isDarkTheme");
-        if (isDarkTheme) {
-            this.$vuetify.theme.dark = true;
-        } else {
-            this.$vuetify.theme.dark = false;
-        } */
-
         //? Check if user was authenticated before
         const user = this.$cookies.get("user");
         if (user) {

@@ -100,7 +100,11 @@
                         <media-description :media="media" :mediaType="type" />
                     </v-row>
 
-                    <media-tabs :media="media" :loading="loading" />
+                    <v-row>
+                        <v-col>
+                            <media-tabs :media="media" :loading="loading" />
+                        </v-col>
+                    </v-row>
                 </v-container>
             </div>
         </div>
