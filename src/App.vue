@@ -1,13 +1,13 @@
 <template>
     <v-app>
-        <appbar />
+        <appbar class="z-index" />
         <v-main class="pb-md-15 pt-md-0 overflow-hidden-x background">
             <keep-alive :include="['Home', 'Profile']">
                 <router-view />
             </keep-alive>
         </v-main>
         <speed-dial />
-        <navbar class="d-none d-sm-flex" />
+        <navbar class="d-none d-sm-flex z-index" />
     </v-app>
 </template>
 
@@ -38,5 +38,9 @@ export default {
 <style lang="scss">
 .overflow-hidden-x {
     overflow-x: hidden;
+}
+
+.z-index {
+    z-index: 9999 !important;
 }
 </style>
