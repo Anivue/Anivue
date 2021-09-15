@@ -44,7 +44,7 @@ Some screenshots to demonstrate the appearance of the site.
 Follow this url to see more: <a target="_blank" href="https://anivue.ru/">anilist.ru</a>
 </h4>
 <p align="center">
-<a href="https://github.com/VadimZb/" target="_blank">VadimZb</a>
+<a href="https://github.com/f4tess/" target="_blank">f4tes</a>
 </p>
 
 ---
