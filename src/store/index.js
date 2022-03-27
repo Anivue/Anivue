@@ -37,12 +37,6 @@ export default new Vuex.Store({
                 icon: "mdi-book",
                 colorProp: "manga",
             },
-            {
-                title: "Profile",
-                routePath: "/profile",
-                icon: "mdi-account",
-                colorProp: "profile",
-            },
         ],
         icons: {
             anime: "mdi-movie",
