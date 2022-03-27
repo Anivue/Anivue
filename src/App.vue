@@ -26,11 +26,19 @@ export default {
     },
 
     mounted() {
-        //? Check if user was authenticated before
-        const user = this.$cookies.get("user");
-        if (user) {
-            this.$store.commit("setUser", user);
+        // Adapt for system theme
+        if (
+            window.matchMedia &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches
+        ) {
+            this.$vuetify.theme.dark = true
         }
+        // Watch for system theme change
+        window
+            .matchMedia('(prefers-color-scheme: dark)')
+            .addEventListener('change', (e) => {
+                this.$vuetify.theme.dark = e.matches
+            })
     },
 };
 </script>
