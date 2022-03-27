@@ -18,7 +18,7 @@ Built with <a href="https://vuejs.org/" target="_blank">Vue.js</a> Javascript Fr
 -   Single Page Application
 -   Dark & Light Theme
 -   Material Design
--   Authorization with Anilist
+-   ~~Authorization with Anilist~~
 
 ---
 
