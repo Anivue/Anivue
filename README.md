@@ -43,7 +43,7 @@ Some screenshots to demonstrate the appearance of the site.
     <img src="https://user-images.githubusercontent.com/78701914/108635722-f7b75800-7491-11eb-97f6-5ecebe098e13.png">
 
 <h4 align="center">
-Follow this url to see more: <a target="_blank" href="https://anivue.ru/">anilist.ru</a>
+Follow this url to see more: <a target="_blank" href="https://anivue.ru/">anivue.ru</a>
 </h4>
 <p align="center">
 <a href="https://github.com/metafates/" target="_blank">metafates</a>
